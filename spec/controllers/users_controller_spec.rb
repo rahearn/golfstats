@@ -9,7 +9,7 @@ describe UsersController do
     end
 
     context "when signed in" do
-      let(:user) { User.create!(:openid_uid => 'https://my-openid.org') }
+      let(:user) { create :user }
       before(:each) do
         sign_in user
         get :show

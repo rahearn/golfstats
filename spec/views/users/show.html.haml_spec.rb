@@ -1,17 +1,17 @@
 require 'spec_helper'
 
 describe "users/show.html.haml" do
-  before(:all) do
-    User.destroy_all
-    assign :user, User.create!(:email => 'example@email.com', :openid_uid => 'https://my-openid.com')
+  let(:user) { build_stubbed :full_user }
+  before(:each) do
+    assign :user, user
+    render
   end
-  before(:each) { render }
 
   it "displays the user's email" do
-    rendered.should include "<em>Email:</em>\nexample@email.com"
+    rendered.should include "<em>Email:</em>\n#{user.email}"
   end
 
   it "displays the user's openid" do
-    rendered.should include "<em>OpenId:</em>\nhttps://my-openid.com"
+    rendered.should include "<em>OpenId:</em>\n#{user.openid_uid}"
   end
 end
