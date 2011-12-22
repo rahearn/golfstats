@@ -52,6 +52,7 @@ module Golfstats
     config.assets.version = '1.0'
 
     config.generators do |g|
+      g.helper false
       g.helper_specs false
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end

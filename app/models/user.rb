@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  devise :rememberable, :trackable
+  devise :omniauthable, :rememberable, :trackable
 
   validates_presence_of :openid_uid
   validates_uniqueness_of :openid_uid, :if => :openid_uid_changed?

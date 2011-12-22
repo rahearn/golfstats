@@ -1,0 +1,8 @@
+%h1 Sign In
+#google
+  %p= link_to "Sign in with Google", user_omniauth_authorize_path(:google)
+#openid
+  %p Or enter your OpenID
+  = form_tag user_omniauth_authorize_path(:open_id), :method => :get do
+    .form_row= text_field_tag :openid_url
+    .actions= submit_tag :connect
