@@ -15,13 +15,8 @@ describe UsersController do
         get :show
       end
 
-      it "returns http success" do
-        response.should be_success
-      end
-
-      it "assigns current_user to @user" do
-        assigns(:user).should == user
-      end
+      it { should respond_with :success }
+      it { should assign_to(:user).with user }
     end
   end
 

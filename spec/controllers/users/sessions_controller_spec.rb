@@ -27,13 +27,8 @@ describe Users::SessionsController do
         get :destroy
       end
 
-      it "redirects" do
-        response.should be_redirect
-      end
-
-      it "sets flash notice" do
-        flash[:notice].should == 'Signed out successfully.'
-      end
+      it { should respond_with :redirect }
+      it { should set_the_flash.to 'Signed out successfully.' }
     end
   end
 
