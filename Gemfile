@@ -5,6 +5,10 @@ gem 'rails', '3.1.3'
 # database
 gem 'pg'
 
+# authentication
+gem 'devise'
+gem 'omniauth-openid'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -13,4 +17,15 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+# presentation
 gem 'jquery-rails'
+gem 'haml-rails'
+
+group :development, :test do
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+end
