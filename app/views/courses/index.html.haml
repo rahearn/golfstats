@@ -1,0 +1,13 @@
+%h1 Courses#index
+%table
+  %thead
+    %tr
+      %th Course
+      %th &nbsp;
+  %tbody
+    - @courses.each do |c|
+      %tr
+        %td= render c
+        %td= link_to 'Show', c
+
+%p= link_to 'New course', new_course_path

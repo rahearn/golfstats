@@ -1,0 +1,10 @@
+%h1 Courses#new
+= form_for @course do |f|
+  .form_row
+    = f.label :name
+    = f.text_field :name
+  .form_row
+    = f.label :location
+    = f.text_field :location
+
+  .actions= f.submit
