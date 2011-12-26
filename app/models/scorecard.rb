@@ -9,6 +9,7 @@ class Scorecard
   field :round_id,   :type => Integer
 
   embeds_many :scored_holes
+  accepts_nested_attributes_for :scored_holes
 
 
   validates_presence_of :tee
@@ -19,6 +20,9 @@ class Scorecard
 
   validates_presence_of :score
 
+  before_validation :sum_scorecard, :on => :create
+  after_create :set_round
+
   def round
     @round ||= Round.find round_id
   end
@@ -26,5 +30,21 @@ class Scorecard
   def round=(r)
     @round = nil
     self.round_id = r.id
+  end
+
+  private
+
+  def sum_scorecard
+    self.score  = scored_holes.sum(:score)  unless self.score.present?
+    self.length = scored_holes.sum(:length) unless self.length.present?
+    self.par    = scored_holes.sum(:par)    unless self.par.present?
+  end
+
+  def set_round
+    unless round_id.nil?
+      round.scorecard = self
+      round.score     = score
+      round.save
+    end
   end
 end

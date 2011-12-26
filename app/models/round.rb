@@ -10,7 +10,7 @@ class Round < ActiveRecord::Base
 
   validates_presence_of :user, :course, :date, :score, :differential, :on => :create
 
-  before_validation :calculate_differential, :on => :create
+  before_validation :calculate_differential
 
   def scorecard
     @scorecard ||= Scorecard.find scorecard_id
@@ -24,6 +24,8 @@ class Round < ActiveRecord::Base
   private
 
   def calculate_differential
-    self.differential = score
+    if score_changed?
+      self.differential = score
+    end
   end
 end

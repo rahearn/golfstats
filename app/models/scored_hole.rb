@@ -14,5 +14,5 @@ class ScoredHole
 
   validates_presence_of :par
 
-  validates_presence_of:score
+  validates_presence_of :score
 end

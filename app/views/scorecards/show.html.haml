@@ -1,0 +1,29 @@
+%h1 Scorecards#show
+%table
+  %thead
+    %tr
+      %th &nbsp;
+      - (1..18).each do |hole|
+        %th= hole
+      %th Total
+  %tbody
+    %tr
+      %td Yardage
+      - 18.times do |index|
+        %td= @scorecard.scored_holes[index].length
+      %td= @scorecard.length
+    %tr
+      %td Par
+      - 18.times do |index|
+        %td= @scorecard.scored_holes[index].par
+      %td= @scorecard.par
+    %tr
+      %td Score
+      - 18.times do |index|
+        %td= @scorecard.scored_holes[index].score
+      %td= @scorecard.score
+    %tr
+      %td Handicap
+      - 18.times do |index|
+        %td= @scorecard.scored_holes[index].handicap
+      %td &nbsp;
