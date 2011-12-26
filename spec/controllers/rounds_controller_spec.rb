@@ -34,7 +34,7 @@ describe RoundsController do
         get :show, :id => round.id
       end
 
-      it { should respond_with :not_found }
+      it { should respond_with :redirect }
     end
   end
 
