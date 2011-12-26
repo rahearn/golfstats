@@ -6,6 +6,7 @@ class Scorecard
   field :length,     :type => Integer
   field :par,        :type => Integer
   field :score,      :type => Integer
+  field :round_id,   :type => Integer
 
   embeds_many :scored_holes
 
@@ -17,4 +18,13 @@ class Scorecard
   validates_presence_of :par
 
   validates_presence_of :score
+
+  def round
+    @round ||= Round.find round_id
+  end
+
+  def round=(r)
+    @round = nil
+    self.round_id = r.id
+  end
 end
