@@ -2,13 +2,17 @@ require 'spec_helper'
 
 describe "rounds/new.html.haml" do
 
+  let(:course) { create :course }
   before(:each) do
+    assign :course, course
     assign :round, Round.new
     render
   end
 
   it "has a form for entering a new round" do
-    rendered.should include '<form accept-charset="UTF-8" action="/rounds" class="new_round" id="new_round" method="post">'
+    rendered.should include(
+      %|<form accept-charset="UTF-8" action="/courses/#{course.id}/rounds" class="new_round" id="new_round" method="post">|
+    )
   end
 
   it "has select boxes for date" do
@@ -25,7 +29,4 @@ describe "rounds/new.html.haml" do
     rendered.should include '<textarea cols="40" id="round_notes" name="round[notes]" rows="20">'
   end
 
-  it "has a hidden field for course" do
-    rendered.should include '<input id="round_course_id" name="round[course_id]" type="hidden" />'
-  end
 end

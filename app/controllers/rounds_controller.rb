@@ -14,11 +14,13 @@ class RoundsController < ApplicationController
   end
 
   def new
+    @course = Course.find params[:course_id]
     @round = Round.new params[:round]
   end
 
   def create
-    @round = Round.new params[:round].merge(:user => current_user)
+    @course = Course.find params[:course_id]
+    @round = @course.rounds.build(params[:round].merge(:user => current_user))
 
     if @round.save
       redirect_to @round

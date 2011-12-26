@@ -39,9 +39,10 @@ describe RoundsController do
   end
 
   describe "GET :new" do
+    let(:course) { create :course }
     before(:each) do
       sign_in create :user
-      get :new
+      get :new, :course_id => course.id
     end
 
     it { should respond_with :success }
@@ -49,12 +50,12 @@ describe RoundsController do
   end
 
   describe "POST :create" do
-    let(:user)  { create :user }
+    let(:user)   { create :user }
     let(:course) { create :course }
-    let(:round) { attributes_for :round, :course_id => course.id }
+    let(:round)  { attributes_for :round }
     before(:each) do
       sign_in user
-      post :create, :round => round
+      post :create, :course_id => course.id, :round => round
     end
 
     it { should respond_with :redirect }
