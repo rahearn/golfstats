@@ -4,6 +4,7 @@ module Users
     prepend_before_filter :require_no_authentication, :except => :developer
     before_filter         :ensure_development,        :only   => :developer
     before_filter         :load_auth_and_user
+    skip_authorization_check
 
     def open_id
       if @user.new_record?

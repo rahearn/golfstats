@@ -1,0 +1,13 @@
+%h1 Rounds#new
+= form_for [@course, @round] do |f|
+  .form_row
+    = f.label :date
+    = f.date_select :date
+  .form_row
+    = f.label :score
+    = f.number_field :score, :min => 1
+  .form_row
+    = f.label :notes
+    = f.text_area :notes
+
+  .actions= f.submit

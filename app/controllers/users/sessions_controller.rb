@@ -2,6 +2,7 @@ module Users
   class SessionsController < ApplicationController
 
     prepend_before_filter :require_no_authentication, :only => :new
+    skip_authorization_check
 
     def new
     end

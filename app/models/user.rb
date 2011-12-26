@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, :rememberable, :trackable
 
+  has_many :rounds
+
+
   validates_presence_of :openid_uid
   validates_uniqueness_of :openid_uid, :if => :openid_uid_changed?
 
@@ -13,6 +16,7 @@ class User < ActiveRecord::Base
   validates_numericality_of :handicap,
     :allow_nil => true,
     :less_than_or_equal_to => :maximum_handicap
+
 
   def maximum_handicap
     gender == 'male' ? 36.4 : 40.4

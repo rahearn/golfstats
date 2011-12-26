@@ -1,0 +1,10 @@
+%h1 Rounds#index
+%table
+  %thead
+    %th Round
+    %th &nbsp;
+  %tbody
+    - @rounds.each do |r|
+      %tr
+        %td= render r
+        %td= link_to 'Show', r
