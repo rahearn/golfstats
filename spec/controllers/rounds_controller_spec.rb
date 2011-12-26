@@ -1,0 +1,71 @@
+require 'spec_helper'
+
+describe RoundsController do
+
+  describe "GET :index" do
+    it "returns http success when logged in" do
+      sign_in create :user
+      get :index
+      response.should be_success
+    end
+
+    it "redirects when not logged in" do
+      get :index
+      response.should be_redirect
+    end
+  end
+
+  describe "GET :show" do
+    let(:round) { create :round }
+
+    context "with my round" do
+      before(:each) do
+        sign_in round.user
+        get :show, :id => round.id
+      end
+
+      it { should respond_with :success }
+      it { should assign_to(:round).with round }
+    end
+
+    context "for someone else's round" do
+      before(:each) do
+        sign_in create :user
+        get :show, :id => round.id
+      end
+
+      it { should respond_with :not_found }
+    end
+  end
+
+  describe "GET :new" do
+    before(:each) do
+      sign_in create :user
+      get :new
+    end
+
+    it { should respond_with :success }
+    it { should assign_to(:round).with_kind_of Round }
+  end
+
+  describe "POST :create" do
+    let(:user)  { create :user }
+    let(:course) { create :course }
+    let(:round) { attributes_for :round, :course_id => course.id }
+    before(:each) do
+      sign_in user
+      post :create, :round => round
+    end
+
+    it { should respond_with :redirect }
+
+    it "creates a new round" do
+      created = assigns :round
+      created.should be_persisted
+      created.user.should   == user
+      created.course.should == course
+      created.date.should   == Date.parse(round[:date])
+    end
+  end
+
+end

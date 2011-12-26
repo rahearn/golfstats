@@ -4,6 +4,7 @@ class Round < ActiveRecord::Base
 
   belongs_to :course
 
+  delegate :name, :to => :course, :prefix => true
 
   attr_readonly :user, :course, :date, :score, :differential
 
