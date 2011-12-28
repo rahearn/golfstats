@@ -1,7 +1,7 @@
 # Read about factories at http://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :scored_hole do
+  factory :hole do
     sequence(:hole)     { |n| (n % 18) + 1 }
     sequence(:handicap) { |n| (n % 18) + 1 }
     score               { rand(3..5) }

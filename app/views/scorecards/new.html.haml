@@ -16,7 +16,7 @@
         %th Handicap
         %th Score
     %tbody
-      = f.fields_for :scored_holes do |sh|
+      = f.fields_for :holes do |sh|
         %tr
           %td
             = sh.object.hole

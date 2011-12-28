@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe "scorecards/show.html.haml" do
 
-  let(:scorecard) { create :scorecard, :scored_holes => holes }
+  let(:scorecard) { create :scorecard, :holes => holes }
   let(:holes) do
     18.times.map do |index|
-      build :scored_hole
+      build :hole
     end
   end
   before(:each) do

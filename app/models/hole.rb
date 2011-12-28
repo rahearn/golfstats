@@ -1,4 +1,4 @@
-class ScoredHole
+class Hole
   include Mongoid::Document
 
   field :hole,     :type => Integer

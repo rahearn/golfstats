@@ -9,7 +9,7 @@ class ScorecardsController < ApplicationController
   def new
     authorize! :new, @round
     (1..18).each do |hole|
-      @scorecard.scored_holes.build(:hole => hole)
+      @scorecard.holes.build(:hole => hole)
     end
   end
 

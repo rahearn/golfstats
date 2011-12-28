@@ -4,7 +4,7 @@ describe Scorecard do
   include Mongoid::Matchers
 
   describe "relations" do
-    it { should embed_many :scored_holes }
+    it { should embed_many :holes }
   end
 
   describe "validations" do

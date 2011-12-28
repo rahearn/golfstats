@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ScoredHole do
+describe Hole do
   include Mongoid::Matchers
 
   describe "relations" do
