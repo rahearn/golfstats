@@ -28,4 +28,22 @@ describe Round do
       subject.differential.should == subject.score
     end
   end
+
+  describe "#scorecard" do
+    let(:scorecard) { create :scorecard }
+    subject { build_stubbed :round, :scorecard_id => scorecard.id }
+
+    it "retrieves the scorecard object" do
+      subject.scorecard.should == scorecard
+    end
+  end
+
+  describe "#scorecard=" do
+    let(:scorecard) { create :scorecard }
+
+    it "assigns the correct scorecard_id" do
+      subject.scorecard = scorecard
+      subject.scorecard_id.should == scorecard.id.to_s
+    end
+  end
 end

@@ -4,6 +4,9 @@ gem 'rails', '3.1.3'
 
 # database
 gem 'pg'
+gem 'mongo', '1.5.2'
+gem 'bson_ext', '1.5.2'
+gem 'mongoid'
 
 # authentication & authorization
 gem 'devise'
@@ -28,5 +31,7 @@ end
 
 group :test do
   gem 'shoulda-matchers'
+  gem 'mongoid-rspec'
   gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
