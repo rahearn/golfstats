@@ -8,7 +8,7 @@ class Scorecard
   field :score,      :type => Integer
   field :round_id,   :type => Integer
 
-  embeds_many :holes
+  embeds_many :holes, :as => :holed
   accepts_nested_attributes_for :holes
 
 

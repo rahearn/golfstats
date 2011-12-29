@@ -4,6 +4,8 @@ class Teebox
   field :tees,      :type => String
   field :course_id, :type => Integer
 
+  embeds_many :holes, :as => :holed
+
 
   validates_presence_of :tees
   validates_uniqueness_of :tees, :scope => :course_id

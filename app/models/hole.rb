@@ -7,12 +7,19 @@ class Hole
   field :par,      :type => Integer
   field :score,    :type => Integer
 
-  embedded_in :scorecard
+  embedded_in :holed, :polymorphic => true
 
 
   validates_presence_of :hole
 
   validates_presence_of :par
 
-  validates_presence_of :score
+  validates_presence_of :score, :if => :scored?
+
+
+  private
+
+  def scored?
+    holed.class == Scorecard
+  end
 end
