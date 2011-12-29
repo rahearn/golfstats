@@ -8,12 +8,15 @@ class Round < ActiveRecord::Base
 
   attr_readonly :user, :course, :date, :score, :differential
 
+
   validates_presence_of :user, :course, :date, :score, :differential, :on => :create
 
-  validate :scorecard_valid, :if => :scorecard_id?
+  validate :scorecard_valid, :if => :scorecard_id?, :on => :create
 
-  before_validation :calculate_differential
-  after_create :set_scorecard, :if => :scorecard_id?
+
+  before_validation :calculate_differential, :on => :create
+  after_create :link_scorecard, :if => :scorecard_id?
+
 
   def scorecard
     @scorecard ||= Scorecard.find scorecard_id if scorecard_id?
@@ -22,12 +25,12 @@ class Round < ActiveRecord::Base
   def scorecard=(sc)
     if sc.is_a? Scorecard
       @scorecard = sc
-      self.scorecard_id = sc.id.to_s
-    else
+      else
       @scorecard = Scorecard.create sc
-      self.scorecard_id = @scorecard.id.to_s
       self.score = @scorecard.score
     end
+    self.scorecard_id = @scorecard.id.to_s
+    @scorecard
   end
 
   private
@@ -39,10 +42,10 @@ class Round < ActiveRecord::Base
   end
 
   def scorecard_valid
-    errors.add(:scorecard, 'is invalid') unless @scorecard.valid?
+    errors.add(:scorecard, 'is invalid') unless scorecard.valid?
   end
 
-  def set_scorecard
+  def link_scorecard
     scorecard.round = self
     scorecard.save
   end

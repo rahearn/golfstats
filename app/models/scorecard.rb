@@ -21,35 +21,26 @@ class Scorecard
 
   validates_presence_of :score
 
+
   before_validation :sum_scorecard, :on => :create
-  after_create :set_round,     :if => :round_id?
-  after_create :update_teebox, :if => :can_update_teebox?
+
 
   def round
     @round ||= Round.find round_id if round_id?
   end
 
   def round=(r)
-    @round = r
+    @round        = r
     self.round_id = r.id
+    update_teebox if holes.length == 18
   end
 
   private
 
   def sum_scorecard
-    self.score  = holes.sum(:score)  unless self.score.present?
-    self.length = holes.sum(:length) unless self.length.present?
-    self.par    = holes.sum(:par)    unless self.par.present?
-  end
-
-  def set_round
-    round.scorecard = self
-    round.score     = score
-    round.save
-  end
-
-  def can_update_teebox?
-    round_id? && holes.length == 18
+    self.score  = holes.sum :score
+    self.length = holes.sum :length
+    self.par    = holes.sum :par
   end
 
   def update_teebox

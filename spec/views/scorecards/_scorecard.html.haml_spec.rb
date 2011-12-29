@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "scorecards/_scorecard.html.haml" do
 
-  let(:scorecard) { create :filled_in_scorecard }
+  let(:scorecard) { create :scorecard }
   let(:holes)     { scorecard.holes }
   before(:each) do
     render :partial => "scorecard", :locals => {:scorecard => scorecard}

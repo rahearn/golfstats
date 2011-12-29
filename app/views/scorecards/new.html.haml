@@ -1,8 +1,0 @@
-%h1 Scorecard for #{@round.date} round at #{@round.course_name}
-
-= form_for @scorecard, :url => round_scorecard_path(@round) do |f|
-  = error_messages_for @round, @scorecard
-
-  = render :partial => "form", :locals => { :f => f }
-
-  .actions= f.submit
