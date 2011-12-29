@@ -11,5 +11,9 @@ FactoryGirl.define do
     factory :parred_hole do
       score 4
     end
+
+    factory :teebox_hole do
+      score nil
+    end
   end
 end

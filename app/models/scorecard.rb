@@ -1,18 +1,18 @@
 class Scorecard
   include Mongoid::Document
 
-  field :tee,        :type => String
+  field :tees,       :type => String
   field :statistics, :type => Hash
   field :length,     :type => Integer
   field :par,        :type => Integer
   field :score,      :type => Integer
   field :round_id,   :type => Integer
 
-  embeds_many :holes
+  embeds_many :holes, :as => :holed
   accepts_nested_attributes_for :holes
 
 
-  validates_presence_of :tee
+  validates_presence_of :tees
 
   validates_presence_of :length
 
@@ -21,7 +21,8 @@ class Scorecard
   validates_presence_of :score
 
   before_validation :sum_scorecard, :on => :create
-  after_create :set_round
+  after_create :set_round,     :if => :round_present?
+  after_create :update_teebox, :if => :can_update_teebox?
 
   def round
     @round ||= Round.find round_id
@@ -40,11 +41,42 @@ class Scorecard
     self.par    = holes.sum(:par)    unless self.par.present?
   end
 
+  def round_present?
+    !round_id.nil?
+  end
+
   def set_round
-    unless round_id.nil?
-      round.scorecard = self
-      round.score     = score
-      round.save
+    round.scorecard = self
+    round.score     = score
+    round.save
+  end
+
+  def can_update_teebox?
+    round_present? && holes.length == 18
+  end
+
+  def update_teebox
+    teebox = Teebox.find_or_create_by :tees => tees, :course_id => round.course_id
+    if teebox.holes.count < 18
+      teebox.holes.delete_all
+      holes.each do |h|
+        teebox.holes.build(
+          :hole     => h.hole,
+          :length   => h.length,
+          :par      => h.par,
+          :handicap => h.handicap
+        )
+      end
+    else
+      default_holes = teebox.holes.each
+      holes.each do |h|
+        dh          = default_holes.next
+        Rails.logger.debug "RCA h.hole: #{h.hole}, dh.hole: #{dh.hole}"
+        dh.length   = h.length
+        dh.par      = h.par
+        dh.handicap = h.handicap if h.handicap.present?
+      end
     end
+    teebox.save!
   end
 end
