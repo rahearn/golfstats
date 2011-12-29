@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :scorecard do
-    tee "white"
+    tees "white"
     length 6063
     par 71
     score 100
