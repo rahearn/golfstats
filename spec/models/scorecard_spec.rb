@@ -16,9 +16,9 @@ describe Scorecard do
 
   describe "callbacks" do
     let(:round) { create :round }
-    subject { build :scorecard, :round => round }
 
     context "with only 9 holes" do
+      subject { build :scorecard, :round => round }
       before(:each) do
         (1..9).each do |h|
           subject.holes.build attributes_for(:hole, :hole => h)
@@ -32,11 +32,7 @@ describe Scorecard do
     end
 
     context "with 18 holes" do
-      before(:each) do
-        (1..18).each do |h|
-          subject.holes.build attributes_for(:hole, :hole => h)
-        end
-      end
+      subject { build :filled_in_scorecard, :round => round }
       context "and no teebox" do
         it "builds a teebox" do
           subject.run_callbacks :create

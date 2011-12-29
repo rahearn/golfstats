@@ -29,7 +29,7 @@ class Scorecard
   end
 
   def round=(r)
-    @round = nil
+    @round = r
     self.round_id = r.id
   end
 

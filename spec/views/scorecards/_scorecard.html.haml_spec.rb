@@ -2,12 +2,8 @@ require 'spec_helper'
 
 describe "scorecards/_scorecard.html.haml" do
 
-  let(:scorecard) { create :scorecard, :holes => holes }
-  let(:holes) do
-    18.times.map do |index|
-      build :hole
-    end
-  end
+  let(:scorecard) { create :filled_in_scorecard }
+  let(:holes)     { scorecard.holes }
   before(:each) do
     render :partial => "scorecard", :locals => {:scorecard => scorecard}
   end

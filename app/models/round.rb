@@ -17,7 +17,7 @@ class Round < ActiveRecord::Base
   end
 
   def scorecard=(sc)
-    @scorecard = nil
+    @scorecard = sc
     self.scorecard_id = sc.id.to_s
   end
 
