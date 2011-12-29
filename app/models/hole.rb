@@ -24,6 +24,6 @@ class Hole
   private
 
   def scored?
-    holed.class == Scorecard
+    holed.is_a? Scorecard
   end
 end

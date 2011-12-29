@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def error_messages_for(*objects)
-    objects_in_error = objects.select { |o| o.errors.any? }
+    objects_in_error = objects.select { |o| o.present? && o.errors.any? }
 
     content_tag(:div, :id => 'error_explanation') do
       objects_in_error.inject("") do |take, object|

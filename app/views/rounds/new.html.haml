@@ -1,5 +1,6 @@
 %h1 Rounds#new
 = form_for [@course, @round] do |f|
+  = error_messages_for @rouce, @round, @round.scorecard
   .form_row
     = f.label :date
     = f.date_select :date

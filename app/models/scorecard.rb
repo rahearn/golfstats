@@ -9,7 +9,8 @@ class Scorecard
   field :round_id,   :type => Integer
 
   embeds_many :holes, :as => :holed
-  accepts_nested_attributes_for :holes
+  accepts_nested_attributes_for :holes,
+    :reject_if => proc { |attributes| attributes[:score].blank? }
 
 
   validates_presence_of :tees
@@ -21,11 +22,11 @@ class Scorecard
   validates_presence_of :score
 
   before_validation :sum_scorecard, :on => :create
-  after_create :set_round,     :if => :round_present?
+  after_create :set_round,     :if => :round_id?
   after_create :update_teebox, :if => :can_update_teebox?
 
   def round
-    @round ||= Round.find round_id
+    @round ||= Round.find round_id if round_id?
   end
 
   def round=(r)
@@ -41,10 +42,6 @@ class Scorecard
     self.par    = holes.sum(:par)    unless self.par.present?
   end
 
-  def round_present?
-    !round_id.nil?
-  end
-
   def set_round
     round.scorecard = self
     round.score     = score
@@ -52,7 +49,7 @@ class Scorecard
   end
 
   def can_update_teebox?
-    round_present? && holes.length == 18
+    round_id? && holes.length == 18
   end
 
   def update_teebox
@@ -71,7 +68,6 @@ class Scorecard
       default_holes = teebox.holes.each
       holes.each do |h|
         dh          = default_holes.next
-        Rails.logger.debug "RCA h.hole: #{h.hole}, dh.hole: #{dh.hole}"
         dh.length   = h.length
         dh.par      = h.par
         dh.handicap = h.handicap if h.handicap.present?
