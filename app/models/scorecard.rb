@@ -20,39 +20,30 @@ class Scorecard
 
   validates_presence_of :score
 
+
   before_validation :sum_scorecard, :on => :create
-  after_create :set_round,     :if => :round_present?
-  after_create :update_teebox, :if => :can_update_teebox?
+
 
   def round
-    @round ||= Round.find round_id
+    @round ||= Round.find round_id if round_id?
   end
 
   def round=(r)
-    @round = nil
+    @round        = r
     self.round_id = r.id
+    update_teebox if update_teebox?
   end
 
   private
 
   def sum_scorecard
-    self.score  = holes.sum(:score)  unless self.score.present?
-    self.length = holes.sum(:length) unless self.length.present?
-    self.par    = holes.sum(:par)    unless self.par.present?
+    self.score  = holes.sum :score
+    self.length = holes.sum :length
+    self.par    = holes.sum :par
   end
 
-  def round_present?
-    !round_id.nil?
-  end
-
-  def set_round
-    round.scorecard = self
-    round.score     = score
-    round.save
-  end
-
-  def can_update_teebox?
-    round_present? && holes.length == 18
+  def update_teebox?
+    holes.count == 18 && holes.all? { |h| h.valid_for_teebox? }
   end
 
   def update_teebox
@@ -71,7 +62,6 @@ class Scorecard
       default_holes = teebox.holes.each
       holes.each do |h|
         dh          = default_holes.next
-        Rails.logger.debug "RCA h.hole: #{h.hole}, dh.hole: #{dh.hole}"
         dh.length   = h.length
         dh.par      = h.par
         dh.handicap = h.handicap if h.handicap.present?

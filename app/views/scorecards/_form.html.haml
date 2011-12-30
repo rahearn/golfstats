@@ -1,0 +1,22 @@
+.form_row
+  = f.label :tees, 'Tees'
+  = f.text_field :tees
+
+%table.scorecard
+  %thead
+    %tr
+      %th Hole
+      %th Yardage
+      %th Par
+      %th Handicap
+      %th Score
+  %tbody
+    = f.fields_for :holes do |sh|
+      %tr
+        %td
+          = sh.object.hole
+          = sh.hidden_field :hole
+        %td= sh.number_field :length
+        %td= sh.number_field :par
+        %td= sh.number_field :handicap
+        %td= sh.number_field :score

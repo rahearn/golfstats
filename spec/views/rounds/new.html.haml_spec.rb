@@ -29,4 +29,7 @@ describe "rounds/new.html.haml" do
     rendered.should include '<textarea cols="40" id="round_notes" name="round[notes]" rows="20">'
   end
 
+  it "renders the scorecard partial" do
+    view.should render_template(:partial => "scorecards/_form")
+  end
 end

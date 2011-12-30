@@ -7,9 +7,7 @@ Golfstats::Application.routes.draw do
   resource :user, :only => :show
 
   resources :courses, :only => [:index, :show, :new, :create], :shallow => true do
-    resources :rounds, :only => [:index, :show, :new, :create] do
-      resource :scorecard, :only => [:show, :new, :create]
-    end
+    resources :rounds, :only => [:index, :show, :new, :create]
   end
 
   root :to => "rounds#index"
