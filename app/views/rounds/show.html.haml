@@ -1,9 +1,6 @@
 %h1 Rounds#show
 = render @round
 
-- if @round.scorecard_id.present?
-  = render @round.scorecard
-- else
-  %p= link_to 'Add scorecard', new_round_scorecard_path(@round)
+= render @round.scorecard if @round.scorecard_id?
 
 %p= link_to 'My rounds', root_path

@@ -2,15 +2,20 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-$ -> $("#round_score").prop('disabled', true)
+$ -> $("#score.form_element input").prop('disabled', true)
 
-@toggle_scorecard = () ->
-  $("#round_score").prop(
+@toggle_scorecard_input = () ->
+  $("#scorecard.form_element").toggle()
+  $("#score.form_element").toggle()
+
+  $("#score.form_element input").prop(
     'disabled'
     !$("#round_score").prop('disabled')
   )
-
-  $("#scorecard.form_element").toggle()
+  $("#scorecard.form_element input").prop(
+    'disabled'
+    !$("#round_score").prop('disabled')
+  )
 
   if $("#round_score").prop('disabled')
     $("#scorecard_toggle").text('enter only the score')

@@ -14,7 +14,7 @@ class Round < ActiveRecord::Base
   validates_presence_of :user, :course, :date, :score, :differential, :on => :create
 
   validates_presence_of :slope, :rating, :unless => :scorecard_id?
-  validates_numericality_of :slope, :rating, :unless => :scorecard_id?
+  validates_numericality_of :slope, :rating, :allow_nil => true, :unless => :scorecard_id?
 
   validate :scorecard_valid, :if => :scorecard_id?, :on => :create
 

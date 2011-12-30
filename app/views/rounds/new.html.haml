@@ -5,9 +5,17 @@
     = f.label :date
     = f.date_select :date
   .form_row
-    = f.label :score
-    = f.number_field :score, :min => 1
-    = link_to_function 'enter only your score', 'toggle_scorecard()', :id => 'scorecard_toggle'
+    = link_to_function 'enter only your score', 'toggle_scorecard_input()', :id => 'scorecard_toggle'
+  #score.form_element
+    .form_row
+      = f.label :score
+      = f.number_field :score, :min => 1
+    .form_row
+      = f.label :slope
+      = f.number_field :slope, :min => 55, :max => 155
+    .form_row
+      = f.label :rating
+      = f.number_field :rating, :min => 0.1, :step => 0.1
   #scorecard.form_element
     = f.fields_for :scorecard, build_scorecard_for(@round) do |sc|
       = render :partial => 'scorecards/form', :locals => {:f => sc}
