@@ -14,6 +14,7 @@ FactoryGirl.define do
 
     factory :teebox_hole do
       score nil
+      length 400
     end
   end
 end

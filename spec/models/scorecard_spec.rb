@@ -31,68 +31,23 @@ describe Scorecard do
       subject.round_id.should == round.id
     end
 
-    describe "updates the teebox" do
-      context "with only 9 holes" do
-        subject { build_stubbed :blank_scorecard }
-        before(:each) do
-          (1..9).each do |h|
-            subject.holes.build attributes_for(:hole, :hole => h)
-          end
-        end
-
-        it "does not build a teebox" do
-          subject.round = round
-          Teebox.count.should == 0
-        end
-      end
-
-      context "with 18 holes" do
-        subject { build_stubbed :scorecard }
-        context "and no teebox" do
-          it "builds a teebox" do
-            subject.round = round
-            Teebox.count.should == 1
-          end
-          it "matches the round stats" do
-            subject.round = round
-            teebox = Teebox.where(:tees => subject.tees, :course_id => round.course_id).first
-            teebox.holes.count.should == 18
-            default_holes = teebox.holes.each
-            subject.holes.each do |hole|
-              default_hole = default_holes.next
-              holes_equal? default_hole, hole
-            end
-          end
-        end
-        context "and a previous teebox" do
-          let(:teebox) { create :teebox, :course => round.course, :tees => subject.tees }
-          before(:each) do
-            (1..18).each do |hole|
-              teebox.holes.create attributes_for(:teebox_hole, :hole => hole, :length => 100)
-            end
-          end
-
-          it "updates the default holes" do
-            subject.round = round
-            teebox.reload
-            teebox.holes.count.should == 18
-            default_holes = teebox.holes.each
-            subject.holes.each do |hole|
-              default_hole = default_holes.next
-              holes_equal? default_hole, hole
-            end
-          end
-        end
-      end
-
+    it "extends TeeboxCreator" do
+      subject.should_receive(:extend).with TeeboxCreator
+      subject.stub :create_teebox?, :create_teebox
+      subject.round = round
     end
 
+    it "creates a teebox if create_teebox? is true" do
+      subject.should_receive(:create_teebox?).and_return true
+      subject.should_receive :create_teebox
+      subject.round = round
+    end
+
+    it "skips the create if create_teebox? is false" do
+      subject.should_receive(:create_teebox?).and_return false
+      subject.should_not_receive :create_teebox
+      subject.round = round
+    end
   end
 
-  def holes_equal?(actual, expected)
-    actual.hole.should     == expected.hole
-    actual.length.should   == expected.length
-    actual.par.should      == expected.par
-    actual.handicap.should == expected.handicap
-  end
 end

@@ -18,7 +18,7 @@ class Teebox
   end
 
   def course=(c)
-    @course = nil
+    @course = c
     self.course_id = c.id
   end
 end

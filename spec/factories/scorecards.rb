@@ -9,6 +9,14 @@ FactoryGirl.define do
       end
     end
 
+    factory :front_nine_scorecard do
+      holes do
+        (1..9).each.map do |hole|
+          FactoryGirl.build :hole, :hole => hole
+        end
+      end
+    end
+
     factory :blank_scorecard do
       holes nil
     end
