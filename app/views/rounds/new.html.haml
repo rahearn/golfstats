@@ -7,7 +7,8 @@
   .form_row
     = f.label :score
     = f.number_field :score, :min => 1
-  .form_element
+    = link_to_function 'enter only your score', 'toggle_scorecard()', :id => 'scorecard_toggle'
+  #scorecard.form_element
     = f.fields_for :scorecard, build_scorecard_for(@round) do |sc|
       = render :partial => 'scorecards/form', :locals => {:f => sc}
   .form_row

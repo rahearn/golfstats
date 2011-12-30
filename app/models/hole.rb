@@ -12,18 +12,32 @@ class Hole
 
   validates_presence_of :hole
   validates_uniqueness_of :hole
-  validates_numericality_of :hole, :less_than_or_equal_to => 18
+  validates_numericality_of :hole,
+    :less_than_or_equal_to => 18, :only_integer => true
 
-  validates_presence_of :par
+  validates_presence_of :length, :if => :on_teebox?
+  validates_numericality_of :length,
+    :greater_than => 0, :only_integer => true, :allow_nil => true
 
-  validates_presence_of :score, :if => :scored?
+  validates_presence_of :par, :if => :on_teebox?
+  validates_numericality_of :par,
+    :greater_than => 0, :only_integer => true, :allow_nil => true
 
-  validates_uniqueness_of :handicap
-  validates_numericality_of :handicap, :less_than_or_equal_to => 18
+  validates_numericality_of :score,
+    :greater_than => 0, :only_integer => true, :allow_nil => true
+
+  validates_uniqueness_of :handicap, :allow_nil => true
+  validates_numericality_of :handicap,
+    :less_than_or_equal_to => 18, :only_integer => true, :allow_nil => true
+
+
+  def valid_for_teebox?
+    length.present? && par.present?
+  end
 
   private
 
-  def scored?
-    holed.is_a? Scorecard
+  def on_teebox?
+    holed.is_a? Teebox
   end
 end

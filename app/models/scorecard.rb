@@ -9,8 +9,7 @@ class Scorecard
   field :round_id,   :type => Integer
 
   embeds_many :holes, :as => :holed
-  accepts_nested_attributes_for :holes,
-    :reject_if => proc { |attributes| attributes[:score].blank? }
+  accepts_nested_attributes_for :holes
 
 
   validates_presence_of :tees
@@ -32,7 +31,7 @@ class Scorecard
   def round=(r)
     @round        = r
     self.round_id = r.id
-    update_teebox if holes.length == 18
+    update_teebox if update_teebox?
   end
 
   private
@@ -41,6 +40,10 @@ class Scorecard
     self.score  = holes.sum :score
     self.length = holes.sum :length
     self.par    = holes.sum :par
+  end
+
+  def update_teebox?
+    holes.count == 18 && holes.all? { |h| h.valid_for_teebox? }
   end
 
   def update_teebox
