@@ -8,8 +8,13 @@ class Round < ActiveRecord::Base
 
   attr_readonly :user, :course, :date, :score, :differential
 
+  attr_accessor :slope, :rating
+
 
   validates_presence_of :user, :course, :date, :score, :differential, :on => :create
+
+  validates_presence_of :slope, :rating, :unless => :scorecard_id?
+  validates_numericality_of :slope, :rating, :unless => :scorecard_id?
 
   validate :scorecard_valid, :if => :scorecard_id?, :on => :create
 
@@ -25,7 +30,7 @@ class Round < ActiveRecord::Base
   def scorecard=(sc)
     if sc.is_a? Scorecard
       @scorecard = sc
-      else
+    else
       @scorecard = Scorecard.create sc
       self.score = @scorecard.score
     end
@@ -37,7 +42,8 @@ class Round < ActiveRecord::Base
 
   def calculate_differential
     if score_changed?
-      self.differential = score
+      extend DifferentialCalculator
+      self.differential = calculate
     end
   end
 

@@ -2,6 +2,8 @@ class Scorecard
   include Mongoid::Document
 
   field :tees,       :type => String
+  field :slope,      :type => Integer
+  field :rating,     :type => Float
   field :statistics, :type => Hash
   field :length,     :type => Integer
   field :par,        :type => Integer
@@ -19,6 +21,15 @@ class Scorecard
   validates_presence_of :par
 
   validates_presence_of :score
+
+  validates_presence_of :slope
+  validates_numericality_of :slope,
+    :less_than_or_equal_to    => 155,
+    :greater_than_or_equal_to => 55,
+    :only_integer             => true
+
+  validates_presence_of :rating
+  validates_numericality_of :rating
 
 
   before_validation :sum_scorecard, :on => :create

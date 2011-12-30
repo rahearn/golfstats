@@ -5,5 +5,7 @@ FactoryGirl.define do
     sequence(:notes) { |n| "Round ##{n}" }
     user
     course
+    slope 113
+    rating 60.4
   end
 end

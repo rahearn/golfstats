@@ -23,9 +23,16 @@ describe Round do
   describe "before_validation" do
     subject { build :round }
 
-    it "should set differential to the score" do
+    it "should extend DifferentialCalculator" do
+      subject.should_receive(:extend).with DifferentialCalculator
+      subject.stub :calculate
       subject.valid?
-      subject.differential.should == subject.score
+    end
+
+    it "assigns the calculated value to differential" do
+      subject.should_receive(:calculate).and_return 35.0
+      subject.valid?
+      subject.differential.should == 35.0
     end
   end
 
