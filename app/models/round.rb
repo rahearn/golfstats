@@ -23,6 +23,9 @@ class Round < ActiveRecord::Base
   after_create :link_scorecard, :if => :scorecard_id?
 
 
+  default_scope order 'date DESC'
+
+
   def scorecard
     @scorecard ||= Scorecard.find scorecard_id if scorecard_id?
   end
