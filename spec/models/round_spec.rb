@@ -12,7 +12,6 @@ describe Round do
     it { should validate_presence_of :course }
     it { should validate_presence_of :date }
     it { should validate_presence_of :score }
-    it { should validate_presence_of :differential }
     it { should have_readonly_attribute :user }
     it { should have_readonly_attribute :course }
     it { should have_readonly_attribute :date }
@@ -20,18 +19,18 @@ describe Round do
     it { should have_readonly_attribute :differential }
   end
 
-  describe "before_validation" do
+  describe "before_create" do
     subject { build :round }
 
     it "should extend DifferentialCalculator" do
       subject.should_receive(:extend).with DifferentialCalculator
       subject.stub :calculate
-      subject.valid?
+      subject.run_callbacks :create
     end
 
     it "assigns the calculated value to differential" do
       subject.should_receive(:calculate).and_return 35.0
-      subject.valid?
+      subject.run_callbacks :create
       subject.differential.should == 35.0
     end
   end

@@ -11,7 +11,7 @@ class Round < ActiveRecord::Base
   attr_accessor :slope, :rating
 
 
-  validates_presence_of :user, :course, :date, :score, :differential, :on => :create
+  validates_presence_of :user, :course, :date, :score, :on => :create
 
   validates_presence_of :slope, :rating, :unless => :scorecard_id?
   validates_numericality_of :slope, :rating, :allow_nil => true, :unless => :scorecard_id?
@@ -19,7 +19,7 @@ class Round < ActiveRecord::Base
   validate :scorecard_valid, :if => :scorecard_id?, :on => :create
 
 
-  before_validation :calculate_differential, :on => :create
+  before_create :calculate_differential
   after_create :link_scorecard, :if => :scorecard_id?
 
 
@@ -44,10 +44,8 @@ class Round < ActiveRecord::Base
   private
 
   def calculate_differential
-    if score_changed?
-      extend DifferentialCalculator
-      self.differential = calculate
-    end
+    extend DifferentialCalculator
+    self.differential = calculate
   end
 
   def scorecard_valid

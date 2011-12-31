@@ -13,7 +13,7 @@ describe TeeboxCreator do
 
     context "with less than 18 holes" do
       subject do
-        create(:front_nine_scorecard).tap do |sc|
+        create(:front_nine_no_back).tap do |sc|
           sc.extend TeeboxCreator
         end
       end

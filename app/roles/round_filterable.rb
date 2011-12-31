@@ -7,7 +7,7 @@ module RoundFilterable
   end
 
   def recent_rounds
-    rounds.limit(20)
+    rounds.where('differential IS NOT NULL').limit 20
   end
 
   private

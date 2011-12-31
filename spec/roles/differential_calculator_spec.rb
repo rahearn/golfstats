@@ -20,6 +20,25 @@ describe DifferentialCalculator do
       expected = ((subject.score.to_f - rating) * 113.0) / slope
       subject.calculate.should == expected
     end
+
+    it "returns nil if from a partial round" do
+      subject.stub(:partial_round?).and_return true
+      subject.calculate.should be_nil
+    end
+  end
+
+  describe "#partial_round?" do
+    it "with no scorecard is false" do
+      subject.send(:partial_round?).should be_false
+    end
+    it "with a full scorecard is false" do
+      subject.scorecard = scorecard
+      subject.send(:partial_round?).should be_false
+    end
+    it "with a partial scorecard is true" do
+      subject.scorecard = build_stubbed :front_nine_with_back
+      subject.send(:partial_round?).should be_true
+    end
   end
 
   describe "#course_slope" do

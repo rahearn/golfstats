@@ -33,5 +33,9 @@ describe RoundFilterable do
     it "returns the most recent 20 rounds" do
       subject.recent_rounds.to_sql.should include('LIMIT 20')
     end
+
+    it "filters out nil differentials" do
+      subject.recent_rounds.to_sql.should include('differential IS NOT NULL')
+    end
   end
 end
