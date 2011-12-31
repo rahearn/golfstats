@@ -2,6 +2,8 @@ class Scorecard
   include Mongoid::Document
 
   field :tees,       :type => String
+  field :slope,      :type => Integer
+  field :rating,     :type => Float
   field :statistics, :type => Hash
   field :length,     :type => Integer
   field :par,        :type => Integer
@@ -20,6 +22,15 @@ class Scorecard
 
   validates_presence_of :score
 
+  validates_presence_of :slope
+  validates_numericality_of :slope,
+    :less_than_or_equal_to    => 155,
+    :greater_than_or_equal_to => 55,
+    :only_integer             => true
+
+  validates_presence_of :rating
+  validates_numericality_of :rating
+
 
   before_validation :sum_scorecard, :on => :create
 
@@ -31,7 +42,8 @@ class Scorecard
   def round=(r)
     @round        = r
     self.round_id = r.id
-    update_teebox if update_teebox?
+    extend TeeboxCreator
+    create_teebox if create_teebox?
   end
 
   private
@@ -42,31 +54,4 @@ class Scorecard
     self.par    = holes.sum :par
   end
 
-  def update_teebox?
-    holes.count == 18 && holes.all? { |h| h.valid_for_teebox? }
-  end
-
-  def update_teebox
-    teebox = Teebox.find_or_create_by :tees => tees, :course_id => round.course_id
-    if teebox.holes.count < 18
-      teebox.holes.delete_all
-      holes.each do |h|
-        teebox.holes.build(
-          :hole     => h.hole,
-          :length   => h.length,
-          :par      => h.par,
-          :handicap => h.handicap
-        )
-      end
-    else
-      default_holes = teebox.holes.each
-      holes.each do |h|
-        dh          = default_holes.next
-        dh.length   = h.length
-        dh.par      = h.par
-        dh.handicap = h.handicap if h.handicap.present?
-      end
-    end
-    teebox.save!
-  end
 end
