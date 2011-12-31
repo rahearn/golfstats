@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe RoundFilterable do
+describe RoundFilter do
   let(:course) { create :course }
   subject do
     create(:user).tap do |u|
-      u.extend RoundFilterable
+      u.extend RoundFilter
     end
   end
 

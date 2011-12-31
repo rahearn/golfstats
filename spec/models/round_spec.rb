@@ -35,6 +35,28 @@ describe Round do
     end
   end
 
+  describe "after_create" do
+    subject { build :round }
+
+    it "should extend user with handicap calculator" do
+      subject.user.should_receive(:extend).with HandicapCalculator
+      subject.user.stub :calculate
+      subject.run_callbacks :create
+    end
+
+    it "should call calculate" do
+      subject.user.should_receive :calculate
+      subject.run_callbacks :create
+    end
+
+    it "should set the user differential and save" do
+      subject.user.stub(:calculate).and_return 11.1
+      subject.user.should_receive(:handicap=).with 11.1
+      subject.user.should_receive :save
+      subject.run_callbacks :create
+    end
+  end
+
   describe "#scorecard" do
     let(:scorecard) { create :scorecard }
     subject { build_stubbed :round, :scorecard_id => scorecard.id }

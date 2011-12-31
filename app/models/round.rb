@@ -21,6 +21,7 @@ class Round < ActiveRecord::Base
 
   before_create :calculate_differential
   after_create :link_scorecard, :if => :scorecard_id?
+  after_create :update_user_handicap
 
 
   default_scope order 'date DESC'
@@ -55,5 +56,11 @@ class Round < ActiveRecord::Base
   def link_scorecard
     scorecard.round = self
     scorecard.save
+  end
+
+  def update_user_handicap
+    user.extend HandicapCalculator
+    user.handicap = user.calculate
+    user.save
   end
 end

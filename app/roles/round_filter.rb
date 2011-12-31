@@ -1,7 +1,7 @@
-module RoundFilterable
+module RoundFilter
 
   def sorted_rounds
-    recent_rounds.sort do |a,b|
+    @sorted_rounds ||= recent_rounds.sort do |a,b|
       a.differential <=> b.differential
     end[0, slice_size(recent_rounds.count)]
   end
