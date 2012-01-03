@@ -62,7 +62,6 @@ class Round < ActiveRecord::Base
 
   def update_user_handicap
     user.extend HandicapCalculator
-    user.handicap = user.calculate
-    user.save
+    user.update_handicap!
   end
 end
