@@ -19,7 +19,7 @@ class Hole
   validates_numericality_of :length,
     :greater_than => 0, :only_integer => true, :allow_nil => true
 
-  validates_presence_of :par, :if => :on_teebox?
+  validates_presence_of :par, :if => :needs_par?
   validates_numericality_of :par,
     :greater_than => 0, :only_integer => true, :allow_nil => true
 
@@ -32,12 +32,17 @@ class Hole
 
 
   def valid_for_teebox?
-    length.present? && par.present?
+    length.present? # && valid for scorecard
   end
 
   private
 
+  def needs_par?
+    on_teebox? || score?
+  end
+
   def on_teebox?
     holed.is_a? Teebox
   end
+
 end
