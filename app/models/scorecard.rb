@@ -55,7 +55,7 @@ class Scorecard
 
   def sum_scorecard
     holes.select { |h| h.score? }.each do |h|
-      h.extend EquitableCalculator
+      h.extend EquitableStrokeCalculator
       h.score = h.calculate
     end
     self.score  = holes.sum :score

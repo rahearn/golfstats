@@ -1,4 +1,4 @@
-module EquitableCalculator
+module EquitableStrokeCalculator
 
   def calculate
     [score, max_score].min

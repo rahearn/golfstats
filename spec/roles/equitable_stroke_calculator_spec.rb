@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe EquitableCalculator do
+describe EquitableStrokeCalculator do
   subject do
     build_stubbed(:parred_hole).tap do |h|
-      h.extend EquitableCalculator
+      h.extend EquitableStrokeCalculator
     end
   end
 

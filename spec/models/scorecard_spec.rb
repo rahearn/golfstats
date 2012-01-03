@@ -23,8 +23,8 @@ describe Scorecard do
     let(:hole) { build :hole }
     subject { build :blank_scorecard, :holes => [hole] }
 
-    it "extends EquitableCalculator on the hole" do
-      hole.should_receive(:extend).with EquitableCalculator
+    it "extends EquitableStrokeCalculator on the hole" do
+      hole.should_receive(:extend).with EquitableStrokeCalculator
       hole.stub :calculate
       subject.valid?
     end
