@@ -10,6 +10,7 @@ FactoryGirl.define do
         FactoryGirl.build :hole, :hole => hole
       end
     end
+    user_id { FactoryGirl.create(:user).id }
 
     factory :front_nine_with_back do
       holes do

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe DifferentialCalculator do
-  let(:scorecard) { build_stubbed :scorecard, :slope => 140, :rating => 60.5 }
+  let(:scorecard) { build :scorecard, :slope => 140, :rating => 60.5 }
   subject do
     build_stubbed(:round, :slope => 110, :rating => 80.0).tap do |r|
       r.extend DifferentialCalculator
@@ -36,7 +36,7 @@ describe DifferentialCalculator do
       subject.send(:partial_round?).should be_false
     end
     it "with a partial scorecard is true" do
-      subject.scorecard = build_stubbed :front_nine_with_back
+      subject.scorecard = build :front_nine_with_back
       subject.send(:partial_round?).should be_true
     end
   end

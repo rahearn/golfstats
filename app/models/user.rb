@@ -18,6 +18,12 @@ class User < ActiveRecord::Base
     :less_than_or_equal_to => :maximum_handicap
 
 
+  def handicap
+    self[:handicap] || maximum_handicap
+  end
+
+  private
+
   def maximum_handicap
     gender == 'male' ? 36.4 : 40.4
   end

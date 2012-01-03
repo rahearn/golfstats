@@ -21,7 +21,7 @@ describe Scorecard do
 
   describe "#round" do
     let(:round) { create :round }
-    subject { build_stubbed :scorecard, :round_id => round.id }
+    subject { build :scorecard, :round_id => round.id }
 
     it "retrieves the round object" do
       subject.round.should == round
