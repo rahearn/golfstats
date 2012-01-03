@@ -50,7 +50,12 @@ class Round < ActiveRecord::Base
   end
 
   def scorecard_valid
-    errors.add(:scorecard, 'is invalid') unless scorecard.valid?
+    unless scorecard.valid?
+      errors.add(:scorecard, 'is invalid')
+      scorecard.holes.each do |h|
+        Rails.logger.error "Hole #{h.hole} errors: #{h.errors.full_messages}" if h.errors.present?
+      end
+    end
   end
 
   def link_scorecard

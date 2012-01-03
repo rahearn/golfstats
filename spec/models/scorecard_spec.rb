@@ -19,9 +19,26 @@ describe Scorecard do
     it { should validate_numericality_of :rating }
   end
 
+  describe "before_validation" do
+    let(:hole) { build :hole }
+    subject { build :blank_scorecard, :holes => [hole] }
+
+    it "extends EquitableStrokeCalculator on the hole" do
+      hole.should_receive(:extend).with EquitableStrokeCalculator
+      hole.stub :calculate
+      subject.valid?
+    end
+
+    it "assigns the hole score to the value calculated" do
+      hole.should_receive(:calculate).and_return 15
+      hole.should_receive(:score=).with 15
+      subject.valid?
+    end
+  end
+
   describe "#round" do
     let(:round) { create :round }
-    subject { build_stubbed :scorecard, :round_id => round.id }
+    subject { build :scorecard, :round_id => round.id }
 
     it "retrieves the round object" do
       subject.round.should == round

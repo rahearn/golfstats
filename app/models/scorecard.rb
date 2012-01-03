@@ -9,6 +9,7 @@ class Scorecard
   field :par,        :type => Integer
   field :score,      :type => Integer
   field :round_id,   :type => Integer
+  field :user_id,    :type => Integer
 
   embeds_many :holes, :as => :holed
   accepts_nested_attributes_for :holes
@@ -46,9 +47,17 @@ class Scorecard
     create_teebox if create_teebox?
   end
 
+  def user
+    @user ||= User.find user_id if user_id?
+  end
+
   private
 
   def sum_scorecard
+    holes.select { |h| h.score? }.each do |h|
+      h.extend EquitableStrokeCalculator
+      h.score = h.calculate
+    end
     self.score  = holes.sum :score
     self.length = holes.sum :length
     self.par    = holes.sum :par

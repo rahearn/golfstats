@@ -4,6 +4,7 @@ describe "rounds/new.html.haml" do
 
   let(:course) { create :course }
   before(:each) do
+    view.stub(:current_user).and_return build_stubbed(:user)
     assign :course, course
     assign :round, Round.new
     render

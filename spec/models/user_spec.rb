@@ -27,13 +27,13 @@ describe User do
     context "for a male" do
       subject { build_stubbed :user }
 
-      it { subject.maximum_handicap.should == 36.4 }
+      it { subject.send(:maximum_handicap).should == 36.4 }
     end
 
     context "for a female" do
       subject { build_stubbed :female_user }
 
-      it { subject.maximum_handicap.should == 40.4 }
+      it { subject.send(:maximum_handicap).should == 40.4 }
     end
   end
 end
