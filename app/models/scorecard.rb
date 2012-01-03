@@ -32,6 +32,7 @@ class Scorecard
   validates_presence_of :rating
   validates_numericality_of :rating
 
+  validates_presence_of :user_id
 
   before_validation :sum_scorecard, :on => :create
 
