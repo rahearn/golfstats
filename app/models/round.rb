@@ -32,22 +32,14 @@ class Round < ActiveRecord::Base
   end
 
   def scorecard=(sc)
-    if sc.is_a? Scorecard
-      @scorecard = sc
-    else
-      @scorecard = Scorecard.create sc
-      self.score = @scorecard.score
-    end
-    self.scorecard_id = @scorecard.id.to_s
-    @scorecard
+    @scorecard = if sc.is_a? Scorecard
+                   sc
+                 else
+                   Scorecard.create(sc).tap { |sc| self.score = sc.score }
+                 end.tap { |sc| self.scorecard_id = sc.id.to_s }
   end
 
   private
-
-  def calculate_differential
-    extend DifferentialCalculator
-    self.differential = calculate
-  end
 
   def scorecard_valid
     unless scorecard.valid?
@@ -58,6 +50,11 @@ class Round < ActiveRecord::Base
     end
   end
 
+  def calculate_differential
+    extend DifferentialCalculator
+    self.differential = calculate
+  end
+
   def link_scorecard
     scorecard.round = self
     scorecard.save
@@ -65,7 +62,6 @@ class Round < ActiveRecord::Base
 
   def update_user_handicap
     user.extend HandicapCalculator
-    user.handicap = user.calculate
-    user.save
+    user.update_handicap!
   end
 end

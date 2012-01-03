@@ -1,5 +1,10 @@
 module HandicapCalculator
 
+  def update_handicap!
+    self.handicap = calculate
+    save
+  end
+
   def calculate
     extend RoundFilter
 
