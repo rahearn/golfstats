@@ -1,0 +1,60 @@
+@import "constants";
+@import "blueprint/grid";
+
+.form_element {
+
+}
+
+.form_row {
+  margin: 20px 0 0 0;
+  overflow: hidden;
+}
+
+.form_row:first-child {
+  margin: 0;
+}
+
+.actions {
+
+}
+
+.element {
+  overflow: hidden;
+
+  select {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+.txt {
+  padding-left: 2px;
+  padding-right: 10px;
+
+  input {
+    padding: 4px 8px;
+    font-size: 18px;
+    width: 100%;
+  }
+}
+
+.txt.bg {
+  padding-right: 0;
+
+  input {
+    width: 94%;
+    padding-left: 18px;
+  }
+}
+
+.half {
+  @include column(10);
+}
+
+.threequarters {
+  @include column(15);
+}
+
+.required:after {
+  content: "*";
+}

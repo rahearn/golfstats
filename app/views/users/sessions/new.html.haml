@@ -1,19 +1,19 @@
-= form_tag user_omniauth_authorize_path(:open_id), :method => :get do
-  .mod.simple
-    .inner
-      .hd
-        %h1 Sign In
-      .bd
-        .mod
-          .inner
-            .bd
-              .container= link_to "Sign in with Google", user_omniauth_authorize_path(:google)
+.mod.simple
+  .inner
+    .hd
+      %h1 Sign In
+    .bd
+      .mod
+        .inner
+          .bd
+            .container= link_to "Sign in with Google", user_omniauth_authorize_path(:google)
+      = form_tag user_omniauth_authorize_path(:open_id), :method => :get do
         .mod
           .inner
             .hd
               %h6 Or enter your OpenID
             .bd
               .container
-                .form_row= text_field_tag :openid_url
-  .mod
-    .actions= submit_tag :connect
+                .form_row
+                  .element.txt.bg.threequarters= text_field_tag :openid_url
+                .form_row.actions= submit_tag :connect

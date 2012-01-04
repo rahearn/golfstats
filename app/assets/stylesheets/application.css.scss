@@ -8,3 +8,19 @@
 */
 
 @import "blueprint/reset";
+
+@import "constants";
+@import "compass/css3/border-radius";
+
+.notices .inner {
+  border: 1px solid $notices-border;
+  @include border-radius;
+}
+
+.notice {
+  color: $quiet-color;
+}
+
+.error {
+  color: $loud-color;
+}
