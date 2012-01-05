@@ -8,7 +8,24 @@
   padding: 20px;
 }
 
+.media {
+  overflow: hidden;
+
+  .img {
+    float: left;
+
+    img {
+      display: block;
+    }
+  }
+
+  .imgExt {
+    float: right;
+  }
+}
+
 .split {
+  @extend .media;
   position: relative;
 
   &>* {

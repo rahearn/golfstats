@@ -23,15 +23,16 @@
           .inner
             .bd
               .container
-                %nav
-                  %ul.navigation
-                    %li= link_to 'Home', root_path
-                    %li= link_to 'Courses', courses_path
-                    - if user_signed_in?
-                      %li= link_to 'Profile', user_path
-                      %li= link_to 'Sign out', destroy_user_session_path
-                    - else
-                      %li= link_to 'Sign in', new_user_session_path
+                .media
+                  %h1.img.logo= link_to 'GolfStats', root_path
+                  %nav
+                    %ul
+                      %li= link_to 'Courses', courses_path
+                      - if user_signed_in?
+                        %li= link_to 'Profile', user_path
+                        %li= link_to 'Sign out', destroy_user_session_path
+                      - else
+                        %li= link_to 'Sign in', new_user_session_path
 
     .body
       - if notice.present? || alert.present?

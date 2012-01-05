@@ -13,6 +13,22 @@ header {
 
 .header .inner {
   background: #fff;
+
+  .media {
+    margin: 0;
+  }
+
+  .logo {
+    margin: 0;
+
+    a {
+      color: $alt-text-color;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 nav {
@@ -29,7 +45,7 @@ nav {
 
     li {
       font-weight: bold;
-      line-height: 32px;
+      font-size: 1.5em;
       padding: 0 0 0 25px;
       @include inline-block-list-item;
     }
