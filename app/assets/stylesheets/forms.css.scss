@@ -1,10 +1,3 @@
-@import "constants";
-@import "blueprint/grid";
-
-.form_element {
-
-}
-
 .form_row {
   margin: 20px 0 0 0;
   overflow: hidden;
@@ -14,8 +7,12 @@
   margin: 0;
 }
 
-.actions {
+.actions input {
+  font-size: 2em;
+}
 
+.prompt {
+  line-height: 38px;
 }
 
 .element {
@@ -29,10 +26,10 @@
 
 .txt {
   padding-left: 2px;
-  padding-right: 10px;
+  padding-right: 15px;
 
   input {
-    padding: 4px 8px;
+    padding: 4px;
     font-size: 18px;
     width: 100%;
   }
@@ -45,14 +42,6 @@
     width: 94%;
     padding-left: 18px;
   }
-}
-
-.half {
-  @include column(10);
-}
-
-.threequarters {
-  @include column(15);
 }
 
 .required:after {

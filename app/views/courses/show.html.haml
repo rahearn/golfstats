@@ -1,5 +1,10 @@
-%h1 Courses#show
-= render @course
-
-%p= link_to 'List courses', courses_path
-%p= link_to 'New round', new_course_round_path(@course)
+.mod
+  .inner
+    .hd.split
+      %h2.left= @course.name
+      .right.bottom.mam= link_to 'New round', new_course_round_path(@course)
+    .bd
+      .container
+        %p
+          %em Location:
+          = @course.location

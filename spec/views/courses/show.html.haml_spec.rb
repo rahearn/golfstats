@@ -2,9 +2,13 @@ require 'spec_helper'
 
 describe "courses/show.html.haml" do
 
-  it "renders _course partial" do
-    assign :course, build_stubbed(:course)
+  let(:course) { build_stubbed :course }
+  before(:each) do
+    assign :course, course
     render
-    view.should render_template(:partial => '_course')
   end
+
+  it { rendered.should include course.name }
+  it { rendered.should include course.location }
+
 end
