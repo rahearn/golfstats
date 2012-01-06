@@ -1,3 +1,48 @@
 // Place all the styles related to the scorecards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "constants";
+
+.scorecard {
+
+  .line {
+    padding: 5px 0;
+  }
+
+  .unit {
+    text-align: right;
+  }
+
+  .holes, .label, .total {
+    color: $loud-color;
+  }
+}
+
+.form_element .scorecard {
+
+  .txt input {
+    width: 70%;
+    font-size: 1em;
+    text-align: right;
+  }
+
+  .label {
+    line-height: 2.4em;
+  }
+}
+
+.size1of21 {
+  width: 4.761904762%;
+}
+
+.size2of21 {
+  width: 9.523809524%;
+}
+
+.size1of20 {
+  width: 5%;
+}
+
+.size2of20 {
+  width: 10%;
+}

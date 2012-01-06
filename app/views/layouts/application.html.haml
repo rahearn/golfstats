@@ -1,25 +1,45 @@
 !!!
 %html
   %head
+    %meta{:charset => "utf-8"}/
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     %title Golfstats
+
+    %meta{:name => "description", :content => ""}/
+    %meta{:name => "author", :content => ""}/
+    %meta{:name => "viewport", :content => "width=device-width; maximum-scale=1.0;"}/
+
+    %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+    %link{:href => "/apple-touch-icon.png", :rel => "apple-touch-icon"}/
+
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
 
   %body
     %header
-      %nav
-        %ul
-          %li= link_to 'Home', root_path
-          %li= link_to 'Courses', courses_path
-          - if user_signed_in?
-            %li= link_to 'Profile', user_path
-            %li= link_to 'Sign out', destroy_user_session_path
-          - else
-            %li= link_to 'Sign in', new_user_session_path
+      .header
+        .mod.simple
+          .inner
+            .bd
+              .container
+                .media
+                  %h1.img.logo= link_to 'GolfStats', root_path
+                  %nav
+                    %ul
+                      %li= link_to 'Courses', courses_path
+                      - if user_signed_in?
+                        %li= link_to 'Profile', user_path
+                        %li= link_to 'Sign out', destroy_user_session_path
+                      - else
+                        %li= link_to 'Sign in', new_user_session_path
 
-    %div
-      %p.notice= notice
-      %p.alert= alert
+    .body
+      - if notice.present? || alert.present?
+        .mod.notices
+          .inner.bd.container
+            %p.error= alert
+            %p.notice= notice
 
-    = yield
+      .main
+        = yield

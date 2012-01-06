@@ -1,26 +1,37 @@
-%h1 Rounds#new
 = form_for [@course, @round] do |f|
   = error_messages_for @rouce, @round, @round.scorecard
-  .form_row
-    = f.label :date
-    = f.date_select :date
-  .form_row
-    = link_to_function 'enter only your score', 'toggle_scorecard_input()', :id => 'scorecard_toggle'
-  #score.form_element
-    .form_row
-      = f.label :score
-      = f.number_field :score, :min => 1
-    .form_row
-      = f.label :slope
-      = f.number_field :slope, :min => 55, :max => 155
-    .form_row
-      = f.label :rating
-      = f.number_field :rating, :min => 0.1, :step => 0.1
-  #scorecard.form_element
-    = f.fields_for :scorecard, build_scorecard_for(@round) do |sc|
-      = render :partial => 'scorecards/form', :locals => {:f => sc}
-  .form_row
-    = f.label :notes
-    = f.text_area :notes
 
-  .actions= f.submit
+  .mod.simple
+    .inner
+      .hd
+        %h2 New Round
+      .bd
+        .container
+          .form_row
+            .half
+              .prompt.required.little= f.label :date
+              .element.date= f.date_select :date
+            .half
+              .prompt.little= f.label :notes
+              .element.textarea= f.text_area :notes, :rows => 4
+
+          .form_row
+            .half
+              .prompt.required.little= f.label :slope
+              .element.txt= f.number_field :slope, :min => 55, :max => 155
+            .half
+              .prompt.required.little= f.label :rating
+              .element.txt= f.number_field :rating, :min => 0.1, :step => 0.1
+          .form_row
+            = link_to_function 'enter only your score', 'toggle_scorecard_input()', :id => 'scorecard_toggle'
+          #score.form_element
+            .form_row
+              .half
+                .prompt.required.little= f.label :score
+                .element.txt= f.number_field :score, :min => 1
+          #scorecard.form_element
+            = f.fields_for :scorecard, build_scorecard_for(@round) do |sc|
+              = render :partial => 'scorecards/form', :locals => {:f => sc}
+          .form_row
+
+          .actions= f.submit

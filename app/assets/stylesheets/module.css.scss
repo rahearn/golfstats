@@ -1,0 +1,48 @@
+
+.hd {
+  border-bottom: 1px solid #d7d7d7;
+  font-size: 1.5em;
+}
+
+.container {
+  padding: 20px;
+}
+
+.media {
+  overflow: hidden;
+
+  .img {
+    float: left;
+
+    img {
+      display: block;
+    }
+  }
+
+  .imgExt {
+    float: right;
+  }
+}
+
+.split {
+  @extend .media;
+  position: relative;
+
+  &>* {
+    float: left;
+    max-width: 50%;
+  }
+
+  .right {
+    float: none;
+    max-width: none;
+    overflow: hidden;
+    text-align: right;
+    right: 0;
+  }
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+}

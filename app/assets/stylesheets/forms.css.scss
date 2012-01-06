@@ -1,0 +1,58 @@
+.form_element, .form_row {
+  margin: 20px 0 0 0;
+  overflow: hidden;
+}
+
+.form_row:first-child {
+  margin: 0;
+}
+
+.actions input {
+  font-size: 2em;
+}
+
+.prompt {
+  line-height: 38px;
+}
+
+.element {
+  overflow: hidden;
+
+  select {
+    margin-top: 10px;
+    width: 100%;
+  }
+}
+
+.date select {
+  width: 30%;
+  margin-left: 3px;
+}
+
+.txt {
+  padding-left: 2px;
+  padding-right: 15px;
+
+  input {
+    padding: 4px;
+    font-size: 18px;
+    width: 100%;
+  }
+}
+
+.textarea {
+  padding-right: 0;
+}
+
+.txt.bg {
+  padding-right: 0;
+
+  input {
+    width: 94%;
+    padding-left: 18px;
+  }
+}
+
+.required:after {
+  content: "*";
+}

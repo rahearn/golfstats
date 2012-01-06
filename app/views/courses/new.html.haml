@@ -1,10 +1,17 @@
-%h1 Courses#new
 = form_for @course do |f|
-  .form_row
-    = f.label :name
-    = f.text_field :name
-  .form_row
-    = f.label :location
-    = f.text_field :location
+  .mod.simple
+    .inner
+      .hd
+        %h2 New Course
+      .bd
+        .container
+          .form_row
+            .threequarters
+              .prompt.required.little= f.label :name
+              .element.txt= f.text_field :name
+          .form_row
+            .threequarters
+              .prompt.required.little= f.label :location
+              .element.txt= f.text_field :location
 
-  .actions= f.submit
+          .form_row.actions= f.submit

@@ -1,11 +1,1 @@
-%p= round.date
-
-%p
-  %b Score
-  = round.score
-  %b Differential
-  = round.differential
-
-%p= round.course_name
-
-%p= round.notes
+= link_to "#{round.date} #{round.course_name} (#{round.score})", round

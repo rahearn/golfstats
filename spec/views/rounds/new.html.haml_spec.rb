@@ -27,7 +27,7 @@ describe "rounds/new.html.haml" do
   end
 
   it "has a text area for notes" do
-    rendered.should include '<textarea cols="40" id="round_notes" name="round[notes]" rows="20">'
+    rendered.should include '<textarea cols="40" id="round_notes" name="round[notes]" rows="4">'
   end
 
   it "renders the scorecard partial" do

@@ -1,6 +1,14 @@
-%h1 Rounds#show
-= render @round
-
-= render @round.scorecard if @round.scorecard_id?
-
-%p= link_to 'My rounds', root_path
+.mod
+  .inner
+    .hd
+      %h2= "#{@round.date} - #{@round.course_name}"
+    .bd
+      - if @round.scorecard_id?
+        = render @round.scorecard
+      - else
+        %p
+          %em Score:
+          = @round.score
+      %p
+        %em Notes:
+        = @round.notes

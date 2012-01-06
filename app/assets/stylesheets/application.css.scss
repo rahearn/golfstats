@@ -3,5 +3,24 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
- *= require_tree . 
+ *= require oocss/core/core
+ *= require_tree .
 */
+
+@import "blueprint/reset";
+
+@import "constants";
+@import "compass/css3/border-radius";
+
+.notices .inner {
+  border: 1px solid $notices-border;
+  @include border-radius;
+}
+
+.notice {
+  color: $quiet-color;
+}
+
+.error {
+  color: $loud-color;
+}
