@@ -1,29 +1,24 @@
-= f.hidden_field :user_id, :value => current_user.id
 .form_row
-  = f.label :tees, 'Tees'
-  = f.text_field :tees
-.form_row
-  = f.label :slope
-  = f.number_field :slope, :min => 55, :max => 155
-.form_row
-  = f.label :rating
-  = f.number_field :rating, :min => 0.1, :step => 0.1
+  .half
+    .prompt.required.little= f.label :tees, 'Tees'
+    .element.txt= f.text_field :tees
 
-%table.scorecard
-  %thead
-    %tr
-      %th Hole
-      %th Yardage
-      %th Par
-      %th Handicap
-      %th Score
-  %tbody
-    = f.fields_for :holes do |sh|
-      %tr
-        %td
-          = sh.object.hole
-          = sh.hidden_field :hole
-        %td= sh.number_field :length
-        %td= sh.number_field :par
-        %td= sh.number_field :handicap
-        %td= sh.number_field :score
+= f.hidden_field :user_id, :value => current_user.id
+.scorecard
+  .line.holes
+    .unit.size2of20 &nbsp;
+    - (1..18).each do |hole|
+      .unit.size1of20{:class => last_column_class(hole)}= hole
+
+  .unit.size2of20
+    .line.yardage.label Yardage
+    .line.par.label Par
+    .line.handicap.label Handicap
+    .line.score.label Score
+  = f.fields_for :holes do |sh|
+    .unit.size1of20{:class => last_column_class(sh.object.hole)}
+      = sh.hidden_field :hole
+      .line.element.txt.yardage= sh.text_field :length
+      .line.element.txt.par= sh.text_field :par
+      .line.element.txt.handicap= sh.text_field :handicap
+      .line.element.txt.score= sh.text_field :score

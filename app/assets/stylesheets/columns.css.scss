@@ -24,3 +24,7 @@
 .threequarters {
   @include column(15);
 }
+
+.full {
+  @include column(20);
+}

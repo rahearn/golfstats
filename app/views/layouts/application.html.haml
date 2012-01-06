@@ -37,11 +37,9 @@
     .body
       - if notice.present? || alert.present?
         .mod.notices
-          .inner
-            .bd
-              .container
-                %p.error= alert
-                %p.notice= notice
+          .inner.bd.container
+            %p.error= alert
+            %p.notice= notice
 
       .main
         = yield

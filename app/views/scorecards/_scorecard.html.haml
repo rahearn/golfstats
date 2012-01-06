@@ -1,28 +1,31 @@
-%table#scorecard
-  %thead
-    %tr
-      %th &nbsp;
-      - (1..18).each do |hole|
-        %th= hole
-      %th Total
-  %tbody
-    %tr
-      %td Yardage
-      - 18.times do |index|
-        %td= scorecard.holes[index].try :length
-      %td= scorecard.length
-    %tr
-      %td Par
-      - 18.times do |index|
-        %td= scorecard.holes[index].try :par
-      %td= scorecard.par
-    %tr
-      %td Score
-      - 18.times do |index|
-        %td= scorecard.holes[index].try :score
-      %td= scorecard.score
-    %tr
-      %td Handicap
-      - 18.times do |index|
-        %td= scorecard.holes[index].try :handicap
-      %td &nbsp;
+.scorecard
+  .line.holes
+    .unit.size2of21 &nbsp;
+    - (1..18).each do |hole|
+      .unit.size1of21= hole
+    .unit.size1of21.lastUnit Total
+
+  .line.yardage
+    .unit.size2of21.label Yardage
+    - 18.times do |index|
+      .unit.size1of21= scorecard_value scorecard.holes[index].try(:length)
+    .unit.size1of21.lastUnit.total= scorecard.length
+
+  .line.par
+    .unit.size2of21.label Par
+    - 18.times do |index|
+      .unit.size1of21= scorecard_value scorecard.holes[index].try(:par)
+    .unit.size1of21.lastUnit.total= scorecard.par
+
+  .line.handicap
+    .unit.size2of21.label Handicap
+    - 18.times do |index|
+      .unit.size1of21= scorecard_value scorecard.holes[index].try(:handicap)
+
+  .line.score
+    .unit.size2of21.label Score
+    - 18.times do |index|
+      .unit.size1of21= scorecard_value scorecard.holes[index].try(:score)
+    .unit.size1of21.lastUnit.total= scorecard.score
+
+%p= "#{scorecard.tees.humanize} tees"

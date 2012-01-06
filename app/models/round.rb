@@ -35,7 +35,9 @@ class Round < ActiveRecord::Base
     @scorecard = if sc.is_a? Scorecard
                    sc
                  else
-                   Scorecard.create(sc).tap { |sc| self.score = sc.score }
+                   Scorecard.create(sc.merge(:slope => slope, :rating => rating)).tap do |sc|
+                     self.score = sc.score
+                   end
                  end.tap { |sc| self.scorecard_id = sc.id.to_s }
   end
 

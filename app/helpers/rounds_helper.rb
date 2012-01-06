@@ -12,4 +12,12 @@ module RoundsHelper
     end
   end
 
+  def scorecard_value(try)
+    try || '&nbsp;'.html_safe
+  end
+
+  def last_column_class(hole)
+    hole == 18 ? 'lastUnit' : ''
+  end
+
 end

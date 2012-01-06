@@ -1,4 +1,4 @@
-.form_row {
+.form_element, .form_row {
   margin: 20px 0 0 0;
   overflow: hidden;
 }
@@ -24,6 +24,11 @@
   }
 }
 
+.date select {
+  width: 30%;
+  margin-left: 3px;
+}
+
 .txt {
   padding-left: 2px;
   padding-right: 15px;
@@ -33,6 +38,10 @@
     font-size: 18px;
     width: 100%;
   }
+}
+
+.textarea {
+  padding-right: 0;
 }
 
 .txt.bg {
