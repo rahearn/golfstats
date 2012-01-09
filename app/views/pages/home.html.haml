@@ -1,8 +1,8 @@
 .mod.tabs
   .hd.topper
     %ul.tabControl
-      %li.current= link_to_function content_tag(:span, 'Activity'), 'switchTabs()', :id => 'activity_tab'
-      %li= link_to_function content_tag(:span, 'Add round'), 'switchTabs()', :id => 'add_round_tab'
+      %li.current= link_to_function content_tag(:span, 'Activity'), '', :id => 'activity_tab'
+      %li= link_to_function content_tag(:span, 'Add round'), '', :id => 'add_round_tab'
 
   .bd
     #activity_tab_content.tabContent.current
