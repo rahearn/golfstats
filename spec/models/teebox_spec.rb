@@ -10,6 +10,10 @@ describe Teebox do
   describe "validations" do
     it { should validate_presence_of :tees }
     it { should validate_presence_of :course_id }
+    it { should validate_presence_of :slope }
+    it { should validate_presence_of :rating }
+    it { should validate_numericality_of(:slope).
+      greater_than_or_equal_to(55).less_than_or_equal_to 155 }
     context "require db users" do
       before(:all) { create :teebox }
       it { should validate_uniqueness_of(:tees).scoped_to :course_id }

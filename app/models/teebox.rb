@@ -14,6 +14,15 @@ class Teebox
 
   validates_presence_of :course_id
 
+  validates_presence_of :slope
+  validates_numericality_of :slope,
+    :less_than_or_equal_to    => 155,
+    :greater_than_or_equal_to => 55,
+    :only_integer             => true
+
+  validates_presence_of :rating
+  validates_numericality_of :rating
+
 
   def course
     @course ||= Course.find course_id
