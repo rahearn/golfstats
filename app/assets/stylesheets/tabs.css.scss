@@ -1,0 +1,16 @@
+
+.tabs {
+
+  .bd li {
+    display: block;
+  }
+
+  .tabContent {
+    display: none;
+
+  }
+
+  .tabContent.current {
+    display: block;
+  }
+}
