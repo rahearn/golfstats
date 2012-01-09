@@ -7,6 +7,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @course.extend TeeboxPresentation
   end
 
   def new

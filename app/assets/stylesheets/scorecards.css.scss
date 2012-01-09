@@ -13,9 +13,13 @@
     text-align: right;
   }
 
-  .holes, .label, .total {
+  .holes, .total {
     color: $loud-color;
   }
+}
+
+.label {
+  color: $loud-color;
 }
 
 .form_element .scorecard {
