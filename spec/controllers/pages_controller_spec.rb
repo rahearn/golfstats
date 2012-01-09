@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe PagesController do
 
+  let(:user)    { create :user }
+  before(:each) { sign_in user }
+
   describe "GET :home" do
-    let(:user) { mock_model User }
 
     it "responds with success" do
       get :home
