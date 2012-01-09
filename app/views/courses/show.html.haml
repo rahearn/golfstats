@@ -18,7 +18,7 @@
                 .container
                   - @course.teeboxes.each do |t|
                     .line
-                      .unit.size1of7= t.tees
+                      .unit.size1of7= t.tees.titleize
                       - if can? :create, Round
                         .unit.size6of7.lastUnit
                           = link_to 'Add round played from these tees', new_course_round_path(@course, :tees => t.tees)
