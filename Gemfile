@@ -4,6 +4,7 @@ gem 'rails', '3.1.3'
 
 # database
 gem 'pg'
+gem 'texticle', :require => 'texticle/rails'
 gem 'mongo', '1.5.2'
 gem 'bson_ext', '1.5.2'
 gem 'mongoid'
