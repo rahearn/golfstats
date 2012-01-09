@@ -3,6 +3,8 @@ class Teebox
 
   field :tees,      :type => String
   field :course_id, :type => Integer
+  field :slope,     :type => Integer
+  field :rating,    :type => Float
 
   embeds_many :holes, :as => :holed
 

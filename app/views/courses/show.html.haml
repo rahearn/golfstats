@@ -8,3 +8,22 @@
         %p
           %em Location:
           = @course.location
+
+        - unless @course.teeboxes.empty?
+          .mod.teeboxes
+            .inner
+              .hd
+                %h3 Tees
+              .bd
+                .container
+                  - @course.teeboxes.each do |t|
+                    .line
+                      .unit.size1of7= t.tees
+                      - if can? :create, Round
+                        .unit.size6of7.lastUnit
+                          = link_to 'Add round played from these tees', new_course_round_path(@course, :tees => t.tees)
+                  - if can? :create, Round
+                    .line
+                      .unit.size1of7 &nbsp;
+                      .unit.size6of7.lastUnit
+                        = link_to 'Add round played from other tees', new_course_round_path(@course)

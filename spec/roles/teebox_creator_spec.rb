@@ -31,6 +31,18 @@ describe TeeboxCreator do
         Teebox.count.should == 1
       end
 
+      it "saves the course slope" do
+        subject.create_teebox
+        teebox = Teebox.where(:tees => subject.tees, :course_id => round.course_id).first
+        teebox.slope.should == subject.slope
+      end
+
+      it "saves the course rating" do
+        subject.create_teebox
+        teebox = Teebox.where(:tees => subject.tees, :course_id => round.course_id).first
+        teebox.rating.should == subject.rating
+      end
+
       it "matches the round stats" do
         subject.create_teebox
         teebox = Teebox.where(:tees => subject.tees, :course_id => round.course_id).first
