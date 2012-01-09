@@ -10,6 +10,6 @@ Golfstats::Application.routes.draw do
     resources :rounds, :only => [:index, :show, :new, :create]
   end
 
-  root :to => "rounds#index"
+  root :to => "pages#home"
 
 end

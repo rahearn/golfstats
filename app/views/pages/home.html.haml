@@ -1,0 +1,30 @@
+.mod.tabs
+  .hd.topper
+    %ul.tabControl
+      %li.current= link_to_function content_tag(:span, 'Activity'), 'switchTabs()', :id => 'activity_tab'
+      %li= link_to_function content_tag(:span, 'Add round'), 'switchTabs()', :id => 'add_round_tab'
+
+  .bd
+    #activity_tab_content.tabContent.current
+      .unit.size1of2
+        .mod
+          .inner
+            .hd
+              %h2 My Rounds
+            .bd
+              - if user_signed_in?
+                %ul
+                  - current_user.rounds.each do |r|
+                    %li= render r
+      .unit.size1of2.lastUnit
+        .mod
+          .inner
+            .hd
+              %h2 Courses Played
+            .bd
+              - if user_signed_in?
+                %ul
+                  - current_user.courses.each do |c|
+                    %li= render c
+
+    #add_round_tab_content.tabContent

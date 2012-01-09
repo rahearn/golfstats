@@ -3,14 +3,16 @@ require 'spec_helper'
 describe RoundsController do
 
   describe "GET :index" do
+    let!(:course) { create :course }
+
     it "returns http success when logged in" do
       sign_in create :user
-      get :index
+      get :index, :course_id => course.id
       response.should be_success
     end
 
     it "redirects when not logged in" do
-      get :index
+      get :index, :course_id => course.id
       response.should be_redirect
     end
   end
