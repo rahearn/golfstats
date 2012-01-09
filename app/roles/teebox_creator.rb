@@ -5,7 +5,11 @@ module TeeboxCreator
   end
 
   def create_teebox
-    teebox = Teebox.find_or_create_by :tees => tees, :course_id => round.course_id
+    teebox = Teebox.find_or_create_by(:tees => tees, :course_id => round.course_id).tap do |t|
+      t.slope  = slope
+      t.rating = rating
+    end
+
     if teebox.holes.empty?
       holes.each do |h|
         teebox.holes.build(
