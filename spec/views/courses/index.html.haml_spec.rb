@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe "courses/index.html.haml" do
 
+  before(:each) do
+    view.stub(:can?).and_return true
+  end
+
   it "renders _course partial for each course" do
     assign :courses, [build_stubbed(:course), build_stubbed(:course)]
     render
