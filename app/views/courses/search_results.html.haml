@@ -1,0 +1,9 @@
+.mod
+  .inner
+    .hd.split
+      %h2.left.wide Select where you played or add a new course
+      .right.bottom.mam= link_to 'New course', new_course_path if can?(:create, Course)
+    .bd
+      %ul
+        - @courses.each do |c|
+          %li= render c

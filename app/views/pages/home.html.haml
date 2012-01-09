@@ -28,3 +28,14 @@
                     %li= render c
 
     #add_round_tab_content.tabContent
+      .mod
+        .inner
+          .hd
+            %h2 Where did you play?
+          .bd
+            = form_tag courses_path, :method => :get do
+              .container
+                .form_row
+                  .prompt.required.small= label_tag :q, 'Course name'
+                  .element.txt= text_field_tag :q
+                .form_row.actions= submit_tag 'Find'
