@@ -25,7 +25,7 @@ class RoundsController < ApplicationController
   end
 
   def update
-    if @round.save
+    if @round.update_attributes params[:round]
       redirect_to @round
     else
       render :edit

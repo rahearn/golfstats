@@ -14,43 +14,38 @@ describe Round do
     it { should validate_presence_of :score }
     it { should validate_presence_of :slope }
     it { should validate_presence_of :rating }
-    it { should have_readonly_attribute :user }
-    it { should have_readonly_attribute :course }
-    it { should have_readonly_attribute :date }
-    it { should have_readonly_attribute :score }
-    it { should have_readonly_attribute :differential }
     it { should validate_numericality_of :slope }
     it { should validate_numericality_of :rating }
   end
 
-  describe "before_create" do
+  describe "before_save" do
     subject { build :round }
 
     it "should extend DifferentialCalculator" do
       subject.should_receive(:extend).with DifferentialCalculator
       subject.stub :calculate
-      subject.run_callbacks :create
+      subject.run_callbacks :save
     end
 
     it "assigns the calculated value to differential" do
       subject.should_receive(:calculate).and_return 35.0
-      subject.run_callbacks :create
+      subject.run_callbacks :save
       subject.differential.should == 35.0
     end
   end
 
-  describe "after_create" do
+  describe "after_save" do
     subject { build :round }
 
     it "should extend user with handicap calculator" do
       subject.user.should_receive(:extend).with HandicapCalculator
       subject.user.stub :update_handicap!
-      subject.run_callbacks :create
+      subject.run_callbacks :save
     end
 
     it "should call update_handicap!" do
       subject.user.should_receive :update_handicap!
-      subject.run_callbacks :create
+      subject.run_callbacks :save
     end
   end
 

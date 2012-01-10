@@ -6,10 +6,8 @@ class Round < ActiveRecord::Base
 
   delegate :id, :name, :to => :course, :prefix => true
 
-  attr_readonly :user, :course, :date, :score, :differential
 
-
-  validates_presence_of :user, :course, :date, :score, :on => :create
+  validates_presence_of :user, :course, :date, :score
 
   validates_presence_of :slope
   validates_numericality_of :slope,
@@ -20,12 +18,12 @@ class Round < ActiveRecord::Base
   validates_presence_of :rating
   validates_numericality_of :rating
 
-  validate :scorecard_valid, :if => :scorecard_id?, :on => :create
+  validate :scorecard_valid, :if => :scorecard_id?
 
 
-  before_create :calculate_differential
+  before_save :calculate_differential
   after_create :link_scorecard, :if => :scorecard_id?
-  after_create :update_user_handicap
+  after_save :update_user_handicap
 
 
   default_scope order 'date DESC'
@@ -38,6 +36,11 @@ class Round < ActiveRecord::Base
   def scorecard=(sc)
     @scorecard = if sc.is_a? Scorecard
                    sc
+                 elsif scorecard_id?
+                   scorecard.tap do |scorecard|
+                     scorecard.update_attributes(sc)
+                     self.score = scorecard.score
+                   end
                  else
                    Scorecard.create(sc.merge(:slope => slope)).tap do |sc|
                      self.score = sc.score
