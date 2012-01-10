@@ -21,6 +21,17 @@ class RoundsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @round.update_attributes params[:round]
+      redirect_to @round
+    else
+      render :edit
+    end
+  end
+
   private
 
   def load_teebox

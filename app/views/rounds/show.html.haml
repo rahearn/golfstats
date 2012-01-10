@@ -1,7 +1,8 @@
 .mod
   .inner
-    .hd
-      %h2= "#{@round.date} - #{@round.course_name}"
+    .hd.split
+      %h2.left= "#{@round.date} - #{@round.course_name}"
+      .right.bottom.mam= link_to 'Edit', edit_round_path(@round) if can?(:edit, @round)
     .bd
       - if @round.scorecard_id?
         = render @round.scorecard
