@@ -8,13 +8,17 @@ class Round < ActiveRecord::Base
 
   attr_readonly :user, :course, :date, :score, :differential
 
-  attr_accessor :slope, :rating
-
 
   validates_presence_of :user, :course, :date, :score, :on => :create
 
-  validates_presence_of :slope, :rating, :unless => :scorecard_id?
-  validates_numericality_of :slope, :rating, :allow_nil => true, :unless => :scorecard_id?
+  validates_presence_of :slope
+  validates_numericality_of :slope,
+    :less_than_or_equal_to    => 155,
+    :greater_than_or_equal_to => 55,
+    :only_integer             => true
+
+  validates_presence_of :rating
+  validates_numericality_of :rating
 
   validate :scorecard_valid, :if => :scorecard_id?, :on => :create
 
@@ -35,7 +39,7 @@ class Round < ActiveRecord::Base
     @scorecard = if sc.is_a? Scorecard
                    sc
                  else
-                   Scorecard.create(sc.merge(:slope => slope, :rating => rating)).tap do |sc|
+                   Scorecard.create(sc.merge(:slope => slope)).tap do |sc|
                      self.score = sc.score
                    end
                  end.tap { |sc| self.scorecard_id = sc.id.to_s }

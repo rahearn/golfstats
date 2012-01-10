@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe DifferentialCalculator do
-  let(:scorecard) { build :scorecard, :slope => 140, :rating => 60.5 }
+  let(:scorecard) { build :scorecard, :slope => 140 }
   subject do
     build_stubbed(:round, :slope => 110, :rating => 80.0).tap do |r|
       r.extend DifferentialCalculator
@@ -57,13 +57,6 @@ describe DifferentialCalculator do
   describe "#course_rating" do
     it "with no scorecard uses the default values" do
       subject.send(:course_rating).should == subject.rating.to_f
-    end
-    context "with a scorecard" do
-      before(:each) { subject.scorecard = scorecard }
-
-      it "uses the scorecard value" do
-        subject.send(:course_rating).should == scorecard.rating.to_f
-      end
     end
   end
 

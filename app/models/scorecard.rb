@@ -2,8 +2,6 @@ class Scorecard
   include Mongoid::Document
 
   field :tees,       :type => String
-  field :slope,      :type => Integer
-  field :rating,     :type => Float
   field :statistics, :type => Hash
   field :length,     :type => Integer
   field :par,        :type => Integer
@@ -14,6 +12,8 @@ class Scorecard
   embeds_many :holes, :as => :holed
   accepts_nested_attributes_for :holes
 
+  attr_writer :slope
+
 
   validates_presence_of :tees
 
@@ -22,15 +22,6 @@ class Scorecard
   validates_presence_of :par
 
   validates_presence_of :score
-
-  validates_presence_of :slope
-  validates_numericality_of :slope,
-    :less_than_or_equal_to    => 155,
-    :greater_than_or_equal_to => 55,
-    :only_integer             => true
-
-  validates_presence_of :rating
-  validates_numericality_of :rating
 
   validates_presence_of :user_id
 
@@ -46,6 +37,14 @@ class Scorecard
     self.round_id = r.id
     extend TeeboxCreator
     create_teebox if create_teebox?
+  end
+
+  def slope
+    @slope || round.slope
+  end
+
+  def rating
+    round.rating
   end
 
   def user
