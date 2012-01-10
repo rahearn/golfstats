@@ -6,6 +6,7 @@ describe "rounds/show.html.haml" do
   let(:notes)     { "solid putting" }
   let(:round)     { build_stubbed :round, :scorecard => scorecard, :notes => notes }
   before(:each) do
+    view.stub(:can?).and_return true
     assign :round, round
     render
   end

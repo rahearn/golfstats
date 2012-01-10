@@ -7,7 +7,7 @@ Golfstats::Application.routes.draw do
   resource :user, :only => :show
 
   resources :courses, :only => [:index, :show, :new, :create], :shallow => true do
-    resources :rounds, :only => [:index, :show, :new, :create]
+    resources :rounds, :except => :destroy
   end
 
   root :to => "pages#home"

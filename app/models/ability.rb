@@ -5,7 +5,7 @@ class Ability
 
     if user.present?
       can [:create], Course
-      can [:read, :create], Round, :user_id => user.id
+      can [:read, :create, :update], Round, :user_id => user.id
       can [:read], User, :id => user.id
     end
 
