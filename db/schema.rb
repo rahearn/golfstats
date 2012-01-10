@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120109200458) do
+ActiveRecord::Schema.define(:version => 20120110030101) do
 
   create_table "courses", :force => true do |t|
     t.string   "name",       :null => false
@@ -25,15 +25,17 @@ ActiveRecord::Schema.define(:version => 20120109200458) do
   add_index "courses", ["name"], :name => "index_courses_on_name"
 
   create_table "rounds", :force => true do |t|
-    t.date     "date",         :null => false
-    t.integer  "score",        :null => false
+    t.date     "date",                                       :null => false
+    t.integer  "score",                                      :null => false
     t.float    "differential"
-    t.integer  "user_id",      :null => false
-    t.integer  "course_id",    :null => false
+    t.integer  "user_id",                                    :null => false
+    t.integer  "course_id",                                  :null => false
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "scorecard_id"
+    t.integer  "slope"
+    t.decimal  "rating",       :precision => 4, :scale => 1
   end
 
   add_index "rounds", ["course_id"], :name => "index_rounds_on_course_id"

@@ -12,12 +12,7 @@ describe Scorecard do
     it { should validate_presence_of :length }
     it { should validate_presence_of :par }
     it { should validate_presence_of :score }
-    it { should validate_presence_of :slope }
-    it { should validate_presence_of :rating }
     it { should validate_presence_of :user_id }
-    it { should validate_numericality_of(:slope).
-      greater_than_or_equal_to(55).less_than_or_equal_to 155 }
-    it { should validate_numericality_of :rating }
   end
 
   describe "before_validation" do
