@@ -12,7 +12,7 @@ describe Course do
     it { should have_readonly_attribute :name }
     it { should have_readonly_attribute :location }
     context "requre db users" do
-      before(:all) { create :course }
+      before(:each) { create :course }
       it { should validate_uniqueness_of(:name).scoped_to :location }
     end
   end

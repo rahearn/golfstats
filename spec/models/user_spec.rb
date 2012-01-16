@@ -17,7 +17,7 @@ describe User do
     it { should allow_value(36.4).for :handicap }
     it { should_not allow_value(36.5).for :handicap }
     context "require db users" do
-      before(:all) { create :full_user }
+      before(:each) { create :full_user }
       it { should validate_uniqueness_of :email }
       it { should validate_uniqueness_of :openid_uid }
     end

@@ -15,7 +15,7 @@ describe Teebox do
     it { should validate_numericality_of(:slope).
       greater_than_or_equal_to(55).less_than_or_equal_to 155 }
     context "require db users" do
-      before(:all) { create :teebox }
+      before(:each) { create :teebox }
       it { should validate_uniqueness_of(:tees).scoped_to :course_id }
     end
   end
