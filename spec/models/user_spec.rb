@@ -4,6 +4,7 @@ describe User do
 
   describe "relations" do
     it { should have_many :rounds }
+    it { should have_many :course_notes }
   end
 
   describe "validations" do

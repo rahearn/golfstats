@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   has_many :rounds
 
+  has_many :course_notes
+
 
   validates_presence_of :openid_uid
   validates_uniqueness_of :openid_uid, :if => :openid_uid_changed?
