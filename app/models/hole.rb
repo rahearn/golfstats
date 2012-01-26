@@ -1,11 +1,12 @@
 class Hole
   include Mongoid::Document
 
-  field :hole,     :type => Integer
-  field :length,   :type => Integer
-  field :handicap, :type => Integer
-  field :par,      :type => Integer
-  field :score,    :type => Integer
+  field :hole,         :type => Integer
+  field :length,       :type => Integer
+  field :handicap,     :type => Integer
+  field :par,          :type => Integer
+  field :score,        :type => Integer
+  field :custom_stats, :type => Hash
 
   embedded_in :holed, :polymorphic => true
 

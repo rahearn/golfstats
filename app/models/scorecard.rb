@@ -2,12 +2,12 @@ class Scorecard
   include Mongoid::Document
 
   field :tees,       :type => String
-  field :statistics, :type => Hash
   field :length,     :type => Integer
   field :par,        :type => Integer
   field :score,      :type => Integer
   field :round_id,   :type => Integer
   field :user_id,    :type => Integer
+  field :stat_order, :type => Array, :default => []
 
   embeds_many :holes, :as => :holed
   accepts_nested_attributes_for :holes
