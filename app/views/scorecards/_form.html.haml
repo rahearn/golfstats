@@ -4,7 +4,10 @@
     .element.txt= f.text_field :tees
 
 = f.hidden_field :user_id, :value => current_user.id
+
 .scorecard
+  = hidden_field_tag 'custom_stat_counter', f.object.stat_order.count
+
   .line.holes
     .unit.size2of20 &nbsp;
     - (1..18).each do |hole|
@@ -15,6 +18,10 @@
     .line.par.label Par
     .line.handicap.label Handicap
     .line.score.label Score
+    - f.object.stat_order.each do |stat|
+      .line.element.txt.custom= text_field_tag 'round[scorecard][stat_order][]', stat
+
+  - current_hole = 0
   = f.fields_for :holes do |sh|
     .unit.size1of20{:class => last_column_class(sh.object.hole)}
       = sh.hidden_field :hole
@@ -22,3 +29,11 @@
       .line.element.txt.par= sh.text_field :par
       .line.element.txt.handicap= sh.text_field :handicap
       .line.element.txt.score= sh.text_field :score
+      - f.object.stat_order.each_index do |index|
+        .line.element.txt.custom
+          = text_field_tag "round[scorecard][holes_attributes][#{current_hole}][custom_stats][#{index}]",
+            sh.object.custom_stats[index.to_s]
+    - current_hole += 1
+
+  .line.additional
+    .unit.size2of20.label= link_to_function 'Add line', 'append_scorecard_row()'

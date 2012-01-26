@@ -2,12 +2,13 @@ class Scorecard
   include Mongoid::Document
 
   field :tees,       :type => String
-  field :statistics, :type => Hash
   field :length,     :type => Integer
   field :par,        :type => Integer
   field :score,      :type => Integer
   field :round_id,   :type => Integer
   field :user_id,    :type => Integer
+  field :stat_order, :type => Array, :default => []
+  field :totals,     :type => Hash, :default => {}
 
   embeds_many :holes, :as => :holed
   accepts_nested_attributes_for :holes
@@ -61,6 +62,10 @@ class Scorecard
     self.score  = holes.sum :score
     self.length = holes.sum :length
     self.par    = holes.sum :par
+    stat_order.each_index do |cs|
+      key = cs.to_s
+      self.totals[key] = holes.map { |h| h.custom_stats[key].to_i }.reduce(:+)
+    end
   end
 
 end

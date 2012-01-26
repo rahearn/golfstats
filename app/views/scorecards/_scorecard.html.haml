@@ -28,4 +28,12 @@
       .unit.size1of21= scorecard_value scorecard.holes[index].try(:score)
     .unit.size1of21.lastUnit.total= scorecard.score
 
+  - scorecard.stat_order.each_with_index do |label, index|
+    - key = index.to_s
+    .line.custom
+      .unit.size2of21.label= label.humanize
+      - 18.times do |hole|
+        .unit.size1of21= scorecard_value scorecard.holes[hole].try(:custom_stats).try(:[], key)
+      .unit.size1of21.lastUnit.total= scorecard.totals.try :[], key
+
 %p= "#{scorecard.tees.humanize} tees"
