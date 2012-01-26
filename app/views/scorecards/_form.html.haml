@@ -19,9 +19,7 @@
     .line.handicap.label Handicap
     .line.score.label Score
     - f.object.stat_order.each do |stat|
-      .line.custom.label
-        = stat.humanize
-        = hidden_field_tag 'round[scorecard][stat_order][]', stat
+      .line.element.txt.custom= text_field_tag 'round[scorecard][stat_order][]', stat
 
   - current_hole = 0
   = f.fields_for :holes do |sh|
