@@ -8,6 +8,8 @@ Golfstats::Application.routes.draw do
 
   resources :courses, :only => [:index, :show, :new, :create], :shallow => true do
     resources :rounds, :except => :destroy
+    resource :course_note, :except => [:index, :show, :create], :path => 'note', :as => :course_note
+    resource :course_note, :only => :create, :path => 'note', :as => :course_notes
   end
 
   root :to => "pages#home"
