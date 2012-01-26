@@ -9,6 +9,21 @@
           %em Location:
           = @course.location
 
+        - if user_signed_in?
+          .mod.notes
+            .inner
+              .hd.split
+                %h3.left Notes
+                .right.bottom
+                  %h3
+                    - if @course_note.present?
+                      = link_to 'Edit note', edit_course_course_notes_path(@course)
+                    - else
+                      = link_to 'New note', new_course_course_notes_path(@course)
+              .bd
+                .container
+                  %p= @course_note.try :note
+
         - unless @course.teeboxes.empty?
           .mod.teeboxes
             .inner

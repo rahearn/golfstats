@@ -8,6 +8,7 @@ class CoursesController < ApplicationController
 
   def show
     @course.extend TeeboxPresentation
+    @course_note = @course.notes.for_user(current_user) if user_signed_in?
   end
 
   def new
