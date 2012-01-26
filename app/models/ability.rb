@@ -4,12 +4,13 @@ class Ability
   def initialize(user)
 
     if user.present?
-      can [:create], Course
+      can :read, User, :id => user.id
+      can :create, Course
       can [:read, :create, :update], Round, :user_id => user.id
-      can [:read], User, :id => user.id
+      can [:create, :update, :destroy], CourseNote, :user_id => user.id
     end
 
-    can [:read], Course
+    can :read, Course
   end
 
 end

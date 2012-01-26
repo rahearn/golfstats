@@ -2,6 +2,12 @@ class Course < ActiveRecord::Base
 
   has_many :rounds
 
+  has_many :notes, :class_name => 'CourseNote' do
+    def for_user(user)
+      where(:user_id => user.id).first
+    end
+  end
+
 
   attr_readonly :name, :location
 

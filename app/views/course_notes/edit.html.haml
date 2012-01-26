@@ -1,0 +1,9 @@
+= error_messages_for @course_note
+
+.mod.simple
+  .inner
+    .hd.split
+      %h2.left Edit Note
+      .right.bottom.mam= link_to 'Delete note', course_course_note_path(@course), :method => :delete, :confirm => 'Are you sure?'
+    .bd
+      = render 'form'

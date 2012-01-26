@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe CoursesController do
 
+  let(:course) { create :course }
+
   describe "GET :index" do
     it "returns http success" do
       get :index
@@ -10,11 +12,25 @@ describe CoursesController do
   end
 
   describe "GET :show" do
-    let(:course)  { create :course }
-    before(:each) { get :show, :id => course.id }
+    context "as a guest" do
+      before(:each) { get :show, :id => course.id }
 
-    it { should respond_with :success }
-    it { should assign_to(:course).with(course) }
+      it { should respond_with :success }
+      it { should assign_to(:course).with course }
+      it { should_not assign_to :course_note }
+    end
+
+    context "when signed in and with a note" do
+      let(:note) { create :course_note, :course => course }
+      before(:each) do
+        sign_in note.user
+        get :show, :id => course.id
+      end
+
+      it { should respond_with :success }
+      it { should assign_to(:course).with course }
+      it { should assign_to(:course_note).with note }
+    end
   end
 
   describe "GET :new" do

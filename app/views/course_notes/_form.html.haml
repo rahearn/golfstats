@@ -1,0 +1,8 @@
+= form_for [@course, @course_note] do |f|
+  .container
+
+    .form_row
+      .prompt.required.little= f.label :note
+      .element.textarea= f.text_area :note, :rows => 4
+
+    .form_row.actions= f.submit

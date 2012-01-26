@@ -25,6 +25,5 @@
     #scorecard.form_element
       = f.fields_for :scorecard, build_scorecard_for(@round) do |sc|
         = render :partial => 'scorecards/form', :locals => {:f => sc}
-    .form_row
 
-    .actions= f.submit
+    .form_row.actions= f.submit
