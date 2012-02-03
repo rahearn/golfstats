@@ -27,6 +27,10 @@ end
 gem 'jquery-rails'
 gem 'haml-rails'
 
+group :development do
+  gem 'heroku_san'
+end
+
 group :development, :test do
   gem 'rspec-rails'
 end
