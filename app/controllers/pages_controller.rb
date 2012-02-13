@@ -4,7 +4,10 @@ class PagesController < ApplicationController
   skip_authorization_check
 
   def home
-    current_user.extend HomeScreenPresentation
+    if user_signed_in?
+      current_user.extend HomeScreenPresentation
+      render :activity
+    end
   end
 
 end
