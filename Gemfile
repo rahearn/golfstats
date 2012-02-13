@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.3'
+gem 'thin'
 
 # database
 gem 'pg'
@@ -26,6 +27,10 @@ end
 # presentation
 gem 'jquery-rails'
 gem 'haml-rails'
+
+group :development do
+  gem 'heroku_san'
+end
 
 group :development, :test do
   gem 'rspec-rails'

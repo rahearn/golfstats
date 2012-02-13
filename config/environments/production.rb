@@ -20,6 +20,9 @@ Golfstats::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  # Faster precompilation
+  config.assets.initialize_on_precompile = false
+
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
@@ -47,7 +50,7 @@ Golfstats::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = {:host => 'www.golf-stats.net'}
+  config.action_mailer.default_url_options = {:host => ENV['GS_HOST']}
 
   # Enable threaded mode
   # config.threadsafe!
