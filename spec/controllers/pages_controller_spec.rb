@@ -5,10 +5,21 @@ describe PagesController do
   let(:user) { create :user }
 
   describe "GET :home" do
+    context "as a guest" do
+      it "responds with success" do
+        get :home
+        response.should be_success
+      end
 
-    it "responds with success" do
-      get :home
-      response.should be_success
+      it "renders :home" do
+        get :home
+        response.should render_template :home
+      end
+
+      it "extends HomeScreenPresentation" do
+        controller.should_receive(:extend).with HomeScreenPresentation
+        get :home
+      end
     end
 
     context "when signed in" do

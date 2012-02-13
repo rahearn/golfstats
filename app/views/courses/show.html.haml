@@ -2,7 +2,7 @@
   .inner
     .hd.split
       %h2.left= @course.name
-      .right.bottom.mam= link_to 'New round', new_course_round_path(@course) if can?(:create, Round)
+      .right.bottom.mam= link_to 'New round', new_course_round_path(@course)
     .bd
       .container
         %p

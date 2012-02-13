@@ -1,41 +1,22 @@
-.mod.tabs
-  .hd.topper
-    %ul.tabControl
-      %li.current= link_to_function content_tag(:span, 'Activity'), '', :id => 'activity_tab'
-      %li= link_to_function content_tag(:span, 'Add round'), '', :id => 'add_round_tab'
+.unit.size3of5
+  .mod
+    .inner
+      .hd
+        %h2 Welcome
+      .bd
+        %p Welcome to GolfStats. We aim to be the easiest way to keep track of your golf game.
+        %p
+          At this point, you can use GolfStats to keep track of your handicap, using the same
+          formula that USGA clubs use. You can also keep records of every round you play, along
+          with any statistics that you want to track.
+        %p #{link_to 'Sign in', new_user_session_path} using Google or an OpenID to get started.
 
-  .bd
-    #activity_tab_content.tabContent.current
-      .unit.size1of2
-        .mod
-          .inner
-            .hd
-              %h2 My Rounds
-            .bd
-              - if user_signed_in?
-                %ul
-                  - current_user.rounds.each do |r|
-                    %li= render r
-      .unit.size1of2.lastUnit
-        .mod
-          .inner
-            .hd
-              %h2 Courses Played
-            .bd
-              - if user_signed_in?
-                %ul
-                  - current_user.courses.each do |c|
-                    %li= render c
-
-    #add_round_tab_content.tabContent
-      .mod
-        .inner
-          .hd
-            %h2 Where did you play?
-          .bd
-            = form_tag courses_path, :method => :get do
-              .container
-                .form_row
-                  .prompt.required.small= label_tag :q, 'Course name'
-                  .element.txt= text_field_tag :q
-                .form_row.actions= submit_tag 'Find'
+.unit.size2of5.lastUnit
+  .mod
+    .inner
+      .hd
+        %h2 Recently Played Courses
+      .bd
+        %ul
+          - courses.each do |c|
+            %li= render c
