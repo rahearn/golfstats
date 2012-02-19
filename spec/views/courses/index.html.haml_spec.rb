@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "courses/index.html.haml" do
+describe "courses/index" do
 
   before(:each) do
     view.stub(:can?).and_return true

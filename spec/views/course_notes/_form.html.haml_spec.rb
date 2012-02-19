@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "course_notes/_form.html.haml" do
+describe "course_notes/_form" do
 
   let(:course) { create :course }
   before(:each) do

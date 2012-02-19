@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "courses/show.html.haml" do
+describe "courses/show" do
 
   let(:course) do
     build_stubbed(:course).tap { |c| c.stub(:teeboxes).and_return [] }

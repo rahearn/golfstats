@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "rounds/index.html.haml" do
+describe "rounds/index" do
 
   it "renders _round partial for each round" do
     assign :rounds, [build_stubbed(:round), build_stubbed(:round)]

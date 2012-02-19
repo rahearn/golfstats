@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "users/show.html.haml" do
+describe "users/show" do
   let(:user) { build_stubbed :full_user }
   before(:each) do
     assign :user, user

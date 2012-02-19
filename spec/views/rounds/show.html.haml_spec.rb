@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "rounds/show.html.haml" do
+describe "rounds/show" do
 
   let(:scorecard) { create :scorecard }
   let(:notes)     { "solid putting" }

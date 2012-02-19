@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "users/sessions/new.html.haml" do
+describe "users/sessions/new" do
 
   before(:each) { render }
 

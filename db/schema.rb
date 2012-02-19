@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20120116221353) do
     t.text     "note"
     t.integer  "user_id"
     t.integer  "course_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "course_notes", ["course_id"], :name => "index_course_notes_on_course_id"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(:version => 20120116221353) do
   create_table "courses", :force => true do |t|
     t.string   "name",       :null => false
     t.string   "location",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "courses", ["location"], :name => "index_courses_on_location"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(:version => 20120116221353) do
     t.integer  "user_id",                                    :null => false
     t.integer  "course_id",                                  :null => false
     t.text     "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "scorecard_id"
     t.integer  "slope"
     t.decimal  "rating",       :precision => 4, :scale => 1
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(:version => 20120116221353) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                         :null => false
+    t.datetime "updated_at",                                                                         :null => false
     t.string   "email"
     t.string   "name"
     t.string   "openid_uid",                                                                         :null => false
