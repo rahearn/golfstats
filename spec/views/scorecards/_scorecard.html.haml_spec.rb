@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "scorecards/_scorecard.html.haml" do
+describe "scorecards/_scorecard" do
 
   let(:scorecard) { create :scorecard }
   let(:holes)     { scorecard.holes }

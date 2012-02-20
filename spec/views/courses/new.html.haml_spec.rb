@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "courses/new.html.haml" do
+describe "courses/new" do
 
   before(:each) do
     assign :course, Course.new

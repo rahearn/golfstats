@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "course_notes/new.html.haml" do
+describe "course_notes/new" do
 
   before(:each) do
     assign :course, build_stubbed(:course)

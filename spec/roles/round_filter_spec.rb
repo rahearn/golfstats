@@ -11,7 +11,7 @@ describe RoundFilter do
   describe "#sorted_rounds" do
     before(:each) do
       5.times do
-        subject.rounds.create attributes_for(:round, :course => course)
+        subject.rounds.create! attributes_for(:round, :course_id => course.id)
       end
       subject.stub(:slice_size).and_return 4
     end

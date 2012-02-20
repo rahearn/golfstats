@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "courses/_course.html.haml" do
+describe "courses/_course" do
 
   let(:course) { build_stubbed :course }
   it "displays the course name and location" do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "rounds/new.html.haml" do
+describe "rounds/new" do
 
   let(:course) { create :course }
   before(:each) do
@@ -23,7 +23,7 @@ describe "rounds/new.html.haml" do
   end
 
   it "has an input box for score" do
-    rendered.should include '<input id="round_score" min="1" name="round[score]" size="30" type="number" />'
+    rendered.should include '<input id="round_score" min="1" name="round[score]" type="number" />'
   end
 
   it "has a text area for notes" do
