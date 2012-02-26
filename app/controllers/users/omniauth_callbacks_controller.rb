@@ -7,12 +7,9 @@ module Users
     skip_authorization_check
 
     def open_id
-      if @user.new_record?
-        @user.email = @auth.info.email if @auth.info.email.present?
-        @user.name  = @auth.info.name  if @auth.info.name.present?
-        @user.save
-      end
-      if @user.valid?
+      @user.email = @auth.info.email if @auth.info.email.present?
+      @user.name  = @auth.info.name  if @auth.info.name.present?
+      if @user.save
         sign_in_and_redirect @user
       else
         Rails.logger.error "Could not log in #{@user.new_record? ? 'new' : 'existing'} user: #{@user.errors.full_messages}"
