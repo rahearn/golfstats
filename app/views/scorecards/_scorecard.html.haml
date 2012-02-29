@@ -28,8 +28,7 @@
       .unit.size1of21= scorecard_value scorecard.holes[index].try(:score)
     .unit.size1of21.lastUnit.total= scorecard.score
 
-  - scorecard.stat_order.each_with_index do |label, index|
-    - key = index.to_s
+  - scorecard.stat_order.each_with_key do |label, key|
     .line.custom
       .unit.size2of21.label= label.humanize
       - 18.times do |hole|

@@ -62,8 +62,8 @@ class Scorecard
     self.score  = holes.sum :score
     self.length = holes.sum :length
     self.par    = holes.sum :par
-    stat_order.each_index do |cs|
-      key = cs.to_s
+    stat_order.each_key do |key|
+      next unless holes.any? { |h| h.custom_stats[key].numeric? }
       self.totals[key] = holes.map { |h| h.custom_stats[key].to_i }.reduce(:+)
     end
   end
