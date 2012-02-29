@@ -29,10 +29,10 @@
       .line.element.txt.par= sh.text_field :par
       .line.element.txt.handicap= sh.text_field :handicap
       .line.element.txt.score= sh.text_field :score
-      - f.object.stat_order.each_index do |index|
+      - f.object.stat_order.each_key do |key|
         .line.element.txt.custom
-          = text_field_tag "round[scorecard][holes_attributes][#{current_hole}][custom_stats][#{index}]",
-            sh.object.custom_stats[index.to_s]
+          = text_field_tag "round[scorecard][holes_attributes][#{current_hole}][custom_stats][#{key}]",
+            sh.object.custom_stats[key]
     - current_hole += 1
 
   .line.additional
