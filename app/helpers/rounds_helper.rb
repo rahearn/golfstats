@@ -27,7 +27,11 @@ module RoundsHelper
   end
 
   def scorecard_value(try)
-    try || '&nbsp;'.html_safe
+    if try.present?
+      try.numeric? ? try : (try.true? ? 'Yes' : 'No')
+    else
+      '&nbsp;'.html_safe
+    end
   end
 
   def last_column_class(hole)
