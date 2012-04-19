@@ -1,14 +1,9 @@
 class UsersController < ApplicationController
 
-  before_filter :load_user
-  authorize_resource
+  load_and_authorize_resource
 
   def show
+    @user.extend ImportLegacy
   end
 
-  private
-
-  def load_user
-    @user = current_user
-  end
 end

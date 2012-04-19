@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "users/show" do
-  let(:user) { build_stubbed :full_user }
+  let(:user) { build_stubbed(:full_user).tap { |u| u.stub(:show_import? => false) } }
   before(:each) do
     assign :user, user
     render
