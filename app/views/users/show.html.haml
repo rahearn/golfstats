@@ -1,4 +1,4 @@
-%div{:class => (@user.show_import? ? 'unit size3of5' : '')}
+%div{:class => (feature_active?(:legacy_import, @user) ? 'unit size3of5' : '')}
   .mod
     .inner
       .hd Profile
@@ -16,13 +16,13 @@
             %em OpenId:
             = @user.openid_uid
 
-- if @user.show_import?
+- feature_active? :legacy_import, @user do
   .unit.size2of5.lastUnit
     .mod
       .inner
         .hd Import Data
         .bd
-          %p Did you have an account on the old version of GolfStats? Please follow these instructions to import your old data to this system. Sorry it isn't a more streamlined process.
+          %p Use these steps to import data from the old version of GolfStats.
           %ol
             %li
               %p Sign in to #{link_to 'the old site', 'http://www.golf-stats.net'}

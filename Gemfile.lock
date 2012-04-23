@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/rahearn/ruby_flipper.git
+  revision: 76507c95b4f4220f4e6fcd9e669ddd626f6ac45d
+  branch: topic/dynamic_arguments
+  specs:
+    ruby_flipper (0.0.4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -212,6 +219,7 @@ DEPENDENCIES
   pg
   rails (= 3.2.1)
   rspec-rails
+  ruby_flipper!
   sass-rails
   shoulda-matchers
   texticle

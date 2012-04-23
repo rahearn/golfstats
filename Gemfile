@@ -28,6 +28,8 @@ end
 gem 'jquery-rails'
 gem 'haml-rails'
 
+gem 'ruby_flipper', :git => 'git://github.com/rahearn/ruby_flipper.git', :branch => 'topic/dynamic_arguments'
+
 group :development do
   gem 'heroku_san'
 end

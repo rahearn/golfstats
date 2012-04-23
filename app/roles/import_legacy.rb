@@ -1,7 +1,7 @@
 module ImportLegacy
 
   def show_import?
-    true
+    !import_done?
   end
 
   def import_legacy(file)
