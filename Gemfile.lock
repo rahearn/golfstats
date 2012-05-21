@@ -114,6 +114,7 @@ GEM
       mongoid (~> 2.0)
       rspec (~> 2)
     multi_json (1.1.0)
+    nokogiri (1.5.2)
     omniauth (1.0.2)
       hashie (~> 1.2)
       rack
@@ -215,6 +216,7 @@ DEPENDENCIES
   mongo (= 1.5.2)
   mongoid
   mongoid-rspec
+  nokogiri
   omniauth-openid
   pg
   rails (= 3.2.1)

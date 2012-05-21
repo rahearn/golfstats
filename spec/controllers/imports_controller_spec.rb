@@ -11,7 +11,7 @@ describe ImportsController do
     end
 
     context "when signed in" do
-      let(:legacy_file) { Rack::Test::UploadedFile.new Rails.root.join('spec', 'support', 'golfstats_data.xml') }
+      let(:legacy_file) { Rack::Test::UploadedFile.new Rails.root.join('spec', 'data', 'golfstats_data.xml') }
       before(:each) do
         sign_in user
         post :create, :user_id => user.id, :file => legacy_file
