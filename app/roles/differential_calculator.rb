@@ -9,7 +9,9 @@ module DifferentialCalculator
   private
 
   def partial_round?
-    scorecard.present? && scorecard.holes.any? { |h| h.score.blank? }
+    scorecard.present? &&
+      (scorecard.holes.length != 18 ||
+       scorecard.holes.any? { |h| h.score.blank? })
   end
 
 end
