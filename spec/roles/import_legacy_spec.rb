@@ -1,14 +1,8 @@
 require 'spec_helper'
 
 describe ImportLegacy do
-  let(:legacy_file) { File.open Rails.root.join('spec', 'support', 'golfstats_data.xml') }
-  after(:each) { legacy_file.close }
 
-  subject do
-    build_stubbed(:user).tap do |u|
-      u.extend ImportLegacy
-    end
-  end
+  subject { build_stubbed(:user).tap { |u| u.extend ImportLegacy } }
 
   describe "#show_import?" do
     specify { subject.show_import?.should be_true }
@@ -17,6 +11,34 @@ describe ImportLegacy do
       before(:each) { subject.import_done = true }
 
       specify { subject.show_import?.should be_false }
+    end
+  end
+
+  describe "#import_legacy" do
+    subject { create(:user).tap { |u| u.extend ImportLegacy } }
+
+    context "with well formed file" do
+      let(:legacy_file) do
+        File.open Rails.root.join('spec', 'data', 'golfstats_data.xml')
+      end
+      before(:each) { subject.import_legacy legacy_file }
+      after(:each) { legacy_file.close }
+
+      specify { Course.count.should == 1 }
+      specify { Teebox.count.should == 1 }
+      specify { CourseNote.count.should == 1 }
+      specify { subject.rounds.should_not be_empty }
+      specify { subject.rounds.first.scorecard.should be_present }
+      it { should be_import_successful }
+      specify { subject.show_import?.should be_false }
+    end
+
+    context "with no file" do
+      before(:each) { subject.import_legacy nil }
+
+      specify { subject.rounds.should be_empty }
+      specify { Course.count.should == 0 }
+      it { should_not be_import_successful }
     end
   end
 end
