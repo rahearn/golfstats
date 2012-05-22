@@ -20,7 +20,6 @@ describe ImportsController do
 
       it { should respond_with :redirect }
       it { should assign_to(:user).with user }
-      specify { assigns(:user).respond_to?(:show_import?).should be_true }
       specify { user.reload.rounds.count.should be > 0 }
     end
   end

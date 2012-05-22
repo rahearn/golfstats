@@ -1,9 +1,5 @@
 module ImportLegacy
 
-  def show_import?
-    !import_done?
-  end
-
   def import_legacy(file)
     @saved_courses = {}
     @xml_courses = {}

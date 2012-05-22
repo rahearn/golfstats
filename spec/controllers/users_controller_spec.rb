@@ -18,7 +18,7 @@ describe UsersController do
 
       it { should respond_with :success }
       it { should assign_to(:user).with user }
-      specify { assigns(:user).respond_to?(:show_import?).should be_true }
+      specify { assigns(:user).respond_to?(:import_legacy).should be_true }
     end
   end
 

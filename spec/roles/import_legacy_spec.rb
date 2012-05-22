@@ -4,16 +4,6 @@ describe ImportLegacy do
 
   subject { build_stubbed(:user).tap { |u| u.extend ImportLegacy } }
 
-  describe "#show_import?" do
-    specify { subject.show_import?.should be_true }
-
-    context "after import" do
-      before(:each) { subject.import_done = true }
-
-      specify { subject.show_import?.should be_false }
-    end
-  end
-
   describe "#import_legacy" do
     subject { create(:user).tap { |u| u.extend ImportLegacy } }
 
@@ -30,7 +20,7 @@ describe ImportLegacy do
       specify { subject.rounds.should_not be_empty }
       specify { subject.rounds.first.scorecard.should be_present }
       it { should be_import_successful }
-      specify { subject.show_import?.should be_false }
+      specify { subject.import_done?.should be_true }
     end
 
     context "with no file" do

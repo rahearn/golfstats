@@ -2,7 +2,7 @@
 
 
 feature :legacy_import do |user|
-  user.show_import? &&
+  !user.import_done? &&
     %w(
       ryan@coshx.com ryan.c.ahearn@gmail.com
     ).include?(user.email)
