@@ -3,8 +3,8 @@ require 'spec_helper'
 describe User do
 
   describe "relations" do
-    it { should have_many :rounds }
-    it { should have_many :course_notes }
+    it { should have_many(:rounds).dependent :destroy }
+    it { should have_many(:course_notes).dependent :destroy }
   end
 
   describe "validations" do

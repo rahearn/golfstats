@@ -49,6 +49,17 @@ describe Round do
     end
   end
 
+  describe "after_destroy" do
+    subject { build :round }
+
+    it "should call scorecard.destroy" do
+      subject.stub(:scorecard).and_return(mock_model(Scorecard).tap do |sc|
+        sc.should_receive :destroy
+      end)
+      subject.run_callbacks :destroy
+    end
+  end
+
   describe "#scorecard" do
     let(:scorecard) { create :scorecard }
     subject { build_stubbed :round, :scorecard_id => scorecard.id }

@@ -24,7 +24,7 @@ class Round < ActiveRecord::Base
   before_save :calculate_differential
   after_create :link_scorecard, :if => :scorecard_id?
   after_save :update_user_handicap
-
+  after_destroy :destroy_scorecard
 
   default_scope order 'date DESC'
 
@@ -72,5 +72,9 @@ class Round < ActiveRecord::Base
   def update_user_handicap
     user.extend HandicapCalculator
     user.update_handicap!
+  end
+
+  def destroy_scorecard
+    scorecard.try :destroy
   end
 end

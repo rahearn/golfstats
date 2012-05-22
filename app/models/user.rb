@@ -2,9 +2,9 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, :rememberable, :trackable
 
-  has_many :rounds
+  has_many :rounds, :dependent => :destroy
 
-  has_many :course_notes
+  has_many :course_notes, :dependent => :destroy
 
 
   validates_presence_of :openid_uid
