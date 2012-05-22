@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120116221353) do
+ActiveRecord::Schema.define(:version => 20120419200615) do
 
   create_table "course_notes", :force => true do |t|
     t.text     "note"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20120116221353) do
     t.string   "openid_uid",                                                                         :null => false
     t.string   "gender",              :limit => 6,                               :default => "male"
     t.decimal  "handicap",                         :precision => 3, :scale => 1
+    t.boolean  "import_done",                                                    :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

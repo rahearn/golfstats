@@ -5,7 +5,7 @@ module TeeboxCreator
   end
 
   def create_teebox
-    teebox = Teebox.find_or_create_by(:tees => tees.downcase, :course_id => round.course_id).tap do |t|
+    teebox = Teebox.find_or_initialize_by(:tees => tees.downcase, :course_id => round.course_id).tap do |t|
       t.slope  = slope
       t.rating = rating
     end

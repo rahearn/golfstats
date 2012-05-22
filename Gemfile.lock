@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/rahearn/ruby_flipper.git
+  revision: 76507c95b4f4220f4e6fcd9e669ddd626f6ac45d
+  branch: topic/dynamic_arguments
+  specs:
+    ruby_flipper (0.0.4)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -107,6 +114,7 @@ GEM
       mongoid (~> 2.0)
       rspec (~> 2)
     multi_json (1.1.0)
+    nokogiri (1.5.2)
     omniauth (1.0.2)
       hashie (~> 1.2)
       rack
@@ -208,10 +216,12 @@ DEPENDENCIES
   mongo (= 1.5.2)
   mongoid
   mongoid-rspec
+  nokogiri
   omniauth-openid
   pg
   rails (= 3.2.1)
   rspec-rails
+  ruby_flipper!
   sass-rails
   shoulda-matchers
   texticle
