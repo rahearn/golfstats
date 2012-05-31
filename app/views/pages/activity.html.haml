@@ -1,12 +1,17 @@
 .mod.tabs
   .hd.topper
     %ul.tabControl
-      %li.current= link_to_function content_tag(:span, 'Activity'), '', :id => 'activity_tab'
-      %li= link_to_function content_tag(:span, 'Add round'), '', :id => 'add_round_tab'
+      %li{class: (current_user.rounds.any? ? 'current' : '')}= link_to_function content_tag(:span, 'Activity'), '', id: 'activity_tab'
+      %li{class: (current_user.rounds.empty? ? 'current' : '')}= link_to_function content_tag(:span, 'Add round'), '', id: 'add_round_tab'
 
   .bd
-    #activity_tab_content.tabContent.current
+    #activity_tab_content.tabContent{class: (current_user.rounds.any? ? 'current' : '')}
       .unit.size1of2
+        - unless current_user[:handicap].nil?
+          .mod
+            .inner
+              .hd
+                %h2 Handicap Index: #{current_user.handicap}
         .mod
           .inner
             .hd
@@ -25,13 +30,13 @@
                 - current_user.courses.each do |c|
                   %li= render c
 
-    #add_round_tab_content.tabContent
+    #add_round_tab_content.tabContent{class: (current_user.rounds.empty? ? 'current' : '')}
       .mod
         .inner
           .hd
             %h2 Where did you play?
           .bd
-            = form_tag courses_path, :method => :get do
+            = form_tag courses_path, method: :get do
               .container
                 .form_row
                   .prompt.required.small= label_tag :q, 'Course name'
