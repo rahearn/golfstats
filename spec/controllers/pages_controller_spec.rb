@@ -13,7 +13,7 @@ describe PagesController do
 
       it "renders :home" do
         get :home
-        response.should render_template :home
+        response.should render_template :guest_home
       end
 
       it "extends HomeScreenPresentation" do
@@ -30,9 +30,9 @@ describe PagesController do
         response.should be_success
       end
 
-      it "renders :activity" do
+      it "renders :user_home" do
         get :home
-        response.should render_template :activity
+        response.should render_template :user_home
       end
 
       it "should extend current user with HomeScreenPresentation" do

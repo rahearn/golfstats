@@ -1,0 +1,24 @@
+#activity_tab_content.tabContent{class: (current == :activity ? 'current' : '')}
+  .unit.size1of2
+    - unless current_user[:handicap].nil?
+      .mod
+        .inner
+          .hd
+            %h2 Handicap Index: #{current_user.handicap}
+      .mod
+        .inner
+          .hd
+            %h2 My Rounds
+          .bd
+            %ul
+              - current_user.rounds.each do |r|
+                %li= render r
+  .unit.size1of2.lastUnit
+    .mod
+      .inner
+        .hd
+          %h2 Courses Played
+        .bd
+          %ul
+            - current_user.courses.each do |c|
+              %li= render c

@@ -1,0 +1,11 @@
+.mod
+  .inner
+    .hd
+      %h2 What is the slope of the tees you are playing?
+    .bd
+      = form_tag course_handicap_path, method: :get do
+        .container
+          .form_row
+            .prompt.required.small= label_tag :slope
+            .element.txt= text_field_tag :slope
+          .form_row.actions= submit_tag 'Calculate'

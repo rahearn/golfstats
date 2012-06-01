@@ -1,0 +1,8 @@
+.mod.tabs
+  = render partial: 'tabs', locals: {current: (current_user.rounds.any? ? :activity : :add_round)}
+
+  .bd
+    = render partial: 'activity', locals: {current: (current_user.rounds.any? ? :activity : :add_round)}
+    = render partial: 'add_round', locals: {current: (current_user.rounds.any? ? :activity : :add_round)}
+    #course_handicap_tab_content.tabContent
+      = render partial: 'course_handicap'

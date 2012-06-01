@@ -5,9 +5,10 @@ class PagesController < ApplicationController
   def home
     if user_signed_in?
       current_user.extend HomeScreenPresentation
-      render :activity
+      render :user_home
     else
       extend HomeScreenPresentation
+      render :guest_home
     end
   end
 

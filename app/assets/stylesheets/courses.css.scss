@@ -3,6 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "constants";
 
-.teeboxes .line {
-  margin-bottom: 10px;
+.teeboxes {
+
+  .hd h3.unit {
+    margin-right: 0;
+
+    .lastUnit {
+      margin-left: 0;
+    }
+  }
+
+  .line {
+    margin-bottom: 10px;
+  }
 }

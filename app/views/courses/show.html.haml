@@ -28,17 +28,21 @@
           .mod.teeboxes
             .inner
               .hd
-                %h3 Tees
+                %h3.unit.size1of7 Tees
+                %h3.unit.size2of7.lastUnit Course Handicap
               .bd
                 .container
                   - @course.teeboxes.each do |t|
                     .line
                       .unit.size1of7= t.tees.titleize
+                      - if user_signed_in?
+                        - t.extend CourseHandicap
+                        .unit.size1of7= t.handicap current_user
                       - if can? :create, Round
-                        .unit.size6of7.lastUnit
+                        .unit.size5of7.lastUnit
                           = link_to 'Add round played from these tees', new_course_round_path(@course, :tees => t.tees)
                   - if can? :create, Round
                     .line
-                      .unit.size1of7 &nbsp;
-                      .unit.size6of7.lastUnit
+                      .unit.size2of7 &nbsp;
+                      .unit.size5of7.lastUnit
                         = link_to 'Add round played from other tees', new_course_round_path(@course)
