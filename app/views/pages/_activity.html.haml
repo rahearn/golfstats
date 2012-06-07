@@ -5,14 +5,14 @@
         .inner
           .hd
             %h2 Handicap Index: #{current_user.handicap}
-      .mod
-        .inner
-          .hd
-            %h2 My Rounds
-          .bd
-            %ul
-              - current_user.rounds.each do |r|
-                %li= render r
+    .mod
+      .inner
+        .hd
+          %h2 My Rounds
+        .bd
+          %ul
+            - current_user.rounds.each do |r|
+              %li= render r
   .unit.size1of2.lastUnit
     .mod
       .inner
