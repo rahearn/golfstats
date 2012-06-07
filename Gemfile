@@ -3,6 +3,11 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.1'
 gem 'thin'
 
+group :production do
+  gem 'memcachier'
+  gem 'dalli'
+end
+
 # database
 gem 'pg'
 gem 'texticle', :require => 'texticle/rails'

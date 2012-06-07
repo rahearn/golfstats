@@ -58,6 +58,7 @@ GEM
     compass-rails (1.0.0.rc.3)
       compass (~> 0.12.rc.0)
     daemons (1.1.8)
+    dalli (2.0.5)
     database_cleaner (0.7.1)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
@@ -103,6 +104,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcachier (0.0.1)
     mime-types (1.17.2)
     mongo (1.5.2)
       bson (= 1.5.2)
@@ -207,6 +209,7 @@ DEPENDENCIES
   cancan
   coffee-rails
   compass-rails
+  dalli
   database_cleaner
   devise
   factory_girl (= 2.5.0)
@@ -214,6 +217,7 @@ DEPENDENCIES
   haml-rails
   heroku_san
   jquery-rails
+  memcachier
   mongo (= 1.5.2)
   mongoid
   mongoid-rspec
