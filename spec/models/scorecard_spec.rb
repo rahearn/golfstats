@@ -19,16 +19,13 @@ describe Scorecard do
     let(:hole) { build :hole }
     subject { build :blank_scorecard, :holes => [hole] }
 
-    it "extends EquitableStrokeCalculator on the hole" do
-      hole.should_receive(:extend).with EquitableStrokeCalculator
-      hole.stub :calculate
-      subject.valid?
-    end
-
-    it "assigns the hole score to the value calculated" do
-      hole.should_receive(:calculate).and_return 15
-      hole.should_receive(:score=).with 15
-      subject.valid?
+    [:score, :length, :par].each do |method|
+      it "sets #{method} from the holes" do
+        subject.holes.stub(:sum).and_return 10
+        subject.holes.stub(:sum).with(method).and_return 5
+        subject.should_receive(:"#{method}=").with 5
+        subject.valid?
+      end
     end
   end
 

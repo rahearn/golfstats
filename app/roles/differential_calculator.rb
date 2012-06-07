@@ -2,7 +2,15 @@ module DifferentialCalculator
 
   def calculate
     unless partial_round?
-      ((score.to_f - rating) * 113.0) / slope
+      if scorecard.present?
+        s = scorecard.holes.select { |h| h.score? }.map do |h|
+          h.extend EquitableStrokeCalculator
+          h.calculate
+        end.reduce :+
+      else
+        s = score
+      end
+      ((s.to_f - rating) * 113.0) / slope
     end
   end
 
