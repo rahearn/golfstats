@@ -19,4 +19,5 @@
       .bd
         %ul
           - courses.each do |c|
-            %li= render c
+            - cache action_suffix: "course_#{c.id}" do
+              %li= render c

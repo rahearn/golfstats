@@ -12,7 +12,8 @@
         .bd
           %ul
             - current_user.rounds.each do |r|
-              %li= render r
+              - cache action_suffix: "round_#{r.id}" do
+                %li= render r
   .unit.size1of2.lastUnit
     .mod
       .inner
@@ -21,4 +22,5 @@
         .bd
           %ul
             - current_user.courses.each do |c|
-              %li= render c
+              - cache action_suffix: "course_#{c.id}" do
+                %li= render c
