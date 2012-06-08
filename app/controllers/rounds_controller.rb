@@ -1,8 +1,9 @@
 class RoundsController < ApplicationController
 
   load_and_authorize_resource :course
-  load_and_authorize_resource :round, :through => :course, :shallow => true
-  before_filter :load_teebox, :only => :new
+  load_and_authorize_resource :round, through: :course, shallow: true
+  before_filter :load_teebox, only: :new
+  cache_sweeper :round_sweeper, only: :update
 
   def index
   end
@@ -37,8 +38,8 @@ class RoundsController < ApplicationController
   def load_teebox
     if params[:tees].present?
       @teebox = Teebox.where(
-        :tees      => params[:tees].downcase,
-        :course_id => @course.id
+        tees:      params[:tees].downcase,
+        course_id: @course.id
       ).first
       unless @teebox.nil?
         @round.slope  = @teebox.slope
