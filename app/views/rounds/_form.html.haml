@@ -6,24 +6,24 @@
         .element.date= f.date_select :date
       .half
         .prompt.little= f.label :notes
-        .element.textarea= f.text_area :notes, :rows => 4
+        .element.textarea= f.text_area :notes, rows: 4
 
     .form_row
       .half
         .prompt.required.little= f.label :slope
-        .element.txt= f.number_field :slope, :min => 55, :max => 155
+        .element.txt= f.number_field :slope, min: 55, max: 155
       .half
         .prompt.required.little= f.label :rating
-        .element.txt= f.number_field :rating, :min => 0.1, :step => 0.1
+        .element.txt= f.number_field :rating, min: 0.1, step: 0.1
     .form_row
-      = link_to_function 'enter only your score', 'toggle_scorecard_input()', :id => 'scorecard_toggle'
+      = link_to 'enter only your score', '#', id: 'scorecard_toggle'
     #score.form_element
       .form_row
         .half
           .prompt.required.little= f.label :score
-          .element.txt= f.number_field :score, :min => 1
+          .element.txt= f.number_field :score, min: 1
     #scorecard.form_element
       = f.fields_for :scorecard, build_scorecard_for(@round) do |sc|
-        = render :partial => 'scorecards/form', :locals => {:f => sc}
+        = render partial: 'scorecards/form', locals: {f: sc}
 
     .form_row.actions= f.submit

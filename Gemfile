@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.6'
 gem 'thin'
 
 group :production do
@@ -11,9 +11,9 @@ end
 # database
 gem 'pg'
 gem 'texticle', :require => 'texticle/rails'
-gem 'mongo', '1.5.2'
-gem 'bson_ext', '1.5.2'
-gem 'mongoid'
+gem 'mongo', '1.6.2'
+gem 'bson_ext', '1.6.2'
+gem 'mongoid', '~> 2.4'
 
 # authentication & authorization
 gem 'devise'
@@ -34,7 +34,7 @@ gem 'jquery-rails'
 gem 'haml-rails'
 
 # misc
-gem 'ruby_flipper', :git => 'git://github.com/rahearn/ruby_flipper.git', :branch => 'topic/dynamic_arguments'
+gem 'ruby_flipper'
 gem 'nokogiri'
 gem 'newrelic_rpm'
 
@@ -50,6 +50,6 @@ group :test do
   gem 'shoulda-matchers'
   gem 'mongoid-rspec'
   gem 'factory_girl_rails'
-  gem 'factory_girl', '2.5.0'
+  gem 'factory_girl'
   gem 'database_cleaner'
 end

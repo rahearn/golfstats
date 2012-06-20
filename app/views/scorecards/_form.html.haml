@@ -3,7 +3,7 @@
     .prompt.required.little= f.label :tees, 'Tees'
     .element.txt= f.text_field :tees
 
-= f.hidden_field :user_id, :value => current_user.id
+= f.hidden_field :user_id, value: current_user.id
 
 .scorecard
   = hidden_field_tag 'custom_stat_counter', f.object.stat_order.count
@@ -11,7 +11,7 @@
   .line.holes
     .unit.size2of20 &nbsp;
     - (1..18).each do |hole|
-      .unit.size1of20{:class => last_column_class(hole)}= hole
+      .unit.size1of20{class: last_column_class(hole)}= hole
 
   .unit.size2of20
     .line.yardage.label Yardage
@@ -23,7 +23,7 @@
 
   - current_hole = 0
   = f.fields_for :holes do |sh|
-    .unit.size1of20{:class => last_column_class(sh.object.hole)}
+    .unit.size1of20{class: last_column_class(sh.object.hole)}
       = sh.hidden_field :hole
       .line.element.txt.yardage= sh.text_field :length
       .line.element.txt.par= sh.text_field :par
@@ -36,4 +36,4 @@
     - current_hole += 1
 
   .line.additional
-    .unit.size2of20.label= link_to_function 'Add line', 'append_scorecard_row()'
+    .unit.size2of20.label= link_to 'Add line', '#', id: 'append_scorecard_line'

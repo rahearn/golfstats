@@ -4,9 +4,13 @@
 
 custom_stat_counter = 0
 
-$ -> custom_stat_counter = $('.scorecard #custom_stat_counter').val()
+$ ->
+  custom_stat_counter = $('.scorecard #custom_stat_counter').val()
+  $('#append_scorecard_line').click ->
+    append_scorecard_row()
+    false
 
-@append_scorecard_row = () ->
+append_scorecard_row = () ->
   row = $('<div class="line custom" />').append(
     $('<div class="unit size2of20 label element txt" />').append($('<input name="round[scorecard][stat_order][]" type="text" />'))
   )
