@@ -1,6 +1,6 @@
 #
 # Format:
-# 
+#
 # <heroku_san shorthand name>:
 #   app: <Heroku app name>
 #   stack: <Heroku stack, optional>
@@ -12,16 +12,12 @@ production:
   stack: cedar
   config:
     BUNDLE_WITHOUT: "assets:development:test"
-    GS_HOST: "golfstats.herokuapp.com"
-    # GOOGLE_ANALYTICS: "UA-12345678-1"
+    GS_HOST: "golf-stats.net"
+    GOOGLE_ANALYTICS: "UA-15021105-1"
 
 staging:
   app: golfstats-staging
   stack: cedar
-  config: &default
+  config:
     BUNDLE_WITHOUT: "assets:development:test"
     GS_HOST: "golfstats-staging.herokuapp.com"
-
-# demo: 
-  # app: awesomeapp-demo
-  # config: *default
