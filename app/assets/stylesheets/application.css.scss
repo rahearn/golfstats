@@ -5,6 +5,7 @@
  *= require_self
  *= require oocss/core/core
  *= require oocss/plugins/plugins
+ *= require reset
  *= require_tree .
 */
 
@@ -30,4 +31,9 @@
 
 .error {
   color: $loud-color;
+}
+
+#openid_url {
+  background: image-url('openid-bg.gif') no-repeat;
+  background-position: 5px 50%;
 }

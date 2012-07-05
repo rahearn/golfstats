@@ -1,10 +1,24 @@
-// Place all the styles related to the scorecards controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 @import "constants";
 
-.scorecard {
+#score.form_element {
+  display: none;
+}
 
+.teeboxes {
+  .hd h3.unit {
+    margin-right: 0;
+
+    .lastUnit {
+      margin-left: 0;
+    }
+  }
+
+  .line {
+    margin-bottom: 10px;
+  }
+}
+
+.scorecard {
   .line, .unit {
     padding: 5px 0;
   }
@@ -23,7 +37,6 @@
 }
 
 .form_element .scorecard {
-
   .txt input {
     width: 95%;
     font-size: 1em;
