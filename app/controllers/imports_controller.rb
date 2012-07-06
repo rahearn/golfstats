@@ -3,7 +3,7 @@ class ImportsController < ApplicationController
   load_resource :user
 
   def create
-    authorize! :manage, @user
+    authorize! :update, @user
 
     @user.extend ImportLegacy
     @user.import_legacy params[:file]

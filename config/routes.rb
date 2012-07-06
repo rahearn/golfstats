@@ -5,7 +5,7 @@ Golfstats::Application.routes.draw do
     get 'sign_in',  to: 'users/sessions#new',     as: :new_user_session
     get 'sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
   end
-  resources :users, only: :show do
+  resources :users, only: [:show, :edit, :update] do
     resource :import, only: :create
   end
 
