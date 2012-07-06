@@ -25,6 +25,7 @@ module Users
       @auth = request.env["omniauth.auth"]
       Rails.logger.debug "omniauth.auth: #{@auth.inspect}"
       @user = User.find_or_initialize_by_openid_uid @auth.uid
+      @user.remember_me = true
     end
 
     def ensure_development

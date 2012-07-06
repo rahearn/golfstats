@@ -147,7 +147,8 @@ CREATE TABLE users (
     openid_uid character varying(255) NOT NULL,
     gender character varying(6) DEFAULT 'male'::character varying,
     handicap numeric(3,1),
-    import_done boolean DEFAULT false
+    import_done boolean DEFAULT false,
+    remember_token character varying(255)
 );
 
 
@@ -335,3 +336,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120110030101');
 INSERT INTO schema_migrations (version) VALUES ('20120116221353');
 
 INSERT INTO schema_migrations (version) VALUES ('20120419200615');
+
+INSERT INTO schema_migrations (version) VALUES ('20120706123208');
