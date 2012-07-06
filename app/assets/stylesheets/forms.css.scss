@@ -1,3 +1,6 @@
+@import "constants";
+@import "blueprint/grid";
+
 .form_element, .form_row {
   margin: 20px 0 0 0;
   overflow: hidden;
@@ -53,6 +56,24 @@
   }
 }
 
+.radio {
+  float: left;
+
+  input {
+    margin: {
+      top: 1.25em;
+      right: 0.5em;
+      left: 0.3em;
+    }
+  }
+}
+
 .required:after {
   content: "*";
+}
+
+.hint {
+  font-style: italic;
+  @include prepend(2);
+  color: $quiet-color;
 }

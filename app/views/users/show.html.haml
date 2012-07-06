@@ -1,7 +1,9 @@
 %div{class: (feature_active?(:legacy_import, @user) ? 'unit size3of5' : '')}
   .mod
     .inner
-      .hd Profile
+      .hd.split
+        %h2.left Profile
+        .right.bottom.mam= link_to 'Edit Profile', edit_user_path(@user) if can?(:edit, @user)
       .bd
         .container
           - if @user.name?
@@ -24,7 +26,8 @@
   .unit.size2of5.lastUnit
     .mod
       .inner
-        .hd Import Data
+        .hd
+          %h2 Import Data
         .bd
           %p Use these steps to import data from the old version of GolfStats.
           %ol
