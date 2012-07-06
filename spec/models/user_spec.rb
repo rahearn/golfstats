@@ -24,6 +24,10 @@ describe User do
     end
   end
 
+  describe "security" do
+    it { should_not allow_mass_assignment_of :openid_uid }
+  end
+
   describe "#maximum_handicap" do
     context "for a male" do
       subject { build_stubbed :user }
