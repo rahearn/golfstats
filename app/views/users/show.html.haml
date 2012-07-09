@@ -3,7 +3,7 @@
     .inner
       .hd.split
         %h2.left Profile
-        .right.bottom.mam= link_to 'Edit Profile', edit_user_path(@user) if can?(:edit, @user)
+        .right.bottom.mam= link_to 'Edit', edit_user_path(@user) if can?(:edit, @user)
       .bd
         .container
           - if @user.name?

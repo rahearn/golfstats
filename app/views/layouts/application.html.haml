@@ -3,7 +3,7 @@
   %head
     %meta{:charset => "utf-8"}/
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    %title Golfstats
+    %title GolfStats
 
     %meta{:name => "description", :content => ""}/
     %meta{:name => "author", :content => ""}/
@@ -39,9 +39,8 @@
                   %h1.img.logo= link_to 'GolfStats', root_path
                   %nav
                     %ul
-                      %li= link_to 'Courses', courses_path
                       - if user_signed_in?
-                        %li= link_to 'Profile', user_path(current_user)
+                        %li= link_to profile_link_text, user_path(current_user), :title => 'Profile'
                         %li= link_to 'Sign out', destroy_user_session_path
                       - else
                         %li= link_to 'Sign in', new_user_session_path
