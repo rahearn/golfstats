@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+ruby '1.9.3'
 gem 'rails', '3.2.7'
 gem 'thin'
 
@@ -11,9 +12,9 @@ end
 # database
 gem 'pg'
 gem 'texticle', :require => 'texticle/rails'
-gem 'mongo', '1.6.2'
-gem 'bson_ext', '1.6.2'
-gem 'mongoid', '~> 2.4'
+gem 'mongo', '1.6.4'
+gem 'bson_ext', '1.6.4'
+gem 'mongoid'
 
 # authentication & authorization
 gem 'devise'
