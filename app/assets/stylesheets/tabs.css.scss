@@ -1,5 +1,11 @@
+@import "constants";
+@import "compass/css3/border-radius";
 
 .tabs {
+
+  .topper {
+    @include border-radius;
+  }
 
   .bd li {
     display: block;
@@ -7,10 +13,10 @@
 
   .tabContent {
     display: none;
-
   }
 
   .tabContent.current {
     display: block;
   }
+
 }

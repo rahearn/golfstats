@@ -10,6 +10,7 @@ html {
 
 body {
   @include blueprint-typography-body;
+  background-image: image-url('retina_dust.png');
 }
 
 body, select, input, textarea {

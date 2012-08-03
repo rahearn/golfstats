@@ -23,6 +23,7 @@
 .notices .inner {
   border: 1px solid $notices-border;
   @include border-radius;
+  background: #fff;
 }
 
 .notice {
