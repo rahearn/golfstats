@@ -16,14 +16,14 @@
         .prompt.required.little= f.label :slope
         .element.txt= f.number_field :slope, min: 55, max: 155
     .form_row
-      = link_to 'enter only your score', '#', id: 'scorecard_toggle'
-    #score.form_element
+      = link_to (@round.scorecard? ? 'enter only your score' : 'enter full scorecard'), '#', id: 'scorecard_toggle'
+    #score.form_element{style: "display: #{@round.scorecard? ? 'none' : 'block'}"}
       .form_row
         .half
           .prompt.required.little= f.label :score
-          .element.txt= f.number_field :score, min: 1
-    #scorecard.form_element
+          .element.txt= f.number_field :score, min: 1, disabled: @round.scorecard?
+    #scorecard.form_element{style: "display: #{@round.scorecard? ? 'block' : 'none'}"}
       = f.fields_for :scorecard, build_scorecard_for(@round) do |sc|
-        = render partial: 'scorecards/form', locals: {f: sc}
+        = render partial: 'scorecards/form', locals: {f: sc, disabled: !@round.scorecard?}
 
     .form_row.actions= f.submit

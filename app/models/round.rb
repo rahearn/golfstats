@@ -48,6 +48,10 @@ class Round < ActiveRecord::Base
                  end.tap { |sc| self.scorecard_id = sc.id.to_s }
   end
 
+  def scorecard?
+    new_record? || scorecard.present?
+  end
+
   private
 
   def scorecard_valid

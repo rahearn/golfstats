@@ -23,7 +23,7 @@ describe "rounds/new" do
   end
 
   it "has an input box for score" do
-    rendered.should include '<input id="round_score" min="1" name="round[score]" type="number" />'
+    rendered.should include '<input disabled="disabled" id="round_score" min="1" name="round[score]" type="number" />'
   end
 
   it "has a text area for notes" do

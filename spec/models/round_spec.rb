@@ -77,4 +77,22 @@ describe Round do
       subject.scorecard_id.should == scorecard.id.to_s
     end
   end
+
+  describe "#scorecard?" do
+    context "for new round" do
+      specify { subject.scorecard?.should be_true }
+    end
+
+    context "for saved round with scorecard" do
+      subject { create :round, scorecard: build(:scorecard) }
+
+      specify { subject.scorecard?.should be_true }
+    end
+
+    context "for saved round with no scorecard" do
+      subject { create :round }
+
+      specify { subject.scorecard?.should be_false }
+    end
+  end
 end
