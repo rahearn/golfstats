@@ -23,11 +23,11 @@ describe "rounds/new" do
   end
 
   it "has an input box for score" do
-    rendered.should include '<input disabled="disabled" id="round_score" min="1" name="round[score]" type="number" />'
+    rendered.should include '<input disabled="disabled" id="round_score" min="1" name="round[score]" tabindex="7" type="number" />'
   end
 
   it "has a text area for notes" do
-    rendered.should include '<textarea cols="40" id="round_notes" name="round[notes]" rows="4">'
+    rendered.should include '<textarea cols="40" id="round_notes" name="round[notes]" rows="4" tabindex="4">'
   end
 
   it "renders the scorecard partial" do
