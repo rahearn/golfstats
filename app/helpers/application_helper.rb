@@ -17,12 +17,6 @@ module ApplicationHelper
   end
 
   def profile_link_text
-    if current_user.name.present?
-      current_user.name
-    elsif current_user.email.present?
-      current_user.email
-    else
-      'Profile'
-    end
+    current_user.name || current_user.email || 'Profile'
   end
 end
