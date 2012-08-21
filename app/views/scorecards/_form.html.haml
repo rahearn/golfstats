@@ -1,12 +1,12 @@
 .form_row
   .half
     .prompt.required.little= f.label :tees, 'Tees'
-    .element.txt= f.text_field :tees
+    .element.txt= f.text_field :tees, disabled: disabled, tabindex: 7
 
-= f.hidden_field :user_id, value: current_user.id
+= f.hidden_field :user_id, value: current_user.id, disabled: disabled
 
 .scorecard
-  = hidden_field_tag 'custom_stat_counter', f.object.stat_order.count
+  = hidden_field_tag 'custom_stat_counter', f.object.stat_order.count, disabled: disabled
 
   .line.holes
     .unit.size2of20 &nbsp;
@@ -19,21 +19,28 @@
     .line.handicap.label Handicap
     .line.score.label Score
     - f.object.stat_order.each do |stat|
-      .line.element.txt.custom= text_field_tag 'round[scorecard][stat_order][]', stat
+      .line.element.txt.custom= text_field_tag 'round[scorecard][stat_order][]', stat, disabled: disabled
 
   - current_hole = 0
+  - tab_index = 8
   = f.fields_for :holes do |sh|
     .unit.size1of20{class: last_column_class(sh.object.hole)}
-      = sh.hidden_field :hole
-      .line.element.txt.yardage= sh.text_field :length
-      .line.element.txt.par= sh.text_field :par
-      .line.element.txt.handicap= sh.text_field :handicap
-      .line.element.txt.score= sh.text_field :score
+      = sh.hidden_field :hole, disabled: disabled
+      .line.element.txt.yardage= sh.text_field :length, disabled: disabled, pattern: "[0-9]*", tabindex: tab_index
+      .line.element.txt.par= sh.text_field :par, disabled: disabled, pattern: "[0-9]*", tabindex: (tab_index + 18)
+      .line.element.txt.handicap= sh.text_field :handicap, disabled: disabled, pattern: "[0-9]*", tabindex: (tab_index + 36)
+      .line.element.txt.score= sh.text_field :score, disabled: disabled, pattern: "[0-9]*", tabindex: (tab_index + 54)
+      - custom_index = 0
       - f.object.stat_order.each_key do |key|
         .line.element.txt.custom
           = text_field_tag "round[scorecard][holes_attributes][#{current_hole}][custom_stats][#{key}]",
-            sh.object.custom_stats[key]
+            sh.object.custom_stats[key], disabled: disabled, pattern: "[0-9yYtTnNfF]*",
+            tabindex: (tab_index + 72 + (18 * custom_index))
+        - custom_index += 1
     - current_hole += 1
+    - tab_index += 1
 
   .line.additional
-    .unit.size2of20.label= link_to 'Add line', '#', id: 'append_scorecard_line'
+    .unit.size2of20.label
+      :javascript
+        document.write("#{escape_javascript link_to('Add line', '#', id: 'append_scorecard_line', tabindex: (tab_index + 54 + (18 * f.object.stat_order.count)))}");

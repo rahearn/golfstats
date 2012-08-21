@@ -28,10 +28,10 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'compass-rails'
+  gem 'jquery-rails'
 end
 
 # presentation
-gem 'jquery-rails'
 gem 'haml-rails'
 
 # misc

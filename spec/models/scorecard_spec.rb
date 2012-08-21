@@ -16,14 +16,13 @@ describe Scorecard do
   end
 
   describe "before_validation" do
-    let(:hole) { build :hole }
-    subject { build :blank_scorecard, :holes => [hole] }
+    let(:hole1) { build :hole, par: 4, length: 4, score: 4 }
+    let(:hole2) { build :hole, par: 5, length: 5, score: 5 }
+    subject { build :blank_scorecard, :holes => [hole1, hole2] }
 
     [:score, :length, :par].each do |method|
       it "sets #{method} from the holes" do
-        subject.holes.stub(:sum).and_return 10
-        subject.holes.stub(:sum).with(method).and_return 5
-        subject.should_receive(:"#{method}=").with 5
+        subject.should_receive(:"#{method}=").with 9
         subject.valid?
       end
     end

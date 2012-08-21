@@ -8,24 +8,34 @@ class CourseNotesController < ApplicationController
   authorize_resource
 
   def new
+    render layout: !request.xhr?
   end
 
   def create
-    if @course_note.save
-      redirect_to @course
-    else
-      render :new
+    respond_to do |format|
+      if @course_note.save
+        format.html { redirect_to @course }
+        format.js
+      else
+        format.html { render :new }
+        format.js   { render :js => "alert('There was a problem saving your note. #{@course_note.errors.full_messages.join '. '}');" }
+      end
     end
   end
 
   def edit
+    render layout: !request.xhr?
   end
 
   def update
-    if @course_note.update_attributes params[:course_note]
-      redirect_to @course
-    else
-      render :edit
+    respond_to do |format|
+      if @course_note.update_attributes params[:course_note]
+        format.html { redirect_to @course }
+        format.js
+      else
+        format.html { render :edit }
+        format.js   { render :js => "alert('There was a problem saving your note. #{@course_note.errors.full_messages.join '. '}');" }
+      end
     end
   end
 

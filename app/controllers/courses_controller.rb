@@ -27,7 +27,8 @@ class CoursesController < ApplicationController
   def run_search
     if params[:q].present?
       @courses = @courses.search params[:q]
-      render :search_results
+      render :search_results if @courses.any?
+      redirect_to new_course_path, notice: %|No courses found for "#{params[:q]}".| if @courses.empty?
     end
   end
 
