@@ -58,8 +58,9 @@ class Round < ActiveRecord::Base
     unless scorecard.valid?
       errors.add(:scorecard, 'is invalid')
       scorecard.holes.each do |h|
-        Rails.logger.error "Hole #{h.hole} errors: #{h.errors.full_messages}" if h.errors.present?
+        scorecard.errors.add :base, "Hole #{h.hole} errors: #{h.errors.full_messages.join '. '}" if h.errors.present?
       end
+      scorecard.errors.delete :holes
     end
   end
 

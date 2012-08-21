@@ -55,9 +55,9 @@ class Scorecard
   private
 
   def sum_scorecard
-    self.score  = holes.sum :score
-    self.length = holes.sum :length
-    self.par    = holes.sum :par
+    self.score  = holes.map { |h| h.score || 0 }.reduce :+
+    self.length = holes.map { |h| h.length || 0 }.reduce :+
+    self.par    = holes.map { |h| h.par || 0 }.reduce :+
     stat_order.each_key do |key|
       self.totals[key] = holes.map do |h|
         h.custom_stats[key].true? ? 1 : h.custom_stats[key].to_i
