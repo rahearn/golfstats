@@ -1,8 +1,9 @@
+- logger.debug "RCA params: #{params.inspect}"
 .mod.tabs
-  = render partial: 'tabs', locals: {current: (current_user.rounds.any? ? :activity : :add_round)}
+  = render partial: 'tabs', locals: {current: (params[:tab] || (current_user.rounds.any? ? :activity : :add_round)).to_sym}
 
   .bd
-    = render partial: 'activity', locals: {current: (current_user.rounds.any? ? :activity : :add_round)}
-    = render partial: 'add_round', locals: {current: (current_user.rounds.any? ? :activity : :add_round)}
-    #course_handicap_tab_content.tabContent
+    = render partial: 'activity', locals: {current: (params[:tab] || (current_user.rounds.any? ? :activity : :add_round)).to_sym}
+    = render partial: 'add_round', locals: {current: (params[:tab] || (current_user.rounds.any? ? :activity : :add_round)).to_sym}
+    #course_handicap_tab_content.tabContent{class: (params[:tab] == 'handicap' ? 'current' : '')}
       = render partial: 'course_handicap'

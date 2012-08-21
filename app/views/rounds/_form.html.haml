@@ -1,5 +1,8 @@
-= form_for [@course, @round] do |f|
-  .container
+.container
+  %noscript
+    %p Enable Javascript to enable entering only a score and saving custom statistics.
+
+  = form_for [@course, @round] do |f|
     .form_row
       .half
         .prompt.required.little= f.label :date
@@ -16,7 +19,8 @@
         .prompt.required.little= f.label :slope
         .element.txt= f.number_field :slope, min: 55, max: 155, tabindex: 6
     .form_row
-      = link_to (@round.scorecard? ? 'enter only your score' : 'enter full scorecard'), '#', id: 'scorecard_toggle'
+      :javascript
+        document.write("#{escape_javascript link_to((@round.scorecard? ? 'enter only your score' : 'enter full scorecard'), '#', id: 'scorecard_toggle')}");
     #score.form_element{style: "display: #{@round.scorecard? ? 'none' : 'block'}"}
       .form_row
         .half

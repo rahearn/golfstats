@@ -1,5 +1,5 @@
 .hd.topper
   %ul.tabControl
-    %li{class: (current == :activity ? 'current' : '')}= link_to content_tag(:span, 'Activity'), '#', id: 'activity_tab'
-    %li{class: (current == :add_round ? 'current' : '')}= link_to content_tag(:span, 'Add Round'), '#', id: 'add_round_tab'
-    %li{class: (current == :handicap ? 'current' : '')}= link_to content_tag(:span, 'Calculate Course Handicap'), '#', id: 'course_handicap_tab'
+    %li{class: (current == :activity ? 'current' : '')}= link_to content_tag(:span, 'Activity'), root_path(tab: :activity), id: 'activity_tab'
+    %li{class: (current == :add_round ? 'current' : '')}= link_to content_tag(:span, 'Add Round'), root_path(tab: :add_round), id: 'add_round_tab'
+    %li{class: (current == :handicap ? 'current' : '')}= link_to content_tag(:span, 'Calculate Course Handicap'), root_path(tab: :handicap), id: 'course_handicap_tab'

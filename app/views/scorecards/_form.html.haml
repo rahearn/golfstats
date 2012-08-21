@@ -41,4 +41,6 @@
     - tab_index += 1
 
   .line.additional
-    .unit.size2of20.label= link_to 'Add line', '#', id: 'append_scorecard_line', tabindex: (tab_index + 54 + (18 * f.object.stat_order.count))
+    .unit.size2of20.label
+      :javascript
+        document.write("#{escape_javascript link_to('Add line', '#', id: 'append_scorecard_line', tabindex: (tab_index + 54 + (18 * f.object.stat_order.count)))}");
