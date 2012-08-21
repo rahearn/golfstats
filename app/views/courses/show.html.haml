@@ -16,12 +16,9 @@
                 %h3.left Notes
                 .right.bottom
                   %h3
-                    - if @course_note.present?
-                      = link_to 'Edit note', edit_course_course_note_path(@course)
-                    - else
-                      = link_to 'New note', new_course_course_note_path(@course)
+                    = course_note_link
               .bd
-                .container
+                #course_note.container
                   %p= @course_note.try :note
 
         - unless @course.teeboxes.empty?
