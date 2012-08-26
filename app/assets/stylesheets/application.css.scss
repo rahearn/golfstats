@@ -2,21 +2,50 @@
  * This is a manifest file that'll automatically include all the stylesheets available in this directory
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
- *= require_self
  *= require reset
- *= require_tree .
+ *= require GGS
+ *= require_self
 */
 
-@import "blueprint/reset";
+@import "constants";
+@import "blueprint/typography";
+@import "compass/css3/border-radius";
 
-* {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+body {
+  @include blueprint-typography-body;
+  background-image: image-url('retina_dust.png');
 }
 
-@import "constants";
-@import "compass/css3/border-radius";
+body, select, input, textarea {
+  color: $font-color;
+}
+
+h1 {
+  color: $alt-text-color;
+  font-size: 44px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  @include link-colors($link-color, $link-hover-color, $link-active-color, $link-visited-color, $link-focus-color);
+}
 
 .notices .inner {
   border: 1px solid $notices-border;
@@ -36,3 +65,10 @@
   background: image-url('openid-bg.gif') no-repeat;
   background-position: 5px 50%;
 }
+
+@import "columns";
+@import "forms";
+@import "header";
+@import "module";
+@import "scorecards";
+@import "tabs";

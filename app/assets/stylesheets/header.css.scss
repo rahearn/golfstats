@@ -1,11 +1,6 @@
 @import "constants";
 @import "compass/typography/lists/inline-block-list";
 
-.body, .header {
-  width: $blueprint-container-size;
-  margin: 0 auto;
-}
-
 .header .inner {
   background: #fff;
 

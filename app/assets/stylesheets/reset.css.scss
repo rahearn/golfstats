@@ -1,55 +1,20 @@
 /*
  * very basic resets for our skin
  */
-@import "constants";
-@import "blueprint/typography";
+@import "compass/reset";
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
 html {
   overflow-y: scroll;
 }
 
-body {
-  @include blueprint-typography-body;
-  background-image: image-url('retina_dust.png');
-}
-
-body, select, input, textarea {
-  color: $font-color;
-}
-
-p {
-  margin: $blueprint-grid-margin 0;
-}
-
 h1, h2, h3, h4, h5, h6 {
   -webkit-font-smoothing: antialiased;
-}
-
-h1 {
-  color: $alt-text-color;
-  font-size: 44px;
-  font-weight: bold;
-  line-height: 1.2;
-}
-
-h2 {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-h3 {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-h5 {
-  font-size: 1em;
-  font-weight: bold;
-}
-
-a {
-  text-decoration: none;
-  @include link-colors($link-color, $link-hover-color, $link-active-color, $link-visited-color, $link-focus-color);
 }
 
 ol {

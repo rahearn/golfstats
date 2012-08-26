@@ -14,6 +14,7 @@
 
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
+    = javascript_include_tag 'GGS' if Rails.env.development?
     = csrf_meta_tags
 
     - if ENV['GOOGLE_ANALYTICS'].present?

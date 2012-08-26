@@ -1,30 +1,22 @@
 @import "constants";
-@import "blueprint/grid";
 
 .tiny {
-  @include column(1);
 }
 
 .little {
-  @include column(2);
 }
 
 .small {
-  @include column(3);
 }
 
 .medium {
-  @include column(5);
 }
 
 .half {
-  @include column(10);
 }
 
 .threequarters {
-  @include column(15);
 }
 
 .full {
-  @include column(20);
 }

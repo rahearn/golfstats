@@ -1,5 +1,4 @@
 @import "constants";
-@import "blueprint/grid";
 @import "compass/css3/border-radius";
 
 .form_element, .form_row {
@@ -82,6 +81,5 @@
 
 .hint {
   font-style: italic;
-  @include prepend(2);
   color: $quiet-color;
 }
