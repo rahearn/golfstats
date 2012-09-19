@@ -1,38 +1,44 @@
-.scorecard
-  .line.holes
-    .unit.size2of21 &nbsp;
+%div
+  .content.wrapper
+    %p
+      %em Tees:
+      = scorecard.tees.humanize
+    = content_for :content
+  = content_for :sidebar
+
+%div
+  .full.wrapper
+    .hole.label &nbsp;
     - (1..18).each do |hole|
-      .unit.size1of21= hole
-    .unit.size1of21.lastUnit Total
+      .hole= hole
+    .hole.total Total
 
-  .line.yardage
-    .unit.size2of21.label Yardage
+  .full.wrapper
+    .hole.label Yardage
     - 18.times do |index|
-      .unit.size1of21= scorecard_value scorecard.holes[index].try(:length)
-    .unit.size1of21.lastUnit.total= scorecard.length
+      .hole= scorecard_value scorecard.holes[index].try(:length)
+    .hole.total= scorecard.length
 
-  .line.par
-    .unit.size2of21.label Par
+  .full.wrapper
+    .hole.label Par
     - 18.times do |index|
-      .unit.size1of21= scorecard_value scorecard.holes[index].try(:par)
-    .unit.size1of21.lastUnit.total= scorecard.par
+      .hole= scorecard_value scorecard.holes[index].try(:par)
+    .hole.total= scorecard.par
 
-  .line.handicap
-    .unit.size2of21.label Handicap
+  .full.wrapper
+    .hole.label Handicap
     - 18.times do |index|
-      .unit.size1of21= scorecard_value scorecard.holes[index].try(:handicap)
+      .hole= scorecard_value scorecard.holes[index].try(:handicap)
 
-  .line.score
-    .unit.size2of21.label Score
+  .full.wrapper
+    .hole.label Score
     - 18.times do |index|
-      .unit.size1of21= scorecard_value scorecard.holes[index].try(:score)
-    .unit.size1of21.lastUnit.total= scorecard.score
+      .hole= scorecard_value scorecard.holes[index].try(:score)
+    .hole.total= scorecard.score
 
   - scorecard.stat_order.each_with_key do |label, key|
-    .line.custom
-      .unit.size2of21.label= label.humanize
+    .full.wrapper
+      .hole.label= label.humanize
       - 18.times do |hole|
-        .unit.size1of21= scorecard_value scorecard.holes[hole].try(:custom_stats).try(:[], key)
-      .unit.size1of21.lastUnit.total= scorecard.totals.try :[], key
-
-%p= "#{scorecard.tees.humanize} tees"
+        .hole= scorecard_value scorecard.holes[hole].try(:custom_stats).try(:[], key)
+      .hole.total= scorecard.totals.try :[], key

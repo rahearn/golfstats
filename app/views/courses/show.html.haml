@@ -1,45 +1,32 @@
-.mod
-  .inner
-    .hd.split
-      %h2.left= @course.name
-      .right.bottom.mam= link_to 'New round', new_course_round_path(@course)
-    .bd
-      .container
-        %p
-          %em Location:
-          = @course.location
+.content.wrapper
+  %h1= @course.name
+  %p
+    %em Location:
+    = @course.location
+  - if user_signed_in?
+    - unless @course.teeboxes.empty?
+      %table#tees
+        %thead
+          %tr
+            %th Tees
+            %th Course Handicap
+        %tbody
+          - @course.teeboxes.each do |t|
+            %tr
+              %td= t.tees.titleize
+              - t.extend CourseHandicap
+              %td= t.handicap current_user
+    #notes
+      .header
+        %h2 Notes
+        = course_note_link
+      #course_note
+        %p= @course_note.try :note
 
-        - if user_signed_in?
-          .mod.notes
-            .inner
-              .hd.split
-                %h3.left Notes
-                .right.bottom
-                  %h3
-                    = course_note_link
-              .bd
-                #course_note.container
-                  %p= @course_note.try :note
-
-        - unless @course.teeboxes.empty?
-          .mod.teeboxes
-            .inner
-              .hd
-                %h3.unit.size1of7 Tees
-                %h3.unit.size2of7.lastUnit Course Handicap
-              .bd
-                .container
-                  - @course.teeboxes.each do |t|
-                    .line
-                      .unit.size1of7= t.tees.titleize
-                      - if user_signed_in?
-                        - t.extend CourseHandicap
-                        .unit.size1of7= t.handicap current_user
-                      - if can? :create, Round
-                        .unit.size5of7.lastUnit
-                          = link_to 'Add round played from these tees', new_course_round_path(@course, :tees => t.tees)
-                  - if can? :create, Round
-                    .line
-                      .unit.size2of7 &nbsp;
-                      .unit.size5of7.lastUnit
-                        = link_to 'Add round played from other tees', new_course_round_path(@course)
+.sidebar.wrapper
+  .actions
+    %ul
+      %li= link_to 'Add a round', new_course_round_path(@course) if can?(:create, Round)
+      - unless @course.teeboxes.empty?
+        - @course.teeboxes.each do |t|
+          %li= link_to "Add a round played from the #{t.tees.downcase} tees", new_course_round_path(@course, tees: t.tees)

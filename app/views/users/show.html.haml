@@ -1,42 +1,33 @@
-%div{class: (feature_active?(:legacy_import, @user) ? 'unit size3of5' : '')}
-  .mod
-    .inner
-      .hd.split
-        %h2.left Profile
-        .right.bottom.mam= link_to 'Edit', edit_user_path(@user) if can?(:edit, @user)
-      .bd
-        .container
-          - if @user.name?
-            %p
-              %em Name:
-              = @user.name
-          - if @user.email?
-            %p
-              %em Email:
-              = @user.email
-          %p
-            %em OpenId:
-            = @user.openid_uid
-          - unless @user[:handicap].nil?
-            %p
-              %em Handicap:
-              = @user.handicap
+.wrapper{class: (feature_active?(:legacy_import, @user) ? 'content' : 'full')}
+  %h1 Profile
+  - if @user.name?
+    %p
+      %em Name:
+      = @user.name
+  - if @user.email?
+    %p
+      %em Email:
+      = @user.email
+  %p
+    %em OpenId:
+    = @user.openid_uid
+  - unless @user[:handicap].nil?
+    %p
+      %em Handicap:
+      = @user.handicap
+  %p= link_to 'Edit Profile', edit_user_path(@user) if can?(:edit, @user)
 
 - feature_active? :legacy_import, @user do
-  .unit.size2of5.lastUnit
-    .mod
-      .inner
-        .hd
-          %h2 Import Data
-        .bd
-          %p Use these steps to import data from the old version of GolfStats.
-          %ol
-            %li
-              %p Sign in to #{link_to 'the old site', 'http://www.golf-stats.net', target: 'blank'}
-            %li
-              %p Click the "Download Your Data" link on that page and save the file that is generated
-            %li
-              %p Upload that file here:
-              = form_tag user_import_path(@user), multipart: true do
-                .form_row= file_field_tag :file
-                .form_row.actions= submit_tag 'Upload'
+  .sidebar.wrapper
+    %h2 Import Data
+    %p Use these steps to import data from the old version of GolfStats.
+    %ol
+      %li
+        %p Sign in to #{link_to 'the old site', 'http://www.golf-stats.net', target: 'blank'}
+      %li
+        %p Click the "Download Your Data" link on that page and save the file that is generated
+      %li
+        %p Upload that file here:
+        = form_tag user_import_path(@user), multipart: true do
+          .form_row= file_field_tag :file
+          .form_row.actions= submit_tag 'Upload'

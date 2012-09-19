@@ -1,11 +1,16 @@
 @import "constants";
+@import "compass/css3/border-radius";
 @import "compass/typography/lists/inline-block-list";
 
-.header .inner {
-  background: #fff;
-
-  .media {
-    margin: 0;
+header {
+  .content {
+    @include border-radius;
+    background: #fff;
+    padding: {
+      top: $ggs-lineheight;
+      bottom: $ggs-lineheight;
+    }
+    overflow: hidden;
   }
 
   .logo {
@@ -19,25 +24,57 @@
       text-decoration: none;
     }
   }
-}
 
-nav {
-  overflow: hidden;
-
-  a {
+  nav a {
     color: $link-visited-color;
+    font-weight: bold;
   }
 
-  ul {
+  .notices {
+    margin-top: $ggs-lineheight;
+    border: 1px solid $notices-border;
+    @include border-radius;
+    background: #fff;
+
+    .notice {
+      color: $quiet-color;
+    }
+    .error {
+      color: $loud-color;
+    }
+    ul {
+      list-style: disc;
+      margin: $ggs-lineheight 0 $ggs-lineheight 1em;
+    }
+  }
+}
+
+@media screen and (min-width: 40em) {
+  nav a {
+    font-size: #{($ggs-font-size + 5) / $ggs-em}em;
+  }
+}
+
+// 4 & 8 columns
+@media screen and (max-width: 117em) {
+  header .logo {
+    float: left;
+  }
+
+  nav ul {
     @include inline-block-list;
     float: right;
-    overflow: hidden;
 
     li {
-      font-weight: bold;
-      font-size: 1.5em;
       padding: 0 0 0 25px;
       @include inline-block-list-item;
     }
+  }
+}
+
+// 16 columns
+@media screen and (min-width: 117em) {
+  header .content {
+    background: transparent;
   }
 }

@@ -1,15 +1,31 @@
-.mod
-  .inner
-    .hd.split
-      %h2.left= "#{@round.date} - #{@round.course_name}"
-      .right.bottom.mam= link_to 'Edit', edit_round_path(@round) if can?(:edit, @round)
-    .bd
-      - if @round.scorecard_id?
-        = render @round.scorecard
-      - else
-        %p
-          %em Score:
-          = @round.score
+- content_for :content do
+  %p
+    %em Differential:
+    = (@round.differential * 10).truncate / 10.0
+    %span.hint Rough estimation of this round's impact on your handicap.
+  - if @round.notes?
+    %p
+      %em Notes:
+      = @round.notes
+
+- content_for :sidebar do
+  .sidebar.wrapper
+    .actions
+      %ul
+        %li= link_to 'Edit Round', edit_round_path(@round) if can?(:edit, @round)
+
+
+.full.wrapper
+  %h1 #{@round.date} - #{@round.course_name}
+
+#round_details
+  - if @round.scorecard_id?
+    = render @round.scorecard
+  - else
+    .content.wrapper
       %p
-        %em Notes:
-        = @round.notes
+        %em Score:
+        = @round.score
+      = content_for :content
+
+    = content_for :sidebar

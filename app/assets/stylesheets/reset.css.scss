@@ -2,12 +2,7 @@
  * very basic resets for our skin
  */
 @import "compass/reset";
-
-* {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
+@import "compass/utilities/general/clearfix";
 
 html {
   overflow-y: scroll;
@@ -25,6 +20,14 @@ ul, ol {
   margin: 1em 0 1em 2em;
 }
 
-.clearfix {
+.header {
+  @include clearfix;
+}
+
+.full {
   clear: both;
+}
+
+.relative {
+  position: relative;
 }

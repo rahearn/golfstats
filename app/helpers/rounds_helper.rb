@@ -34,8 +34,4 @@ module RoundsHelper
     end
   end
 
-  def last_column_class(hole)
-    hole == 18 ? 'lastUnit' : ''
-  end
-
 end

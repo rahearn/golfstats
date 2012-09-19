@@ -1,23 +1,15 @@
-.unit.size3of5
-  .mod
-    .inner
-      .hd
-        %h2 Welcome
-      .bd
-        %p Welcome to GolfStats. We aim to be the easiest way to keep track of your golf game.
-        %p
-          At this point, you can use GolfStats to keep track of your handicap, using the same
-          formula that USGA clubs use. You can also keep records of every round you play, along
-          with any statistics that you want to track.
-        %p #{link_to 'Sign in', new_user_session_path} using Google or an OpenID to get started.
+.content.wrapper
+  %h2 Welcome
+  %p Welcome to GolfStats. We aim to be the easiest way to keep track of your golf game.
+  %p
+    At this point, you can use GolfStats to keep track of your handicap, using the same
+    formula that USGA clubs use. You can also keep records of every round you play, along
+    with any statistics that you want to track.
+  %p #{link_to 'Sign in', new_user_session_path} using Google or an OpenID to get started.
 
-.unit.size2of5.lastUnit
-  .mod
-    .inner
-      .hd
-        %h2 Recently Played Courses
-      .bd
-        %ul
-          - courses.each do |c|
-            - cache action_suffix: "course_#{c.id}" do
-              %li= render c
+.sidebar.wrapper
+  %h2 Recently Played Courses
+  %ul
+    - courses.each do |c|
+      - cache action_suffix: "course_#{c.id}" do
+        %li= render c

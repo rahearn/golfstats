@@ -1,14 +1,11 @@
 = error_messages_for @course_note
 
-.mod.simple
-  .inner
-    .hd.split
-      %h2.left Edit Note
-      #delete_control.right.bottom.mam
-    .bd
-      = render 'form'
+.full.wrapper
+  - unless request.xhr?
+    %h1 Edit Note
+  = render 'form'
 
 :javascript
   $(function() {
-    $('#delete_control').html("#{escape_javascript link_to('Delete note', course_course_note_path(@course), method: :delete, data: {confirm: 'Are you sure?'})}");
+    $('form.edit_course_note .actions').append(" | #{escape_javascript link_to('Delete note', course_course_note_path(@course), method: :delete, data: {confirm: 'Are you sure?'})}");
   });

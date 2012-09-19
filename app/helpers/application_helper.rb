@@ -3,11 +3,11 @@ module ApplicationHelper
   def error_messages_for(*objects)
     objects_in_error = objects.select { |o| o.present? && o.errors.any? }
 
-    content_tag(:div, :class => 'mod notices') do
-      content_tag(:div, :class => 'inner bd container') do
+    content_for :error_messages do
+      content_tag(:div, :class => 'wrapper notices') do
         objects_in_error.inject("") do |msgs, object|
           name = object.class.name.demodulize.titleize.downcase
-          msgs << content_tag(:h2, "#{pluralize(object.errors.count, 'error')} prohibited this #{name} from being saved:")
+          msgs << content_tag(:h3, "#{pluralize(object.errors.count, 'error')} prohibited this #{name} from being saved:")
           msgs << content_tag(:ul) do
             object.errors.full_messages.map { |m| content_tag(:li, m) }.join.html_safe
           end
@@ -17,6 +17,9 @@ module ApplicationHelper
   end
 
   def profile_link_text
-    current_user.name || current_user.email || 'Profile'
+    return current_user.name  if current_user.name?
+    return current_user.email if current_user.email?
+    'Profile'
   end
+
 end

@@ -1,22 +1,190 @@
 @import "constants";
+@import "compass/layout/stretching";
 
-.tiny {
+/*
+ * Four-column default
+ */
+
+header .content {
+  margin-top: $ggs-lineheight;
 }
 
-.little {
+.body {
+  .content, .sidebar, .full.wrapper, .fields {
+    margin: 0 $ggs-column * 1;
+  }
+  .tabmenu {
+    margin: $ggs-lineheight $ggs-column * 1 0;
+  }
+  & > .sidebar > .actions {
+    margin-top: #{($ggs-line / $ggs-em) * 2}em;
+  }
 }
 
-.small {
+/*
+ * Eight-column grid active
+ */
+
+@media screen and (min-width: 45em) {
+  .body {
+    .wrapper {
+      &:first-child {
+        margin: 0 0 0 $ggs-column * 1;
+      }
+      &:last-child {
+        margin: 0;
+      }
+      &.full {
+        margin: 0 $ggs-column * 1;
+      }
+    }
+
+    .content {
+      float: left;
+      width: $ggs-column * 8;
+    }
+
+    .sidebar {
+      float: left;
+      width: $ggs-column * 8;
+    }
+
+    .fields {
+      margin: 0;
+      @include stretch-x($ggs-column, $ggs-column);
+
+      .field {
+        float: left;
+        width: ($ggs-column * 8) * (18 / 16);
+      }
+
+      .full {
+        float: left;
+        width: 100%;
+      }
+    }
+  }
 }
 
-.medium {
+@media screen and (min-width: 61.5em) {
+  header {
+    margin: 0 $ggs-column * 1;
+  }
+  .body {
+    .content {
+      width: $ggs-column * 10;
+    }
+    .sidebar {
+      width: $ggs-column * 6;
+    }
+  }
 }
 
-.half {
+@media screen and (min-width: 70em) {
+  .hole {
+    float: left;
+    width: 50%;
+  }
 }
 
-.threequarters {
+@media screen and (min-width: 87em) {
+  .body {
+    .wrapper:first-child {
+      margin: 0 0 0 $ggs-column * 3;
+    }
+    .content {
+      width: $ggs-column * 8;
+    }
+    .sidebar {
+      width: $ggs-column * 4;
+    }
+    .tabmenu {
+      margin: $ggs-lineheight $ggs-column * 3 0;
+    }
+    .full.wrapper {
+      @extend header;
+    }
+    .fields {
+      @include stretch-x($ggs-column * 3, $ggs-column * 3);
+
+      .field {
+        width: ($ggs-column * 6) * (18 / 12);
+      }
+    }
+  }
+  header {
+    margin: 0 $ggs-column * 3;
+  }
 }
 
-.full {
+/*
+ * Sixteen-column grid active
+ */
+
+@media screen and (min-width: 117em) {
+  header {
+    width: $ggs-column * 3;
+    @include stretch-y;
+    margin: {
+      right: 0;
+      bottom: 0;
+      left: $ggs-column * 1;
+    }
+    .wrapper {
+      width: 100%;
+      margin: 0;
+    }
+    .content {
+      margin-top: #{($ggs-line / $ggs-em) * 3}em;
+    }
+  }
+  .body {
+    @include stretch-x(($ggs-column * 4), $ggs-column);
+
+    .content.wrapper {
+      width: ($ggs-column * 9) * (18 / 13);
+    }
+    .sidebar.wrapper {
+      width: ($ggs-column * 4) * (18 / 13);
+    }
+    .full.wrapper {
+      clear: none;
+      float: left;
+      width: ($ggs-column * 13) * (18 / 13);
+    }
+    .content, .sidebar, .full {
+      &.wrapper {
+        margin: #{($ggs-line / $ggs-em) * 2}em 0 0;
+      }
+    }
+
+    .tabmenu {
+      float: left;
+      margin: #{($ggs-line / $ggs-em) * 3}em 0 0;
+      width: ($ggs-column * 3) * (18 / 13);
+    }
+    .tabcontent {
+      &.full {
+        width: ($ggs-column * 10) * (18 / 13);
+      }
+      .content {
+        width: ($ggs-column * 6) * (18 / 13);
+      }
+      .sidebar {
+        width: ($ggs-column * 4) * (18 / 13);
+      }
+    }
+
+    .fields {
+      @include stretch-x(0, ($ggs-column * (18 / 13)));
+
+      .field {
+        width: ($ggs-column * 4) * (18 / 12);
+      }
+    }
+
+    .hole {
+      width: ($ggs-column * 4) * (18 / 12);
+    }
+  }
 }
