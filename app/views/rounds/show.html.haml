@@ -1,8 +1,9 @@
 - content_for :content do
-  %p
-    %em Differential:
-    = (@round.differential * 10).truncate / 10.0
-    %span.hint Rough estimation of this round's impact on your handicap.
+  - if @round.differential?
+    %p
+      %em Differential:
+      = (@round.differential * 10).truncate / 10.0
+      %span.hint A rough estimation of this round's impact on your handicap.
   - if @round.notes?
     %p
       %em Notes:
@@ -13,6 +14,8 @@
     .actions
       %ul
         %li= link_to 'Edit Round', edit_round_path(@round) if can?(:edit, @round)
+        %li= link_to 'Your other rounds at this course', course_rounds_path(@round.course)
+        %li= link_to 'Course details', course_path(@round.course)
 
 
 .full.wrapper

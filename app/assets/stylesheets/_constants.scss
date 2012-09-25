@@ -1,9 +1,5 @@
 $experimental-support-for-svg: true;
 
-/*$blueprint-grid-columns: 24;*/
-/*$blueprint-container-size: 950px;*/
-/*$blueprint-grid-margin: 10px;*/
-/*$blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;*/
 $ggs-line: 24;
 $ggs-column: 100% / 18;
 $ggs-font-size: 16;
@@ -12,14 +8,12 @@ $ggs-lineheight: #{$ggs-line / $ggs-em}em;
 
 /*$blueprint-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 /*$blueprint-fixed-font-family: "andale mono", "lucida console", monospace;*/
-/*$blueprint-font-size: 14px;*/
 
 $default-border-radius: 7px;
 
 $font-color: #555;
 $loud-color: darken($font-color, 50%);
 $quiet-color: lighten($font-color, 10%);
-
 $alt-text-color: #234358;
 $highlight-color: #ecf1de;
 
