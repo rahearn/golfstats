@@ -2,21 +2,23 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/box-sizing";
 @import "compass/layout/stretching";
+@import "ggs/lineheight";
 
 .body {
   .fields .form_row, .form_row, .field.wrapper {
-    margin: $ggs-lineheight 0 0;
+    margin: 0;
+    @include ggs-margin-height;
     overflow: hidden;
   }
 }
 
 .textarea {
-  height: #{$ggs-line * 5 / $ggs-em}em;
+  height: ggs-lineheight(5);
   position: relative;
 
   .element {
-    @include stretch-x(#{$ggs-line / 2 / $ggs-em}em, #{$ggs-line / 2 / $ggs-em}em);
-    @include stretch-y($ggs-lineheight, 0);
+    @include stretch-x(ggs-lineheight(0.5), ggs-lineheight(0.5));
+    @include stretch-y(ggs-lineheight(1), 0);
 
     textarea {
       @include stretch;
@@ -54,7 +56,7 @@
 
   span.element input {
     // must put .relative class on enclosing div
-    @include stretch-x(#{($ggs-line * 3)/$ggs-em}em, #{($ggs-line/2)/$ggs-em}em);
+    @include stretch-x(ggs-lineheight(3), ggs-lineheight(0.5));
   }
 }
 
@@ -73,7 +75,7 @@
 .field.control {
   .prompt {
     text-align: right;
-    margin-top: $ggs-lineheight;
+    @include ggs-margin-top;
   }
 }
 

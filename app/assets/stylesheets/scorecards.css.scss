@@ -1,6 +1,7 @@
 @import "constants";
 @import "compass/utilities/general/clearfix";
 @import "compass/css3/box-sizing";
+@import "ggs/lineheight";
 
 #round_details {
   min-width: 800px;
@@ -38,7 +39,7 @@
   .hole {
     @include clearfix;
     @include box-sizing(border-box);
-    margin-top: $ggs-lineheight;
+    @include ggs-margin-top;
     border: 1px solid lighten($quiet-color, 35%);
     padding: #{$ggs-line / 2 / $ggs-em}em 0;
 

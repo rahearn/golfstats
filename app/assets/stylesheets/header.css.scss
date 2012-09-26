@@ -1,6 +1,7 @@
 @import "constants";
 @import "compass/css3/border-radius";
 @import "compass/typography/lists/inline-block-list";
+@import "ggs/lineheight";
 
 header {
   .content {
@@ -8,8 +9,8 @@ header {
     border: 1px solid lighten($quiet-color, 35%);
     background: #fff;
     padding: {
-      top: $ggs-lineheight;
-      bottom: $ggs-lineheight;
+      top: ggs-lineheight(1);
+      bottom: ggs-lineheight(1);
     }
     overflow: hidden;
   }
@@ -32,7 +33,7 @@ header {
   }
 
   .notices {
-    margin-top: $ggs-lineheight;
+    margin-top: ggs-lineheight(1);
     border: 1px solid $notices-border;
     @include border-radius;
     background: #fff;
@@ -45,7 +46,7 @@ header {
     }
     ul {
       list-style: disc;
-      margin: $ggs-lineheight 0 $ggs-lineheight 1em;
+      margin: ggs-lineheight(1) 0 ggs-lineheight(1) 1em;
     }
   }
 }

@@ -1,5 +1,6 @@
 @import "constants";
 @import "compass/typography/links/link-colors";
+@import "ggs/lineheight";
 
 body, select, input, textarea {
   color: $font-color;
@@ -24,7 +25,7 @@ a {
 }
 
 p {
-  margin: $ggs-lineheight 0;
+  @include ggs-margin-height(1, 1);
 }
 
 .hint {

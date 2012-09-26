@@ -70,6 +70,9 @@ GEM
       factory_girl (~> 3.6.0)
       railties (>= 3.0.0)
     fssm (0.2.9)
+    ggs-rails (0.1.0)
+      rails (~> 3.2)
+      sass-rails (~> 3.2)
     haml (3.1.6)
     haml-rails (0.3.4)
       actionpack (~> 3.0)
@@ -219,6 +222,7 @@ DEPENDENCIES
   devise
   factory_girl
   factory_girl_rails
+  ggs-rails
   haml-rails
   heroku_san
   jquery-rails

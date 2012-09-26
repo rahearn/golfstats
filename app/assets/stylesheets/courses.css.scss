@@ -1,7 +1,8 @@
 @import "constants";
+@import "ggs/lineheight";
 
 #tees {
-  margin-bottom: $ggs-lineheight;
+  margin-bottom: ggs-lineheight(1);
 
   th {
     font-weight: bold;
