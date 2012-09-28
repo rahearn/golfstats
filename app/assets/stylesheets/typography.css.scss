@@ -4,6 +4,7 @@
 
 body, select, input, textarea {
   color: $font-color;
+  font-family: Futura, 'Helvetica Neue', Arial, sans-serif;
 }
 
 h1 {
@@ -13,6 +14,10 @@ h1 {
 
 h2, h3, h5 {
   font-weight: bold;
+}
+
+header, h1, h2, h3, h4, h5, h6 {
+  font-family: Palatino, Georgia, serif;
 }
 
 a {
