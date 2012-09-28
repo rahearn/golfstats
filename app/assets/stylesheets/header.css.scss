@@ -61,13 +61,19 @@ header {
     float: left;
   }
 
-  nav ul {
-    @include inline-block-list;
-    float: right;
+  nav {
+    select {
+      clear: left;
+    }
 
-    li {
-      padding: 0 0 0 25px;
-      @include inline-block-list-item;
+    ul {
+      @include inline-block-list;
+      float: right;
+
+      li {
+        padding: 0 0 0 25px;
+        @include inline-block-list-item;
+      }
     }
   }
 }

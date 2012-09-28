@@ -8,6 +8,13 @@
 
 header .content {
   @include ggs-margin-height;
+
+  nav.js ul {
+    display: none;
+  }
+  .tinynav {
+    display: block;
+  }
 }
 
 .body {
@@ -29,6 +36,15 @@ header .content {
  */
 
 @media screen and (min-width: 45em) {
+  header .content {
+    nav.js ul {
+      display: block;
+    }
+    .tinynav {
+      display: none;
+    }
+  }
+
   .body {
     .wrapper {
       &:first-child {
