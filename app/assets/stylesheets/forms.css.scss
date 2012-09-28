@@ -12,6 +12,12 @@
   }
 }
 
+.form_row, .field {
+  a {
+    @include link-colors($complementary-1, $complementary-4, $complementary-2, $complementary-1, $complementary-4);
+  }
+}
+
 .textarea {
   height: ggs-lineheight(5);
   position: relative;
@@ -38,7 +44,7 @@
   overflow: hidden;
 
   .field_with_errors {
-    border: 1px solid $notices-border;
+    border: 1px solid $complementary-color;
     @include border-radius;
     padding: 2px;
   }
@@ -81,5 +87,5 @@
 
 .required label:after {
   content: "*";
-  color: #ff0000;
+  color: $complementary-color;
 }

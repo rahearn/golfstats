@@ -1,12 +1,13 @@
 @import "constants";
 @import "compass/css3/border-radius";
 @import "compass/typography/lists/inline-block-list";
-@import "compass/typography/links/link-colors";
+@import "compass/typography/links";
 @import "compass/css3/images";
 
 #tabcontrol {
-  @include background(linear-gradient(top, rgba(255,255,255,1) 0%, rgba(198,198,198,1) 85%, rgba(142,142,142,1) 100%));
+  @include background(linear-gradient(top, rgba(38,153,38,1) 0%, rgba(70,191,70,1) 5%, rgba(103,230,103,1) 50%, rgba(70,191,70,1) 95%, rgba(38,153,38,1) 100%));
   @include border-radius;
+  border: 1px solid #269926;
 
   li {
     padding: #{$ggs-line / $ggs-em / 2}em 20px;
@@ -21,7 +22,8 @@
     }
 
     a {
-      @include link-colors($link-color, $link-color, $link-color, $link-color, $link-color);
+      @include unstyled-link;
+      color: $complementary-3;
     }
 
     &:first-child {
@@ -46,6 +48,7 @@
   #tabcontrol {
     @include border-radius;
     @include inline-block-list;
+    border: 1px solid #269926;
 
     li {
       &:first-child {

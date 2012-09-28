@@ -5,13 +5,15 @@ module ApplicationHelper
 
     content_for :error_messages do
       content_tag(:div, :class => 'wrapper notices') do
-        objects_in_error.inject("") do |msgs, object|
-          name = object.class.name.demodulize.titleize.downcase
-          msgs << content_tag(:h3, "#{pluralize(object.errors.count, 'error')} prohibited this #{name} from being saved:")
-          msgs << content_tag(:ul) do
-            object.errors.full_messages.map { |m| content_tag(:li, m) }.join.html_safe
-          end
-        end.html_safe
+        content_tag(:div, :class => 'error') do
+          objects_in_error.inject("") do |msgs, object|
+            name = object.class.name.demodulize.titleize.downcase
+            msgs << content_tag(:h3, "#{pluralize(object.errors.count, 'error')} prohibited this #{name} from being saved:")
+            msgs << content_tag(:ul) do
+              object.errors.full_messages.map { |m| content_tag(:li, m) }.join.html_safe
+            end
+          end.html_safe
+        end
       end
     end if objects_in_error.any?
   end

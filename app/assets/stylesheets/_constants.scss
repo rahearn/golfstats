@@ -6,16 +6,18 @@ $ggs-em: $ggs-font-size * 1;
 
 $default-border-radius: 7px;
 
+$base-color: #00cc00;
+$base-1: #269926;
+$base-2: #008500;
+$base-3: #39e639;
+$base-4: #67e667;
+
+$complementary-color: #ff0000;
+$complementary-1: #bf3030;
+$complementary-2: #a60000;
+$complementary-3: #ff4040;
+$complementary-4: #ff7373;
+
 $font-color: #555;
-$loud-color: darken($font-color, 50%);
+$loud-color: darken($font-color, 25%);
 $quiet-color: lighten($font-color, 10%);
-$alt-text-color: #234358;
-$highlight-color: #ecf1de;
-
-$link-color: #2c4460;
-$link-active-color: lighten(adjust-hue($link-color, 75deg), 10%);
-$link-hover-color: $alt-text-color;
-$link-visited-color: #005a9c;
-$link-focus-color: $link-hover-color;
-
-$notices-border: #ff0000;

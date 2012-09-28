@@ -1,5 +1,5 @@
 @import "constants";
-@import "compass/typography/links/link-colors";
+@import "compass/typography/links";
 @import "ggs/lineheight";
 
 body, select, input, textarea {
@@ -8,7 +8,7 @@ body, select, input, textarea {
 }
 
 h1 {
-  color: $alt-text-color;
+  color: $base-2;
   font-weight: bold;
 }
 
@@ -21,12 +21,9 @@ header, h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-  text-decoration: none;
-  @include link-colors($link-color, $link-hover-color, $link-active-color, $link-visited-color, $link-focus-color);
-
-  .actions & {
-    font-weight: bold;
-  }
+  @include hover-link;
+  // color, hover, active, visited, focus
+  @include link-colors($base-1, $base-4, $base-2, $base-1, $base-4);
 }
 
 p {
