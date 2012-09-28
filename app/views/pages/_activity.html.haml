@@ -11,7 +11,7 @@
           %li= render r
 
   .sidebar.wrapper
-    %h2 Courses Played
+    %h2 #{link_to 'Courses', courses_path} Played
     %ul
       - current_user.courses.each do |c|
         - cache action_suffix: "course_#{c.id}" do

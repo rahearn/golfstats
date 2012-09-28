@@ -8,7 +8,8 @@
   %p #{link_to 'Sign in', new_user_session_path} using Google or an OpenID to get started.
 
 .sidebar.wrapper
-  %h2 Recently Played Courses
+  %h2
+    %a= link_to 'Recently Played Courses', courses_path
   %ul
     - courses.each do |c|
       - cache action_suffix: "course_#{c.id}" do

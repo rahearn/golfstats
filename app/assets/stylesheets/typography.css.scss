@@ -18,6 +18,10 @@ h2, h3, h5 {
 
 header, h1, h2, h3, h4, h5, h6 {
   font-family: Palatino, Georgia, serif;
+
+  a {
+    @include link-colors($font-color, $base-4, $base-2, $font-color, $base-4);
+  }
 }
 
 a {

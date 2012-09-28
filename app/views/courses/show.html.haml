@@ -26,8 +26,8 @@
 .sidebar.wrapper
   .actions
     %ul
-      %li= link_to 'Your rounds played here', course_rounds_path(@course)
-      %li= link_to 'Add a new round', new_course_round_path(@course) if can?(:create, Round)
-      - unless @course.teeboxes.empty?
+      %li= link_to 'Your rounds played here', course_rounds_path(@course) if can?(:read, Round)
+      %li= link_to 'Add a new round', new_course_round_path(@course)
+      - unless @course.teeboxes.empty? || cannot?(:create, Round)
         - @course.teeboxes.each do |t|
           %li= link_to "Add a new round played from the #{t.tees.downcase} tees", new_course_round_path(@course, tees: t.tees)
