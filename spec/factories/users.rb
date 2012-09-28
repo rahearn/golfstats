@@ -5,6 +5,7 @@ FactoryGirl.define do
 
   factory :user do
     sequence(:openid_uid) { |n| "https://my-openid.org/#{n}" }
+    openid_provider :test
 
     factory :full_user do
       email

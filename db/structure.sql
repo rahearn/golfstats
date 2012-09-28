@@ -4,10 +4,23 @@
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
-SET standard_conforming_strings = off;
+SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET escape_string_warning = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
 
 SET search_path = public, pg_catalog;
 
@@ -36,8 +49,8 @@ CREATE TABLE course_notes (
 CREATE SEQUENCE course_notes_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -68,8 +81,8 @@ CREATE TABLE courses (
 CREATE SEQUENCE courses_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -107,8 +120,8 @@ CREATE TABLE rounds (
 CREATE SEQUENCE rounds_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -148,7 +161,8 @@ CREATE TABLE users (
     gender character varying(6) DEFAULT 'male'::character varying,
     handicap numeric(3,1),
     import_done boolean DEFAULT false,
-    remember_token character varying(255)
+    remember_token character varying(255),
+    openid_provider character varying(255) NOT NULL
 );
 
 
@@ -159,8 +173,8 @@ CREATE TABLE users (
 CREATE SEQUENCE users_id_seq
     START WITH 1
     INCREMENT BY 1
-    NO MAXVALUE
     NO MINVALUE
+    NO MAXVALUE
     CACHE 1;
 
 
@@ -175,28 +189,28 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE course_notes ALTER COLUMN id SET DEFAULT nextval('course_notes_id_seq'::regclass);
+ALTER TABLE ONLY course_notes ALTER COLUMN id SET DEFAULT nextval('course_notes_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::regclass);
+ALTER TABLE ONLY courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE rounds ALTER COLUMN id SET DEFAULT nextval('rounds_id_seq'::regclass);
+ALTER TABLE ONLY rounds ALTER COLUMN id SET DEFAULT nextval('rounds_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
@@ -338,3 +352,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120116221353');
 INSERT INTO schema_migrations (version) VALUES ('20120419200615');
 
 INSERT INTO schema_migrations (version) VALUES ('20120706123208');
+
+INSERT INTO schema_migrations (version) VALUES ('20120928212303');
