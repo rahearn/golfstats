@@ -30,12 +30,20 @@ a {
   @include link-colors($base-1, $base-4, $base-2, $base-1, $base-4);
 }
 
+a.pop {
+  @include link-colors($complementary-1, $complementary-4, $complementary-2, $complementary-1, $complementary-4);
+}
+
 p {
   @include ggs-margin-height(1, 1);
 }
 
-.hint {
+em, th {
   font-style: italic;
+}
+
+.hint {
+  @extend em;
   color: $quiet-color;
   margin: 0;
 }

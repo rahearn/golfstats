@@ -2,5 +2,5 @@
   %h2 Where did you play?
   = form_tag courses_path, method: :get do
     .form_row.txt
-      .element= text_field_tag :q
+      .element= text_field_tag :q, '', placeholder: 'Course name or town'
     .form_row.actions= submit_tag 'Find'

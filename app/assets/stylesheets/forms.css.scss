@@ -14,7 +14,7 @@
 
 .form_row, .field {
   a {
-    @include link-colors($complementary-1, $complementary-4, $complementary-2, $complementary-1, $complementary-4);
+    @extend a.pop;
   }
 }
 
