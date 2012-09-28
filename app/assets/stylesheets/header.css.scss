@@ -2,13 +2,14 @@
 @import "compass/css3/border-radius";
 @import "compass/typography/lists/inline-block-list";
 @import "compass/typography/links";
+@import "compass/css3/images";
 @import "ggs/lineheight";
 
 header {
   .content {
     @include border-radius;
     border: 1px solid $base-4;
-    background: #fff;
+    @include background(linear-gradient(top, rgba(0,133,0,1) 75%, rgba(0,168,0,1) 90%, rgba(0,204,0,1) 100%));
     padding: {
       top: ggs-lineheight(1);
       bottom: ggs-lineheight(1);
@@ -25,7 +26,7 @@ header {
   }
 
   a {
-    @include link-colors($base-2, $base-2, $base-2, $base-2, $base-2);
+    @include link-colors(#fff, #fff, #fff, #fff, #fff);
     font-weight: bold;
   }
 
@@ -73,8 +74,14 @@ header {
 
 // 16 columns
 @media screen and (min-width: 117em) {
-  header .content {
-    background: transparent;
-    border: 0;
+  header {
+    .content {
+      background: transparent;
+      border: 0;
+    }
+
+    a {
+      @include link-colors($base-2, $base-2, $base-2, $base-2, $base-2);
+    }
   }
 }
