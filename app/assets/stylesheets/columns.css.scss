@@ -1,30 +1,191 @@
 @import "constants";
-@import "blueprint/grid";
+@import "compass/layout/stretching";
+@import "ggs";
 
-.tiny {
-  @include column(1);
+/*
+ * Four-column default
+ */
+
+header .content {
+  @include ggs-margin-height;
 }
 
-.little {
-  @include column(2);
+.body {
+  .content, .sidebar, .full.wrapper, .fields {
+    @include ggs-margin-width;
+  }
+  .tabmenu {
+    @include ggs-margin-top;
+    @include ggs-margin-width;
+  }
+  & > .sidebar > .actions {
+    @include ggs-margin-top(2);
+  }
 }
 
-.small {
-  @include column(3);
+/*
+ * Eight-column grid active
+ */
+
+@media screen and (min-width: 45em) {
+  .body {
+    .wrapper {
+      &:first-child {
+        @include ggs-margin-width(1, 0);
+      }
+      &:last-child {
+        margin: 0;
+      }
+      &.full {
+        @include ggs-margin-width;
+      }
+    }
+
+    .content {
+      float: left;
+      @include ggs-width(8);
+    }
+
+    .sidebar {
+      float: left;
+      @include ggs-width(8);
+    }
+
+    .fields {
+      margin: 0;
+      @include stretch-x(ggs-column(1), ggs-column(1));
+
+      .field {
+        float: left;
+        @include ggs-width(8, 16);
+      }
+
+      .full {
+        float: left;
+        width: 100%;
+      }
+    }
+  }
 }
 
-.medium {
-  @include column(5);
+@media screen and (min-width: 61.5em) {
+  header {
+    @include ggs-margin-width;
+  }
+  .body {
+    .content {
+      @include ggs-width(10);
+    }
+    .sidebar {
+      @include ggs-width(6);
+    }
+  }
 }
 
-.half {
-  @include column(10);
+@media screen and (min-width: 70em) {
+  .hole {
+    float: left;
+    width: 50%;
+  }
 }
 
-.threequarters {
-  @include column(15);
+@media screen and (min-width: 87em) {
+  .body {
+    .wrapper:first-child {
+      @include ggs-margin-width(3, 0);
+    }
+    .content {
+      @include ggs-width(8);
+    }
+    .sidebar {
+      @include ggs-width(4);
+    }
+    .tabmenu {
+      @include ggs-margin-height;
+      @include ggs-margin-width(3, 3);
+    }
+    .full.wrapper {
+      @extend header;
+    }
+    .fields {
+      @include stretch-x(ggs-column(3), ggs-column(3));
+
+      .field {
+        @include ggs-width(6, 12);
+      }
+    }
+  }
+  header {
+    @include ggs-margin-width(3, 3);
+  }
 }
 
-.full {
-  @include column(20);
+/*
+ * Sixteen-column grid active
+ */
+
+@media screen and (min-width: 117em) {
+  header {
+    @include ggs-width(3);
+    @include stretch-y;
+    @include ggs-margin-width(1, 0);
+    .wrapper {
+      width: 100%;
+      margin: 0;
+    }
+    .content {
+      @include ggs-margin-height(3);
+    }
+  }
+  .body {
+    @include stretch-x(ggs-column(4), ggs-column(1));
+
+    .content.wrapper {
+      @include ggs-width(9, 13);
+    }
+    .sidebar.wrapper {
+      @include ggs-width(4, 13);
+    }
+    .full.wrapper {
+      clear: none;
+      float: left;
+      width: 100%;
+    }
+    .content, .sidebar, .full {
+      &.wrapper {
+        margin: 0;
+        @include ggs-margin-height(2);
+      }
+    }
+
+    .tabmenu {
+      float: left;
+      margin: 0;
+      @include ggs-margin-height(3);
+      @include ggs-width(3, 13);
+    }
+    .tabcontent {
+      &.full {
+        @include ggs-width(10, 13);
+      }
+      .content {
+        @include ggs-width(6, 13);
+      }
+      .sidebar {
+        @include ggs-width(4, 13);
+      }
+    }
+
+    .fields {
+      @include stretch-x(0, ggs-column(18 / 13));
+
+      .field {
+        @include ggs-width(4, 12);
+      }
+    }
+
+    .hole {
+      @include ggs-width(4, 12);
+    }
+  }
 }

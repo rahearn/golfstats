@@ -1,8 +1,5 @@
 = form_for @course_note, url: course_course_note_path(@course), remote: request.xhr?  do |f|
-  .container
+  .form_row.textarea
+    .element= f.text_area :note
 
-    .form_row
-      .prompt.required.little= f.label :note
-      .element.textarea= f.text_area :note, :rows => 4
-
-    .form_row.actions= f.submit
+  .form_row.actions= f.submit

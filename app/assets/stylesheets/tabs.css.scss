@@ -1,22 +1,62 @@
 @import "constants";
 @import "compass/css3/border-radius";
+@import "compass/typography/lists/inline-block-list";
+@import "compass/typography/links";
+@import "compass/css3/images";
 
-.tabs {
+#tabcontrol {
+  @include background(linear-gradient(top, rgba(38,153,38,1) 0%, rgba(70,191,70,1) 5%, rgba(103,230,103,1) 50%, rgba(70,191,70,1) 95%, rgba(38,153,38,1) 100%));
+  @include border-radius;
+  border: 1px solid #269926;
 
-  .topper {
+  li {
+    padding: #{$ggs-line / $ggs-em / 2}em 20px;
+    cursor: pointer;
+
+    &.current {
+      background: #fff;
+
+      &, & a {
+        cursor: default;
+      }
+    }
+
+    a {
+      @include unstyled-link;
+      color: $complementary-3;
+    }
+
+    &:first-child {
+      @include border-top-radius;
+    }
+    &:last-child {
+      @include border-bottom-radius;
+    }
+  }
+}
+
+.tabcontent {
+  display: none;
+
+  &.current {
+    display: block;
+  }
+}
+
+// 8 columns
+@media screen and (min-width: 45em) and (max-width: 117em) {
+  #tabcontrol {
     @include border-radius;
-  }
+    @include inline-block-list;
+    border: 1px solid #269926;
 
-  .bd li {
-    display: block;
+    li {
+      &:first-child {
+        @include border-top-radius(0);
+      }
+      &:last-child {
+        @include border-bottom-radius(0);
+      }
+    }
   }
-
-  .tabContent {
-    display: none;
-  }
-
-  .tabContent.current {
-    display: block;
-  }
-
 }

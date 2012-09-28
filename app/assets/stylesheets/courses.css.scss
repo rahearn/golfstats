@@ -1,0 +1,34 @@
+@import "constants";
+@import "ggs/lineheight";
+
+#tees {
+  margin-bottom: ggs-lineheight(1);
+
+  th {
+    font-weight: bold;
+  }
+
+  td, th {
+    width: 10em;
+    &:first-child {
+      width: 5em;
+    }
+  }
+}
+
+#notes .header h2 {
+  float: left;
+  margin-top: 0;
+  margin-bottom: (10/26*1em);
+}
+
+#course_note_control {
+  float: right;
+}
+
+#course_note {
+
+  p:first-child, .wrapper {
+    margin-top: 0;
+  }
+}

@@ -1,48 +1,87 @@
 @import "constants";
+@import "compass/css3/border-radius";
 @import "compass/typography/lists/inline-block-list";
+@import "compass/typography/links";
+@import "compass/css3/images";
+@import "ggs/lineheight";
 
-.body, .header {
-  width: $blueprint-container-size;
-  margin: 0 auto;
-}
-
-.header .inner {
-  background: #fff;
-
-  .media {
-    margin: 0;
+header {
+  .content {
+    @include border-radius;
+    border: 1px solid $base-4;
+    @include background(linear-gradient(top, rgba(0,133,0,1) 75%, rgba(0,168,0,1) 90%, rgba(0,204,0,1) 100%));
+    padding: {
+      top: ggs-lineheight(1);
+      bottom: ggs-lineheight(1);
+    }
+    overflow: hidden;
   }
 
   .logo {
     margin: 0;
 
-    a {
-      color: $alt-text-color;
-    }
-
     a:hover {
       text-decoration: none;
     }
   }
-}
-
-nav {
-  overflow: hidden;
 
   a {
-    color: $link-visited-color;
+    @include link-colors(#fff, #fff, #fff, #fff, #fff);
+    font-weight: bold;
   }
 
-  ul {
+  .notices {
+    margin-top: ggs-lineheight(1);
+    border: 1px solid $complementary-color;
+    @include border-radius;
+    background: #fff;
+
+    .notice {
+      color: $quiet-color;
+    }
+    .error {
+      color: $loud-color;
+    }
+    ul {
+      list-style: disc;
+      margin: ggs-lineheight(1) 0 ggs-lineheight(1) 1em;
+    }
+  }
+}
+
+@media screen and (min-width: 40em) {
+  nav a {
+    font-size: #{($ggs-font-size + 5) / $ggs-em}em;
+  }
+}
+
+// 4 & 8 columns
+@media screen and (max-width: 117em) {
+  header .logo {
+    float: left;
+  }
+
+  nav ul {
     @include inline-block-list;
     float: right;
-    overflow: hidden;
 
     li {
-      font-weight: bold;
-      font-size: 1.5em;
       padding: 0 0 0 25px;
       @include inline-block-list-item;
+    }
+  }
+}
+
+// 16 columns
+@media screen and (min-width: 117em) {
+  header {
+    .content {
+      background: transparent;
+      border: 0;
+    }
+
+    a {
+      @include link-colors($base-2, $base-2, $base-2, $base-2, $base-2);
     }
   }
 }

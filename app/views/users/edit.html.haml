@@ -1,24 +1,21 @@
-= error_messages_for @user
+- error_messages_for @user
 
-.mod.simple
-  .inner
-    .hd
-      %h2 Edit your Profile
-    .bd
-      = form_for @user do |f|
-        .container
-          .form_row
-            .prompt.little= f.label :name
-            .element.txt= f.text_field :name
-          .form_row
-            .prompt.little= f.label :email
-            .element.txt= f.email_field :email
-          .form_row
-            .prompt.little Gender
-            .element.radio= f.radio_button :gender, :male
-            .prompt.tiny= f.label :gender, 'Male', :value => :male
-            .element.radio= f.radio_button :gender, :female
-            .prompt.little= f.label :gender, 'Female', :value => :female
-            %p.clearfix.hint Only used for default handicap calculation
+.full.wrapper
+  %h1 Edit your Profile
+  = form_for @user do |f|
+    .form_row.txt
+      .prompt= f.label :name
+      .element= f.text_field :name
+    .form_row.txt
+      .prompt= f.label :email
+      .element= f.email_field :email
+    .form_row.radio
+      .prompt Gender
+      .group
+        %span.element= f.radio_button :gender, :male
+        %span.prompt= f.label :gender, 'Male', :value => :male
+        %span.element= f.radio_button :gender, :female
+        %span.prompt= f.label :gender, 'Female', :value => :female
+      %p.hint Only used for default handicap calculation
 
-          .form_row.actions= f.submit
+    .form_row.actions= f.submit

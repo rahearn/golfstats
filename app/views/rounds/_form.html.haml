@@ -1,33 +1,38 @@
-.container
-  %noscript
+%noscript
+  .full.wrapper
     %p Enable Javascript to enable entering only a score and saving custom statistics.
 
-  = form_for [@course, @round] do |f|
-    .form_row
-      .half
-        .prompt.required.little= f.label :date
-        .element.date= f.date_select :date
-      .half
-        .prompt.little= f.label :notes
-        .element.textarea= f.text_area :notes, rows: 4, tabindex: 4
+%div(style = 'clear: both')
 
-    .form_row
-      .half
-        .prompt.required.little= f.label :rating
-        .element.txt= f.number_field :rating, min: 0.1, step: 0.1, tabindex: 5
-      .half
-        .prompt.required.little= f.label :slope
-        .element.txt= f.number_field :slope, min: 55, max: 155, tabindex: 6
-    .form_row
+= form_for [@course, @round] do |f|
+  .fields
+    .field.wrapper.date
+      .prompt.required= f.label :date
+      .element= f.date_select :date
+
+    .field.wrapper.textarea
+      .prompt= f.label :notes
+      .element= f.text_area :notes
+
+    .field.wrapper.txt
+      .prompt.required= f.label :rating
+      .element= f.number_field :rating, min: 0.1, step: 0.1
+
+    .field.wrapper.txt
+      .prompt.required= f.label :slope
+      .element= f.number_field :slope, min: 55, max: 155
+
+    .form_row.full.wrapper
       :javascript
         document.write("#{escape_javascript link_to((@round.scorecard? ? 'enter only your score' : 'enter full scorecard'), '#', id: 'scorecard_toggle')}");
-    #score.form_element{style: "display: #{@round.scorecard? ? 'none' : 'block'}"}
-      .form_row
-        .half
-          .prompt.required.little= f.label :score
-          .element.txt= f.number_field :score, min: 1, disabled: @round.scorecard?, tabindex: 7
-    #scorecard.form_element{style: "display: #{@round.scorecard? ? 'block' : 'none'}"}
+
+    #score{style: "display: #{@round.scorecard? ? 'none' : 'block'}"}
+      .form_row.full.wrapper.relative.txt
+        %span.prompt.required= f.label :score
+        %span.element= f.number_field :score, min: 1, disabled: @round.scorecard?
+
+    #scorecard{style: "display: #{@round.scorecard? ? 'block' : 'none'}"}
       = f.fields_for :scorecard, build_scorecard_for(@round) do |sc|
         = render partial: 'scorecards/form', locals: {f: sc, disabled: !@round.scorecard?}
 
-    .form_row.actions= f.submit tabindex: 1000
+    .form_row.full.wrapper.actions= f.submit

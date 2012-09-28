@@ -1,9 +1,9 @@
 # Generic tab view control
 
 $ ->
-  $(".tabControl a").click ->
-    $(".tabControl li").removeClass('current')
-    $(".tabContent").removeClass('current')
-    $(@).parent().addClass('current')
+  $("#tabcontrol li").click ->
+    $("#tabcontrol li").removeClass('current')
+    $(".tabcontent").removeClass('current')
+    $(@).addClass('current')
     $("##{@id}_content").addClass('current')
     false

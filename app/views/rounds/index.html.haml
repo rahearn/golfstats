@@ -1,8 +1,5 @@
-.mod
-  .inner
-    .hd
-      %h2 Rounds
-    .bd
-      %ul
-        - @rounds.each do |r|
-          %li= render r
+.full.wrapper
+  %h1 Your Rounds at #{@course.name} (#{@course.location})
+  %ul
+    - @rounds.each do |r|
+      %li= render r

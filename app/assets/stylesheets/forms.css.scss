@@ -1,87 +1,91 @@
 @import "constants";
-@import "blueprint/grid";
 @import "compass/css3/border-radius";
+@import "compass/css3/box-sizing";
+@import "compass/layout/stretching";
+@import "ggs/lineheight";
 
-.form_element, .form_row {
-  margin: 20px 0 0 0;
-  overflow: hidden;
+.body {
+  .fields .form_row, .form_row, .field.wrapper {
+    margin: 0;
+    @include ggs-margin-height;
+    overflow: hidden;
+  }
 }
 
-.form_row:first-child {
-  margin: 0;
+.form_row, .field {
+  a {
+    @extend a.pop;
+  }
 }
 
-.actions input {
-  font-size: 2em;
+.textarea {
+  height: ggs-lineheight(5);
+  position: relative;
+
+  .element {
+    @include stretch-x(ggs-lineheight(0.5), ggs-lineheight(0.5));
+    @include stretch-y(ggs-lineheight(1), 0);
+
+    textarea {
+      @include stretch;
+    }
+  }
 }
 
-.prompt {
-  line-height: 38px;
+.date select {
+  width: 32%;
+
+  &:first-child {
+    margin-left: 1px;
+  }
 }
 
 .element {
   overflow: hidden;
 
-  select {
-    margin-top: 10px;
-    width: 100%;
-  }
-
   .field_with_errors {
-    border: 1px solid $notices-border;
+    border: 1px solid $complementary-color;
     @include border-radius;
     padding: 2px;
   }
 }
 
-.date select {
-  width: 30%;
-  margin-left: 3px;
-}
-
 .txt {
-  padding-left: 2px;
-  padding-right: 15px;
+  .bg input {
+    padding-left: 23px;
+  }
 
-  input {
-    padding: 4px;
-    font-size: 18px;
+  div.element input {
+    @include box-sizing(border-box);
     width: 100%;
   }
-}
 
-.textarea {
-  padding-right: 0;
-}
-
-.txt.bg {
-  padding-right: 0;
-
-  input {
-    width: 94%;
-    padding-left: 23px;
+  span.element input {
+    // must put .relative class on enclosing div
+    @include stretch-x(ggs-lineheight(3), ggs-lineheight(0.5));
   }
 }
 
 .radio {
-  float: left;
-
-  input {
-    margin: {
-      top: 1.25em;
-      right: 0.5em;
-      left: 0.3em;
+  span.element {
+    padding: {
+      left: 15px;
+      right: 5px;
     }
+    &:first-child {
+      padding-left: 1px;
+    }
+  }
+}
+
+.field.control {
+  .prompt {
+    text-align: right;
+    @include ggs-margin-top;
   }
 }
 
 .required label:after {
   content: "*";
-  color: #ff0000;
-}
-
-.hint {
-  font-style: italic;
-  @include prepend(2);
-  color: $quiet-color;
+  color: $complementary-color;
 }

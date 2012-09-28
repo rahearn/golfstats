@@ -1,17 +1,13 @@
-= form_for @course do |f|
-  .mod.simple
-    .inner
-      .hd
-        %h2 New Course
-      .bd
-        .container
-          .form_row
-            .threequarters
-              .prompt.required.little= f.label :name
-              .element.txt= f.text_field :name
-          .form_row
-            .threequarters
-              .prompt.required.little= f.label :location
-              .element.txt= f.text_field :location
+- error_messages_for @course
 
-          .form_row.actions= f.submit
+.full.wrapper
+  %h1 New Course
+  = form_for @course do |f|
+    .form_row.txt
+      .prompt.required= f.label :name
+      .element= f.text_field :name
+    .form_row.txt
+      .prompt.required= f.label :location
+      .element= f.text_field :location
+
+    .form_row.actions= f.submit

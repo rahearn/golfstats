@@ -1,5 +1,4 @@
-.hd.topper
-  %ul.tabControl
-    %li{class: (current == :activity ? 'current' : '')}= link_to content_tag(:span, 'Activity'), root_path(tab: :activity), id: 'activity_tab'
-    %li{class: (current == :add_round ? 'current' : '')}= link_to content_tag(:span, 'Add Round'), root_path(tab: :add_round), id: 'add_round_tab'
-    %li{class: (current == :handicap ? 'current' : '')}= link_to content_tag(:span, 'Calculate Course Handicap'), root_path(tab: :handicap), id: 'course_handicap_tab'
+%ul#tabcontrol
+  %li#activity_tab{class: tab_class(current, :activity)}= link_to content_tag(:span, 'Activity'), root_path(tab: :activity)
+  %li#add_round_tab{class: tab_class(current, :add_round)}= link_to content_tag(:span, 'Add Round'), root_path(tab: :add_round)
+  %li#course_handicap_tab{class: tab_class(current, :handicap)}= link_to content_tag(:span, 'Calculate Course Handicap'), root_path(tab: :handicap)

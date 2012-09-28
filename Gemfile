@@ -29,6 +29,7 @@ group :assets do
   gem 'uglifier'
   gem 'compass-rails'
   gem 'jquery-rails'
+  gem 'ggs-rails'
 end
 
 # presentation

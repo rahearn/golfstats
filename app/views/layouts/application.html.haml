@@ -14,6 +14,7 @@
 
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
+    = javascript_include_tag 'GGS' if Rails.env.development?
     = csrf_meta_tags
 
     - if ENV['GOOGLE_ANALYTICS'].present?
@@ -30,27 +31,22 @@
 
   %body
     %header
-      .header
-        .mod.simple
-          .inner
-            .bd
-              .container
-                .media
-                  %h1.img.logo= link_to 'GolfStats', root_path
-                  %nav
-                    %ul
-                      - if user_signed_in?
-                        %li= link_to profile_link_text, user_path(current_user), :title => 'Profile'
-                        %li= link_to 'Sign out', destroy_user_session_path
-                      - else
-                        %li= link_to 'Sign in', new_user_session_path
+      .content.wrapper
+        %h1.logo= link_to 'GolfStats', root_path
+        %nav
+          %ul
+            - if user_signed_in?
+              %li= link_to profile_link_text, user_path(current_user), :title => 'Profile'
+              %li= link_to 'Sign out', destroy_user_session_path
+            - else
+              %li= link_to 'Sign in', new_user_session_path
+
+      - if notice.present? || alert.present?
+        .notices.wrapper
+          %p.error= alert
+          %p.notice= notice
+
+      = content_for :error_messages
 
     .body
-      - if notice.present? || alert.present?
-        .mod.notices
-          .inner.bd.container
-            %p.error= alert
-            %p.notice= notice
-
-      .main
-        = yield
+      = yield

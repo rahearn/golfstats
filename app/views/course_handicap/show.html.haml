@@ -1,14 +1,9 @@
-.mod.tabs
-  = render partial: 'pages/tabs', locals: {current: :handicap}
+.tabmenu= render partial: 'pages/tabs', locals: {current: :handicap}
 
-  .bd
-    = render partial: 'pages/activity', locals: {current: false}
-    = render partial: 'pages/add_round', locals: {current: false}
-    #course_handicap_tab_content.tabContent.current
-      .mod
-        .inner
-          .bd
-            %p
-              %em Course Handicap:
-              = @handicap
-      = render 'pages/course_handicap'
+= render partial: 'pages/activity', locals: {current: false}
+= render partial: 'pages/add_round', locals: {current: false}
+#course_handicap_tab_content.full.wrapper.tabcontent.current
+  %p
+    %em Course Handicap:
+    = @handicap
+  = render 'pages/course_handicap'

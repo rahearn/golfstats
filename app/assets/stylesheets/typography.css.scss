@@ -1,0 +1,49 @@
+@import "constants";
+@import "compass/typography/links";
+@import "ggs/lineheight";
+
+body, select, input, textarea {
+  color: $font-color;
+  font-family: Futura, 'Helvetica Neue', Arial, sans-serif;
+}
+
+h1 {
+  color: $base-2;
+  font-weight: bold;
+}
+
+h2, h3, h5 {
+  font-weight: bold;
+}
+
+header, h1, h2, h3, h4, h5, h6 {
+  font-family: Palatino, Georgia, serif;
+
+  a {
+    @include link-colors($font-color, $base-4, $base-2, $font-color, $base-4);
+  }
+}
+
+a {
+  @include hover-link;
+  // color, hover, active, visited, focus
+  @include link-colors($base-1, $base-4, $base-2, $base-1, $base-4);
+}
+
+a.pop {
+  @include link-colors($complementary-1, $complementary-4, $complementary-2, $complementary-1, $complementary-4);
+}
+
+p {
+  @include ggs-margin-height(1, 1);
+}
+
+em, th {
+  font-style: italic;
+}
+
+.hint {
+  @extend em;
+  color: $quiet-color;
+  margin: 0;
+}
