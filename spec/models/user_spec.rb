@@ -9,6 +9,7 @@ describe User do
 
   describe "validations" do
     it { should validate_presence_of :openid_uid }
+    it { should validate_presence_of :openid_provider }
     it { should validate_format_of(:email).with 'example@mail.com' }
     it { should validate_format_of(:email).not_with 'missing_tld@email' }
     it { should allow_value('male').for :gender }
@@ -20,7 +21,7 @@ describe User do
     context "require db users" do
       before(:each) { create :full_user }
       it { should validate_uniqueness_of :email }
-      it { should validate_uniqueness_of :openid_uid }
+      it { should validate_uniqueness_of(:openid_uid).scoped_to :openid_provider }
     end
   end
 
