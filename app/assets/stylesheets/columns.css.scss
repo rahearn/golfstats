@@ -123,6 +123,7 @@ header .content {
     }
     .full.wrapper {
       @extend header;
+      @include ggs-width(12);
     }
     .fields {
       @include stretch-x(ggs-column(3), ggs-column(3));
