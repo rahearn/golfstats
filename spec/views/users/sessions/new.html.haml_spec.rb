@@ -5,7 +5,11 @@ describe "users/sessions/new" do
   before(:each) { render }
 
   it "displays a link to a google signin" do
-    rendered.should include link_to("Sign in with Google", "/users/auth/google")
+    rendered.should include link_to("Google", "/users/auth/google", class: :pop)
+  end
+
+  it "displays a link to a twitter signin" do
+    rendered.should include link_to('Twitter', '/users/auth/twitter', class: :pop)
   end
 
   it "has a form for entering a custom openid" do

@@ -17,6 +17,6 @@ describe "users/show" do
   end
 
   it "displays a link to the edit profile page" do
-    rendered.should include %{<a href="#{edit_user_path user}">Edit</a>}
+    rendered.should include %{<a href="#{edit_user_path user}">Edit Profile</a>}
   end
 end

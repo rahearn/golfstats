@@ -10,32 +10,32 @@ describe "scorecards/_scorecard" do
 
   it "displays the score for each hole" do
     rendered.should include(
-      holes.inject("<div class='unit size2of21 label'>Score</div>\n") do |row, hole|
-        row << "<div class='unit size1of21'>#{hole.score}</div>\n"
-      end + "<div class='unit size1of21 lastUnit total'>#{scorecard.score}</div>"
+      holes.inject("<div class='hole label'>Score</div>\n") do |row, hole|
+        row << "<div class='hole'>#{hole.score}</div>\n"
+      end + "<div class='hole total'>#{scorecard.score}</div>"
     )
   end
 
   it "displays the length for each hole" do
     rendered.should include(
-      holes.inject("<div class='unit size2of21 label'>Yardage</div>\n") do |row, hole|
-        row << "<div class='unit size1of21'>#{hole.length}</div>\n"
-      end + "<div class='unit size1of21 lastUnit total'>#{scorecard.length}</div>"
+      holes.inject("<div class='hole label'>Yardage</div>\n") do |row, hole|
+        row << "<div class='hole'>#{hole.length}</div>\n"
+      end + "<div class='hole total'>#{scorecard.length}</div>"
     )
   end
 
   it "displays the par for each hole" do
     rendered.should include(
-      holes.inject("<div class='unit size2of21 label'>Par</div>\n") do |row, hole|
-        row << "<div class='unit size1of21'>#{hole.par}</div>\n"
-      end + "<div class='unit size1of21 lastUnit total'>#{scorecard.par}</div>"
+      holes.inject("<div class='hole label'>Par</div>\n") do |row, hole|
+        row << "<div class='hole'>#{hole.par}</div>\n"
+      end + "<div class='hole total'>#{scorecard.par}</div>"
     )
   end
 
   it "displays the handicap for each hole" do
     rendered.should include(
-      holes.inject("<div class='unit size2of21 label'>Handicap</div>\n") do |row, hole|
-        row << "<div class='unit size1of21'>#{hole.handicap}</div>\n"
+      holes.inject("<div class='hole label'>Handicap</div>\n") do |row, hole|
+        row << "<div class='hole'>#{hole.handicap}</div>\n"
       end
     )
   end

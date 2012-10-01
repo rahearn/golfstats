@@ -16,7 +16,7 @@ describe "course_notes/_form" do
   end
 
   it "has a textarea for the note" do
-    rendered.should include '<textarea cols="40" id="course_note_note" name="course_note[note]" rows="4">'
+    rendered.should include '<textarea cols="40" id="course_note_note" name="course_note[note]" rows="20">'
   end
 
 end
