@@ -4,7 +4,9 @@ GolfStats
 A little side project for tracking how I'm golfing and calculating my
 handicap index.
 
-[I hope it's useful for you](http://www.golf-stats.net)
+[The site](http://golf-stats.net)
+
+[Status](http://status.golf-stats.net)
 
 Contributing
 ------------
