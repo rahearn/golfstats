@@ -12,6 +12,10 @@ describe "users/sessions/new" do
     rendered.should include link_to('Twitter', '/users/auth/twitter', class: :pop)
   end
 
+  it "displays a link to a facebook signin" do
+    rendered.should include link_to('Facebook', '/users/auth/facebook', class: :pop)
+  end
+
   it "has a form for entering a custom openid" do
     rendered.should include '<form accept-charset="UTF-8" action="/users/auth/open_id" method="get">'
   end

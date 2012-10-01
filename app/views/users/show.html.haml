@@ -1,20 +1,25 @@
 .wrapper{class: (feature_active?(:legacy_import, @user) ? 'content' : 'full')}
   %h1 Profile
+
   - if @user.name?
     %p
       %em Name:
       = @user.name
+
   - if @user.email?
     %p
       %em Email:
       = @user.email
   %p
     %em OpenId:
+    = "#{@user.openid_provider.humanize}:" unless @user.openid_provider == 'open_id'
     = @user.openid_uid
+
   - unless @user[:handicap].nil?
     %p
       %em Handicap:
       = @user.handicap
+
   %p= link_to 'Edit Profile', edit_user_path(@user) if can?(:edit, @user)
 
 - feature_active? :legacy_import, @user do
