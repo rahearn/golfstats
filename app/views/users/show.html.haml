@@ -25,14 +25,7 @@
 - feature_active? :legacy_import, @user do
   .sidebar.wrapper
     %h2 Import Data
-    %p Use these steps to import data from the old version of GolfStats.
-    %ol
-      %li
-        %p Sign in to #{link_to 'the old site', 'http://www.golf-stats.net', target: 'blank'}
-      %li
-        %p Click the "Download Your Data" link on that page and save the file that is generated
-      %li
-        %p Upload that file here:
-        = form_tag user_import_path(@user), multipart: true do
-          .form_row= file_field_tag :file
-          .form_row.actions= submit_tag 'Upload'
+    %p Upload the file you received here.
+    = form_tag user_import_path(@user), multipart: true do
+      .form_row= file_field_tag :file
+      .form_row.actions= submit_tag 'Upload'
