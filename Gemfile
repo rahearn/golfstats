@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 ruby '1.9.3'
-gem 'rails', '3.2.7'
+gem 'rails', '3.2.9'
 gem 'thin'
 
 group :production do
@@ -12,8 +12,8 @@ end
 # database
 gem 'pg'
 gem 'texticle', :require => 'texticle/rails'
-gem 'mongo', '1.6.4'
-gem 'bson_ext', '1.6.4'
+gem 'mongo', '1.7.1'
+gem 'bson_ext', '1.7.1'
 gem 'mongoid'
 
 # authentication & authorization
