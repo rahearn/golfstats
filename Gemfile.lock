@@ -226,6 +226,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
+    turbolinks (0.5.1)
     tzinfo (0.3.33)
     uglifier (1.2.7)
       execjs (>= 0.3.0)
@@ -267,4 +268,5 @@ DEPENDENCIES
   shoulda-matchers
   texticle
   thin
+  turbolinks (= 0.5.1)
   uglifier

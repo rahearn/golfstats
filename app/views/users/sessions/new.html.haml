@@ -1,6 +1,6 @@
 .sidebar.wrapper
   %h2 Sign In With
-  %ul
+  %ul(data-no-turbolink)
     %li= link_to 'Google', user_omniauth_authorize_path(:google), class: :pop
     %li= link_to 'Twitter', user_omniauth_authorize_path(:twitter), class: :pop
     %li= link_to 'Facebook', user_omniauth_authorize_path(:facebook), class: :pop
