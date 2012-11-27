@@ -70,7 +70,7 @@ header .content {
 
     .fields {
       margin: 0;
-      @include stretch-x(ggs-column(1), ggs-column(1));
+      @include ggs-margin-width;
 
       .field {
         float: left;
@@ -126,7 +126,9 @@ header .content {
       @include ggs-width(12);
     }
     .fields {
-      @include stretch-x(ggs-column(3), ggs-column(3));
+      @include ggs-margin-width(3, 3);
+      @include ggs-width(12);
+
 
       .field {
         @include ggs-width(6, 12);
@@ -195,7 +197,8 @@ header .content {
     }
 
     .fields {
-      @include stretch-x(0, ggs-column(18 / 13));
+      margin: 0;
+      width: 100%;
 
       .field {
         @include ggs-width(4, 12);
