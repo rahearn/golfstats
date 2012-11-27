@@ -36,6 +36,7 @@ end
 
 # presentation
 gem 'haml-rails'
+gem 'turbolinks', '0.5.1' # bug in 0.5.2 prevents use in devel mode
 
 # misc
 gem 'ruby_flipper'

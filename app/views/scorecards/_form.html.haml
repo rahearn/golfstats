@@ -3,8 +3,7 @@
   .element= f.text_field :tees, disabled: disabled
 .field.wrapper.control
   .prompt
-    :javascript
-      document.write("#{escape_javascript link_to('New Custom Statistic', '#', id: 'append_custom_statistic')}");
+    = link_to 'New Custom Statistic', '#', id: 'append_custom_statistic'
 
 = f.hidden_field :user_id, value: current_user.id, disabled: disabled
 

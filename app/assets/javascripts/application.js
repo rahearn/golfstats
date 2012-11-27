@@ -7,4 +7,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require tinynav
+//= require turbolinks
 //= require_tree .

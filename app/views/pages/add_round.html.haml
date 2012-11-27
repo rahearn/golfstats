@@ -1,4 +1,6 @@
-#add_round_tab_content.full.wrapper.tabcontent{class: (current == :add_round ? 'current' : '')}
+= render partial: 'layouts/tabs', locals: {current: :add_round}
+
+.full.wrapper.tabcontent
   %h2 Where did you play?
   = form_tag courses_path, method: :get do
     .form_row.txt

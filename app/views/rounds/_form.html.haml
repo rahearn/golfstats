@@ -23,8 +23,7 @@
       .element= f.number_field :slope, min: 55, max: 155
 
     .form_row.full.wrapper
-      :javascript
-        document.write("#{escape_javascript link_to((@round.scorecard? ? 'enter only your score' : 'enter full scorecard'), '#', id: 'scorecard_toggle')}");
+      = link_to (@round.scorecard? ? 'enter only your score' : 'enter full scorecard'), '#', id: 'scorecard_toggle'
 
     #score{style: "display: #{@round.scorecard? ? 'none' : 'block'}"}
       .form_row.full.wrapper.relative.txt

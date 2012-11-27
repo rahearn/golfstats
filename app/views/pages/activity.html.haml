@@ -1,5 +1,6 @@
-#activity_tab_content.tabcontent{class: (current == :activity ? 'current' : '')}
+= render partial: 'layouts/tabs', locals: {current: :activity}
 
+.tabcontent
   .content.wrapper
     - unless current_user[:handicap].nil?
       %h2 Handicap Index: #{current_user.handicap}

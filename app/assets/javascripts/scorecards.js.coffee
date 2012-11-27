@@ -1,13 +1,6 @@
 # All behavior controlling creating and editing scorecards
 
-custom_stat_counter = 0
-
-$ ->
-  custom_stat_counter = $('#custom_stat_counter').val()
-  $('#append_custom_statistic').click -> append_custom_statistic()
-  $('#scorecard_toggle').click -> toggle_scorecard_view()
-
-toggle_scorecard_view = () ->
+$(document).on 'click', '#scorecard_toggle', ->
   $("#scorecard").toggle()
   $("#score").toggle()
 
@@ -27,23 +20,24 @@ toggle_scorecard_view = () ->
   false
 
 
-append_custom_statistic = () ->
+$(document).on 'click', '#append_custom_statistic', ->
   name = prompt 'Please enter the statistic name', null
   return false if !name? || $.trim(name) == ''
   name = $.trim name
+  stat_counter = $('#custom_stat_counter').val()
 
   $('form').append $("<input name=\"round[scorecard][stat_order][]\" type=\"hidden\" value=\"#{name}\" />")
   $("#hole#{hole}").append(
     $('<div>').addClass('entry txt').append($('<div>').addClass('element').html(
-      $("<input name=\"round[scorecard][holes_attributes][#{hole}][custom_stats][#{custom_stat_counter}]\" type=\"text\" pattern=\"[0-9yYtTnNfF]*\" placeholder=\"#{name}\" />")
+      $("<input name=\"round[scorecard][holes_attributes][#{hole}][custom_stats][#{stat_counter}]\" type=\"text\" pattern=\"[0-9yYtTnNfF]*\" placeholder=\"#{name}\" />")
     ))
   ) for hole in [0..17]
 
-  custom_stat_counter++
-  resize_entries()
+  $('#custom_stat_counter').val ++stat_counter
+  resize_entries stat_counter
   false
 
-resize_entries = () ->
-  columns = 4 + custom_stat_counter
 
+resize_entries = (num_columns) ->
+  columns = 4 + num_columns
   $('.hole .entry').css 'width', "#{85 / columns}%"
