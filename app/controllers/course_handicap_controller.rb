@@ -4,9 +4,11 @@ class CourseHandicapController < ApplicationController
   skip_authorization_check
 
   def show
-    self.extend CourseHandicap
     current_user.extend HomeScreenPresentation
-    @handicap = handicap current_user, params[:slope]
+    if params[:slope].present?
+      self.extend CourseHandicap
+      @handicap = handicap current_user, params[:slope]
+    end
   end
 
 end

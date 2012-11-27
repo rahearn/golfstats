@@ -1,0 +1,5 @@
+.tabmenu
+  %ul#tabcontrol
+    %li#activity_tab.btn{class: tab_class(current, :activity)}= link_to content_tag(:span, 'Activity'), activity_path
+    %li#add_round_tab.btn{class: tab_class(current, :add_round)}= link_to content_tag(:span, 'Add Round'), add_round_path
+    %li#course_handicap_tab.btn{class: tab_class(current, :handicap)}= link_to content_tag(:span, 'Calculate Course Handicap'), course_handicap_path

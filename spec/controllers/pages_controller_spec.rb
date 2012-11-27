@@ -11,11 +11,6 @@ describe PagesController do
         response.should be_success
       end
 
-      it "renders :home" do
-        get :home
-        response.should render_template :guest_home
-      end
-
       it "extends HomeScreenPresentation" do
         controller.should_receive(:extend).with HomeScreenPresentation
         get :home
@@ -23,22 +18,20 @@ describe PagesController do
     end
 
     context "when signed in" do
-      before(:each) { sign_in user }
-
-      it "responds with success" do
+      before(:each) do
+        sign_in user
         get :home
-        response.should be_success
       end
 
-      it "renders :user_home" do
-        get :home
-        response.should render_template :user_home
+      it { should respond_with :redirect }
+
+      context "with no activity" do
+        it { should redirect_to add_round_path }
       end
 
-      it "should extend current user with HomeScreenPresentation" do
-        controller.stub(:current_user).and_return user
-        user.should_receive(:extend).with HomeScreenPresentation
-        get :home
+      context "with a round" do
+        let(:user) { create(:round).user }
+        it { should redirect_to activity_path }
       end
     end
   end

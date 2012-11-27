@@ -35,14 +35,6 @@
   }
 }
 
-.tabcontent {
-  display: none;
-
-  &.current {
-    display: block;
-  }
-}
-
 // 8 columns
 @media screen and (min-width: 45em) and (max-width: 117em) {
   #tabcontrol {

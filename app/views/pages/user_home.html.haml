@@ -1,6 +1,0 @@
-.tabmenu= render partial: 'tabs', locals: {current: current_tab}
-
-= render partial: 'activity', locals: {current: current_tab}
-= render partial: 'add_round', locals: {current: current_tab}
-#course_handicap_tab_content.full.wrapper.tabcontent{class: (params[:tab] == 'handicap' ? 'current' : '')}
-  = render 'course_handicap'
