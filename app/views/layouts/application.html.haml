@@ -12,8 +12,8 @@
     %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
     %link{:href => "/apple-touch-icon.png", :rel => "apple-touch-icon"}/
 
-    = stylesheet_link_tag "application"
-    = javascript_include_tag "application"
+    = stylesheet_link_tag "application", data: {'turbolinks-track' => ''}
+    = javascript_include_tag "application", data: {'turbolinks-track' => ''}
     = javascript_include_tag 'GGS' if Rails.env.development?
     = csrf_meta_tags
 
