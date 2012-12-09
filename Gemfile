@@ -52,9 +52,10 @@ group :development, :test do
 end
 
 group :test do
+  gem 'factory_girl_rails'
+  gem 'tork', git: 'git://github.com/rahearn/tork', branch: 'clear_factory_girl'
+  gem 'rb-fsevent'
   gem 'shoulda-matchers'
   gem 'mongoid-rspec'
-  gem 'factory_girl_rails'
-  gem 'factory_girl'
   gem 'database_cleaner'
 end
