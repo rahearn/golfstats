@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/rahearn/tork
-  revision: c567966120372a343fd7f1313191845f196248f3
-  branch: clear_factory_girl
+  revision: e20228bc5e8834bb559ba097a5d3267cea2f8a69
+  branch: devise
   specs:
-    tork (19.0.2)
+    tork (19.1.0)
       binman (~> 3.0)
       diff-lcs (~> 1.1)
       json (~> 1.6)
