@@ -1,3 +1,5 @@
+puts "Loading User"
+
 class User < ActiveRecord::Base
 
   attr_protected :openid_uid
