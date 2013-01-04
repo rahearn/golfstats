@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 ruby '1.9.3'
-gem 'rails', '3.2.9'
+gem 'rails', '3.2.10'
 gem 'thin'
 
 group :production do
@@ -12,8 +12,8 @@ end
 # database
 gem 'pg'
 gem 'texticle', :require => 'texticle/rails'
-gem 'mongo', '1.7.1'
-gem 'bson_ext', '1.7.1'
+gem 'mongo', '1.8.1'
+gem 'bson_ext', '1.8.1'
 gem 'mongoid'
 
 # authentication & authorization
@@ -53,7 +53,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'tork', git: 'git://github.com/rahearn/tork', branch: 'devise'
+  gem 'tork'
   gem 'rb-fsevent'
   gem 'shoulda-matchers'
   gem 'mongoid-rspec'
