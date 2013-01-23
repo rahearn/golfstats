@@ -1,1 +1,1 @@
-ENV['TORK_CONFIGS'] += ':devise:logdir'
+ENV['TORK_CONFIGS'] += ':logdir'
