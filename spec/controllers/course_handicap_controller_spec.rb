@@ -17,7 +17,6 @@ describe CourseHandicapController do
       end
 
       it { should respond_with :success }
-      it { should assign_to(:handicap).with 38 }
     end
   end
 

@@ -27,7 +27,6 @@ describe RoundsController do
       end
 
       it { should respond_with :success }
-      it { should assign_to(:round).with round }
     end
 
     context "for someone else's round" do
@@ -48,7 +47,6 @@ describe RoundsController do
     end
 
     it { should respond_with :success }
-    it { should assign_to(:round).with_kind_of Round }
   end
 
   describe "POST :create" do

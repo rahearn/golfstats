@@ -16,8 +16,6 @@ describe CoursesController do
       before(:each) { get :show, :id => course.id }
 
       it { should respond_with :success }
-      it { should assign_to(:course).with course }
-      it { should_not assign_to :course_note }
     end
 
     context "when signed in and with a note" do
@@ -28,8 +26,7 @@ describe CoursesController do
       end
 
       it { should respond_with :success }
-      it { should assign_to(:course).with course }
-      it { should assign_to(:course_note).with note }
+      specify { assigns(:course_note).should == note }
     end
   end
 
@@ -40,7 +37,6 @@ describe CoursesController do
     end
 
     it { should respond_with :success }
-    it { should assign_to(:course).with_kind_of Course }
   end
 
   describe "POST :create" do

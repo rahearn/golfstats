@@ -10,8 +10,6 @@ describe CourseNotesController do
     before(:each) { get :new, :course_id => course.id }
 
     it { should respond_with :success }
-    it { should assign_to(:course).with course }
-    it { should assign_to(:course_note).with_kind_of CourseNote }
   end
 
   describe "POST :create" do
@@ -35,16 +33,12 @@ describe CourseNotesController do
       before(:each) { get :edit, :course_id => course.id }
 
       it { should respond_with :success }
-      it { should assign_to(:course).with course }
-      it { should assign_to(:course_note).with note }
     end
 
     describe "PUT :update" do
       before(:each) { put :update, :course_id => course.id, :course_note => {:note => 'updated'} }
 
       it { should respond_with :redirect }
-      it { should assign_to(:course).with course }
-      it { should assign_to(:course_note).with note }
 
       it "should update the note" do
         updated = assigns :course_note

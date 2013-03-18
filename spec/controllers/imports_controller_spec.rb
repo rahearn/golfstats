@@ -19,7 +19,6 @@ describe ImportsController do
       after(:each) { legacy_file.close }
 
       it { should respond_with :redirect }
-      it { should assign_to(:user).with user }
       specify { user.reload.rounds.count.should be > 0 }
     end
   end
