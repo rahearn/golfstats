@@ -23,16 +23,16 @@
     .hole.total= scorecard.length
 
   .full.wrapper
-    .hole.label Par
-    - 18.times do |index|
-      .hole= scorecard_value scorecard.holes[index].try(:par)
-    .hole.total= scorecard.par
-
-  .full.wrapper
     .hole.label Handicap
     - 18.times do |index|
       .hole= scorecard_value scorecard.holes[index].try(:handicap)
     .hole.total &nbsp;
+
+  .full.wrapper
+    .hole.label Par
+    - 18.times do |index|
+      .hole= scorecard_value scorecard.holes[index].try(:par)
+    .hole.total= scorecard.par
 
   .full.wrapper
     .hole.label Score
