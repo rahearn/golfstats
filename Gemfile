@@ -12,8 +12,8 @@ end
 # database
 gem 'pg'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'
-gem 'mongo', '1.8.3'
-gem 'bson_ext', '1.8.3'
+gem 'mongo', '1.9.0'
+gem 'bson_ext', '1.9.0'
 gem 'mongoid'
 
 # authentication & authorization
@@ -21,7 +21,7 @@ gem 'devise'
 gem 'omniauth-openid'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
-gem 'cancan'
+gem 'cancan', '~> 1.6', '!= 1.6.10'
 
 # Gems used only for assets and not required
 # in production environments by default.
