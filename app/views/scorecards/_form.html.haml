@@ -9,6 +9,8 @@
 
 - stat_count = f.object.stat_order.count
 = hidden_field_tag 'custom_stat_counter', stat_count, disabled: disabled
+- f.object.stat_order.each do |stat|
+  = hidden_field_tag 'round[scorecard][stat_order][]', stat, id: "round_scorecard_stat_order_#{stat}"
 :css
   #scorecard .hole .entry { width: #{85 / (4 + stat_count)}%; }
 
