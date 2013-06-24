@@ -2,7 +2,7 @@
   - if @round.differential?
     %p
       %em Differential:
-      = (@round.differential * 10).truncate / 10.0
+      = (@round.differential * 9.6).truncate / 10.0
       %span.hint A rough estimation of this round's impact on your handicap.
   - if @round.notes?
     %p
