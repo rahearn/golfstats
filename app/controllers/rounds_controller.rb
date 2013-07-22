@@ -44,6 +44,7 @@ class RoundsController < ApplicationController
       unless @teebox.nil?
         @round.slope  = @teebox.slope
         @round.rating = @teebox.rating
+        @round.tees   = @teebox.tees.humanize
       end
     end
   end

@@ -4,14 +4,10 @@ module RoundsHelper
     if round.scorecard.present?
       round.scorecard
     else
-      Scorecard.new(:round => round, :tees => tees_value).tap do |sc|
+      Scorecard.new(:round => round).tap do |sc|
         build_holes sc
       end
     end
-  end
-
-  def tees_value
-    (@teebox.try(:tees) || '').humanize
   end
 
   def build_holes(scorecard)

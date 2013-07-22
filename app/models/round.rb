@@ -29,6 +29,8 @@ class Round < ActiveRecord::Base
   default_scope order 'date DESC'
 
 
+  attr_accessor :garmin_file, :tees
+
   def scorecard
     @scorecard ||= Scorecard.find scorecard_id if scorecard_id?
   end
@@ -50,6 +52,14 @@ class Round < ActiveRecord::Base
 
   def scorecard?
     new_record? || scorecard.present?
+  end
+
+  def import?
+    garmin_file.present?
+  end
+
+  def basic?
+    !scorecard? && !import?
   end
 
   private

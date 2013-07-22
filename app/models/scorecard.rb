@@ -36,6 +36,7 @@ class Scorecard
   def round=(r)
     @round        = r
     self.round_id = r.id
+    self.tees     = r.tees if tees.blank?
     extend TeeboxCreator
     create_teebox if create_teebox?
   end

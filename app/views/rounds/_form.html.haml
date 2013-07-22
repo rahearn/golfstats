@@ -22,16 +22,27 @@
       .prompt.required= f.label :slope
       .element= f.number_field :slope, min: 55, max: 155
 
-    .form_row.full.wrapper
-      = link_to (@round.scorecard? ? 'enter only your score' : 'enter full scorecard'), '#', id: 'scorecard_toggle'
+    #scorecard-toggles.form_row.full.wrapper
+      %ul
+        %li#show-scorecard{style: "display: #{@round.scorecard? ? 'none' : 'inline-block'}"}= link_to 'enter full scorecard', '#'
+        %li#show-score{style: "display: #{@round.basic? ? 'none' : 'inline-block'}"}= link_to 'enter only your score', '#'
+        %li#show-garmin{style: "display: #{@round.import? ? 'none' : 'inline-block'}"}= link_to 'import round from garmin', '#'
 
-    #score{style: "display: #{@round.scorecard? ? 'none' : 'block'}"}
+    #score.details-section{style: "display: #{@round.basic? ? 'block' : 'none'}"}
       .form_row.full.wrapper.relative.txt
         %span.prompt.required= f.label :score
-        %span.element= f.number_field :score, min: 1, disabled: @round.scorecard?
+        %span.element= f.number_field :score, min: 1, disabled: !@round.basic?
 
-    #scorecard{style: "display: #{@round.scorecard? ? 'block' : 'none'}"}
+    #scorecard.details-section{style: "display: #{@round.scorecard? ? 'block' : 'none'}"}
       = f.fields_for :scorecard, build_scorecard_for(@round) do |sc|
         = render partial: 'scorecards/form', locals: {f: sc, disabled: !@round.scorecard?}
+
+    #import.details-section{style: "display: #{@round.import? ? 'block' : 'none'}"}
+      .form_row.full.wrapper.relative.txt
+        .prompt.required= f.label :tees
+        .element= f.text_field :tees, disabled: !@round.import?
+      .form_row.full.wrapper.relative.txt
+        .prompt.required= f.label :garmin_file
+        .element= f.file_field :garmin_file, disabled: !@round.import?
 
     .form_row.full.wrapper.actions= f.submit
