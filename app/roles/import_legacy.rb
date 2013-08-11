@@ -20,7 +20,7 @@ module ImportLegacy
   end
 
   def import_successful?
-    !!@success
+    @success
   end
 
   private

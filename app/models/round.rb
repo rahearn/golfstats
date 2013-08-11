@@ -21,6 +21,7 @@ class Round < ActiveRecord::Base
   validate :scorecard_valid, :if => :scorecard_id?
 
 
+  before_validation :garmin_import, :if => :import?, :on => :create
   before_save :calculate_differential
   after_create :link_scorecard, :if => :scorecard_id?
   after_save :update_user_handicap
@@ -41,13 +42,10 @@ class Round < ActiveRecord::Base
                  elsif scorecard_id?
                    scorecard.tap do |scorecard|
                      scorecard.update_attributes(sc)
-                     self.score = scorecard.score
                    end
                  else
-                   Scorecard.create(sc.merge(:slope => slope)).tap do |sc|
-                     self.score = sc.score
-                   end
-                 end.tap { |sc| self.scorecard_id = sc.id.to_s }
+                   Scorecard.create sc.merge(:slope => slope)
+                 end.tap { |sc| self.score = sc.score; self.scorecard_id = sc.id.to_s }
   end
 
   def scorecard?
@@ -72,6 +70,11 @@ class Round < ActiveRecord::Base
       end
       scorecard.errors.delete :holes
     end
+  end
+
+  def garmin_import
+    extend GarminImporter
+    import_round
   end
 
   def calculate_differential

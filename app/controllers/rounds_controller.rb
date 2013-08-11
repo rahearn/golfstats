@@ -18,6 +18,7 @@ class RoundsController < ApplicationController
     if @round.save
       redirect_to @round
     else
+      @round.garmin_file = nil
       render :new
     end
   end
