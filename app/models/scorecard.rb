@@ -28,6 +28,7 @@ class Scorecard
 
   before_validation :sum_scorecard
 
+  after_save :save_teebox
 
   def round
     @round ||= begin
@@ -40,8 +41,6 @@ class Scorecard
     self.round_id = r.id
     self.tees     = r.tees if tees.blank?
     self.user_id  = r.user_id if user_id.blank?
-    extend TeeboxCreator
-    create_teebox if create_teebox?
   end
 
   def slope
@@ -71,4 +70,8 @@ class Scorecard
     end
   end
 
+  def save_teebox
+    extend TeeboxCreator
+    create_teebox if create_teebox?
+  end
 end

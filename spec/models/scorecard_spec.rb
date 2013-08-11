@@ -44,24 +44,25 @@ describe Scorecard do
       subject.round = round
       subject.round_id.should == round.id
     end
+  end
 
+  describe "after_save" do
     it "extends TeeboxCreator" do
       subject.should_receive(:extend).with TeeboxCreator
       subject.stub :create_teebox?, :create_teebox
-      subject.round = round
+      subject.run_callbacks :save
     end
 
     it "creates a teebox if create_teebox? is true" do
       subject.should_receive(:create_teebox?).and_return true
       subject.should_receive :create_teebox
-      subject.round = round
+      subject.run_callbacks :save
     end
 
     it "skips the create if create_teebox? is false" do
       subject.should_receive(:create_teebox?).and_return false
       subject.should_not_receive :create_teebox
-      subject.round = round
+      subject.run_callbacks :save
     end
   end
-
 end
