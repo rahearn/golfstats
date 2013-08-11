@@ -22,11 +22,12 @@
       .prompt.required= f.label :slope
       .element= f.number_field :slope, min: 55, max: 155
 
-    #scorecard-toggles.form_row.full.wrapper
-      %ul
-        %li#show-scorecard{style: "display: #{@round.scorecard? ? 'none' : 'inline-block'}"}= link_to 'enter full scorecard', '#'
-        %li#show-score{style: "display: #{@round.basic? ? 'none' : 'inline-block'}"}= link_to 'enter only your score', '#'
-        %li#show-garmin{style: "display: #{@round.import? ? 'none' : 'inline-block'}"}= link_to 'import round from garmin', '#'
+    - if @round.new_record?
+      #scorecard-toggles.form_row.full.wrapper
+        %ul
+          %li#show-scorecard{style: "display: #{@round.scorecard? ? 'none' : 'inline-block'}"}= link_to 'enter full scorecard', '#'
+          %li#show-score{style: "display: #{@round.basic? ? 'none' : 'inline-block'}"}= link_to 'enter only your score', '#'
+          %li#show-garmin{style: "display: #{@round.import? ? 'none' : 'inline-block'}"}= link_to 'import round from garmin', '#'
 
     #score.details-section{style: "display: #{@round.basic? ? 'block' : 'none'}"}
       .form_row.full.wrapper.relative.txt
