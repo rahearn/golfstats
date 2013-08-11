@@ -1,15 +1,15 @@
-class Numeric
+class FalseClass
 
   def true?
     false
   end
 
   def false?
-    false
+    true
   end
 
-  def numeric?
-    true
+  def to_i
+    0
   end
 
 end

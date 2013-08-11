@@ -84,7 +84,7 @@ describe Round do
     end
 
     context "for saved round with scorecard" do
-      subject { create :round, scorecard: build(:scorecard) }
+      subject { create :round, scorecard: create(:scorecard) }
 
       specify { subject.scorecard?.should be_true }
     end

@@ -1,7 +1,7 @@
 module TeeboxCreator
 
   def create_teebox?
-    holes.count == 18 && holes.all? { |h| h.valid_for_teebox? }
+    round.try(:course_id).present? && holes.count == 18 && holes.all? { |h| h.valid_for_teebox? }
   end
 
   def create_teebox

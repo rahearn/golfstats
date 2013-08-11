@@ -18,6 +18,7 @@ class RoundsController < ApplicationController
     if @round.save
       redirect_to @round
     else
+      @round.garmin_file = nil
       render :new
     end
   end
@@ -44,6 +45,7 @@ class RoundsController < ApplicationController
       unless @teebox.nil?
         @round.slope  = @teebox.slope
         @round.rating = @teebox.rating
+        @round.tees   = @teebox.tees.humanize
       end
     end
   end

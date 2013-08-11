@@ -62,3 +62,8 @@
     }
   }
 }
+
+#scorecard-toggles {
+  ul { @include inline-block-list; }
+  li { margin: 0 ggs-lineheight(1); }
+}

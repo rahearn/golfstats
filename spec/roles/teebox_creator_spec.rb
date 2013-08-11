@@ -3,7 +3,7 @@ require 'spec_helper'
 describe TeeboxCreator do
   let(:round) { create :round }
   subject do
-    create(:scorecard).tap do |sc|
+    create(:scorecard, round: round).tap do |sc|
       sc.extend TeeboxCreator
     end
   end
@@ -23,8 +23,6 @@ describe TeeboxCreator do
   end
 
   describe "#create_teebox" do
-    before(:each) { subject.round_id = round.id }
-
     context "with no previous teebox" do
       it "builds a teebox" do
         subject.create_teebox
@@ -57,8 +55,14 @@ describe TeeboxCreator do
 
     context "with a previous teebox" do
       let!(:teebox) { create :teebox, :course => round.course, :tees => subject.tees }
+      subject do
+        create(:scorecard).tap do |sc|
+          sc.extend TeeboxCreator
+        end
+      end
 
       it "updates the default holes" do
+        subject.round = round
         subject.create_teebox
         teebox.reload
         teebox.holes.count.should == 18

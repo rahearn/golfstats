@@ -1,23 +1,31 @@
 # All behavior controlling creating and editing scorecards
 
-$(document).on 'click', '#scorecard_toggle', ->
-  $("#scorecard").toggle()
-  $("#score").toggle()
-
-  $("#score input").prop(
-    'disabled'
-    !$("#round_score").prop('disabled')
-  )
-  $("#scorecard input").prop(
-    'disabled'
-    !$("#round_score").prop('disabled')
-  )
-
-  if $("#round_score").prop('disabled')
-    $("#scorecard_toggle").text('enter only the score')
-  else
-    $("#scorecard_toggle").text('enter full scorecard')
+$(document).on 'click', '#show-scorecard a', ->
+  hide_sections()
+  $('#show-scorecard').hide()
+  $('#scorecard input').prop 'disabled', false
+  $('#scorecard').show()
   false
+
+$(document).on 'click', '#show-score a', ->
+  hide_sections()
+  $('#show-score').hide()
+  $('#score input').prop 'disabled', false
+  $('#score').show()
+  false
+
+$(document).on 'click', '#show-garmin a', ->
+  hide_sections()
+  $('#show-garmin').hide()
+  $('#import input').prop 'disabled', false
+  $('#import').show()
+  false
+
+
+hide_sections = ->
+  $('.details-section').hide()
+  $('.details-section input').prop 'disabled', true
+  $('#scorecard-toggles li').css 'display', 'inline-block'
 
 
 $(document).on 'click', '#append_custom_statistic', ->

@@ -12,7 +12,7 @@ describe "rounds/new" do
 
   it "has a form for entering a new round" do
     rendered.should include(
-      %|<form accept-charset="UTF-8" action="/courses/#{course.id}/rounds" class="new_round" id="new_round" method="post">|
+      %|<form accept-charset="UTF-8" action="/courses/#{course.id}/rounds" class="new_round" enctype="multipart/form-data" id="new_round" method="post">|
     )
   end
 

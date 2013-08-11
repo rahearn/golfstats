@@ -8,4 +8,9 @@ FactoryGirl.define do
     slope 113
     rating 60.4
   end
+
+  factory :pre_import_round, parent: :round do
+    score nil
+    tees 'White'
+  end
 end
