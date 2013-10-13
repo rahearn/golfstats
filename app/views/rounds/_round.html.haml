@@ -1,1 +1,1 @@
-= link_to "#{round.date} #{round.course_name} (#{round.score}) #{differential_if_active(round)}", round
+= link_to "#{round.date} &laquo; #{round.score} #{differential_if_active round} &raquo; #{round.course_name}".html_safe, round
