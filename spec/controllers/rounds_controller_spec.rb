@@ -15,6 +15,12 @@ describe RoundsController do
       get :index, :course_id => course.id
       response.should be_redirect
     end
+
+    it 'renders all_rounds when course id is nil' do
+      sign_in create :user
+      get :index
+      response.should render_template :all_rounds
+    end
   end
 
   describe "GET :show" do

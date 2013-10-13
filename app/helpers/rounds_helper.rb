@@ -30,4 +30,10 @@ module RoundsHelper
     end
   end
 
+  def differential_if_active(round)
+    if user_signed_in?
+      current_user.extend RoundFilter unless current_user.respond_to?(:sorted_rounds)
+      "(#{round.differential})" if current_user.sorted_rounds.include?(round)
+    end
+  end
 end

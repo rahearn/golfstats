@@ -15,6 +15,8 @@ Golfstats::Application.routes.draw do
     resource :course_note, only: :create, path: 'note', as: :course_notes
   end
 
+  resources :rounds, only: :index
+
   get 'activity', to: 'pages#activity'
   get 'add_round', to: 'pages#add_round'
   get 'course_handicap', to: 'course_handicap#show'

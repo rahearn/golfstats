@@ -6,6 +6,9 @@ class RoundsController < ApplicationController
   cache_sweeper :round_sweeper, only: :update
 
   def index
+    if @course.nil?
+      render :all_rounds
+    end
   end
 
   def show

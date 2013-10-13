@@ -5,9 +5,9 @@
     - unless current_user[:handicap].nil?
       %h2 Handicap Index: #{current_user.handicap}
 
-    %h2 My Rounds
+    %h2 My Recent #{link_to 'Rounds', rounds_path}
     %ul
-      - current_user.rounds.each do |r|
+      - current_user.display_rounds.each do |r|
         - cache action_suffix: "round_#{r.id}" do
           %li= render r
 
