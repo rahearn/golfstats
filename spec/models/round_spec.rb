@@ -95,4 +95,15 @@ describe Round do
       specify { subject.scorecard?.should be_false }
     end
   end
+
+  describe '#display_differential' do
+    context 'with differential' do
+      subject { build_stubbed :round, differential: 36.1235 }
+      its(:display_differential) { should == 34.6 }
+    end
+    context 'nil differential' do
+      subject { build_stubbed :round, differential: nil }
+      its(:display_differential) { should be_nil }
+    end
+  end
 end

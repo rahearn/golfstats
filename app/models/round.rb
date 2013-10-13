@@ -60,6 +60,10 @@ class Round < ActiveRecord::Base
     !scorecard? && !import?
   end
 
+  def display_differential
+    (differential * 9.6).truncate / 10.0 if differential.present?
+  end
+
   private
 
   def scorecard_valid
