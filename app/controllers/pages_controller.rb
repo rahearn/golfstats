@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   end
 
   def activity
+    current_user.extend RoundFilter
     current_user.extend HomeScreenPresentation
   end
 
