@@ -246,7 +246,7 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_girl_rails
-  ggs-rails
+  ggs-rails (~> 1.1)
   haml-rails
   heroku_san
   jquery-rails

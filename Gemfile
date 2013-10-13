@@ -31,7 +31,7 @@ group :assets do
   gem 'uglifier'
   gem 'compass-rails'
   gem 'jquery-rails'
-  gem 'ggs-rails'
+  gem 'ggs-rails', '~> 1.1'
 end
 
 # presentation

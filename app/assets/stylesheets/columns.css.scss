@@ -7,7 +7,7 @@
  */
 
 header .content {
-  @include ggs-margin-height;
+  @include ggs-margin-height(1, 0);
 
   nav.js ul {
     display: none;
@@ -18,9 +18,12 @@ header .content {
 }
 
 .body {
+  @include clearfix;
+
   .content, .sidebar, .full.wrapper, .fields {
     @include ggs-margin-width;
     @include ggs-width(16);
+    @include ggs-margin-height;
   }
   .tabmenu {
     @include ggs-margin-top;
@@ -51,7 +54,10 @@ header .content {
         @include ggs-margin-width(1, 0);
       }
       &:last-child {
-        margin: 0;
+        margin: {
+          left: 0;
+          right: 0;
+        };
       }
       &.full {
         @include ggs-margin-width;
@@ -118,7 +124,6 @@ header .content {
       @include ggs-width(4);
     }
     .tabmenu {
-      @include ggs-margin-height;
       @include ggs-margin-width(3, 3);
     }
     .full.wrapper {
