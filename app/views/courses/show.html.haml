@@ -10,12 +10,14 @@
           %tr
             %th Tees
             %th Course Handicap
+            %th Maximum Score
         %tbody
           - @course.teeboxes.each do |t|
             %tr
               %td= t.tees.titleize
               - t.extend CourseHandicap
               %td= t.handicap current_user
+              %td= esc_limit_text t.handicap(current_user)
     #notes
       .header
         %h2 Notes

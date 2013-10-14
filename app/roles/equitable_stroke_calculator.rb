@@ -1,5 +1,19 @@
 module EquitableStrokeCalculator
 
+  def self.esc_limit(course_handicap)
+    if course_handicap >= 40
+      10
+    elsif course_handicap >= 30
+      9
+    elsif course_handicap >= 20
+      8
+    elsif course_handicap >= 10
+      7
+    else
+      :dbl_bogey
+    end
+  end
+
   def calculate
     [score, max_score].min
   end
@@ -9,17 +23,8 @@ module EquitableStrokeCalculator
   def max_score
     holed.extend CourseHandicap
 
-    if holed.handicap >= 40
-      10
-    elsif holed.handicap >= 30
-      9
-    elsif holed.handicap >= 20
-      8
-    elsif holed.handicap >= 10
-      7
-    else
-      par + 2
-    end
+    esc_limit = EquitableStrokeCalculator.esc_limit holed.handicap
+    esc_limit == :dbl_bogey ? par + 2 : esc_limit
   end
 
 end

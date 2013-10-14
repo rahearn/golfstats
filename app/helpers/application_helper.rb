@@ -24,4 +24,8 @@ module ApplicationHelper
     'Profile'
   end
 
+  def esc_limit_text(handicap)
+    esc_limit = EquitableStrokeCalculator.esc_limit handicap
+    esc_limit == :dbl_bogey ? 'Double Bogey' : esc_limit
+  end
 end
