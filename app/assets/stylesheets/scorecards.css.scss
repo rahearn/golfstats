@@ -7,9 +7,18 @@
     text-align: right;
     float: left;
     width: (100% / 21);
+    @include box-sizing(border-box);
+    padding-right: 5px;
 
     &.label {
       width: (100% * 2 / 21);
+    }
+
+    @each $score_name in eagle, birdie, bogey, dbl-bogey {
+      &.#{$score_name} {
+        background: transparent image-url('#{$score_name}.png') no-repeat right top;
+        background-size: contain;
+      }
     }
   }
 

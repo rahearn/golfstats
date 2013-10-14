@@ -36,6 +36,24 @@ class Hole
     length.present? # && valid for scorecard
   end
 
+  def score_name
+    return '' if par.blank? || score.blank?
+    offset = score - par
+    if offset == 0
+      'par'
+    elsif offset == 1
+      'bogey'
+    elsif offset >= 2
+      'dbl-bogey'
+    elsif offset == -1
+      'birdie'
+    elsif offset <= -2
+      'eagle'
+    else
+      ''
+    end
+  end
+
   private
 
   def needs_par?

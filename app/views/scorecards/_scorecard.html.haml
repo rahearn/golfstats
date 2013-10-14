@@ -38,7 +38,7 @@
   .full.wrapper
     .hole.label Score
     - 18.times do |index|
-      .hole= scorecard_value scorecard.holes[index].try(:score)
+      .hole{class: scorecard.holes[index].try(:score_name)}= scorecard_value scorecard.holes[index].try(:score)
     .hole.total= scorecard.score
 
   - scorecard.stat_order.each_with_key do |label, key|

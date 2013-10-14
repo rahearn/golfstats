@@ -11,7 +11,8 @@ describe "scorecards/_scorecard" do
   it "displays the score for each hole" do
     rendered.should include(
       holes.inject("<div class='hole label'>Score</div>\n") do |row, hole|
-        row << "<div class='hole'>#{hole.score}</div>\n"
+        classes = hole.score_name == 'par' ? 'hole par' : "#{hole.score_name} hole"
+        row << "<div class='#{classes}'>#{hole.score}</div>\n"
       end + "<div class='hole total'>#{scorecard.score}</div>"
     )
   end
