@@ -6,6 +6,7 @@ class Hole
   field :handicap,     :type => Integer
   field :par,          :type => Integer
   field :score,        :type => Integer
+  field :net_score,    :type => Integer
   field :custom_stats, :type => Hash
 
   embedded_in :holed, :polymorphic => true
@@ -38,7 +39,37 @@ class Hole
 
   def score_name
     return '' if par.blank? || score.blank?
-    offset = score - par
+    offset_name(score - par)
+  end
+
+  def net_score_name
+    return '' if par.blank? || net_score.blank?
+    offset_name(net_score - par)
+  end
+
+  def set_net_score
+    if score? && handicap? && holed.respond_to?(:course_handicap?) && holed.course_handicap?
+      course_handicap = holed.course_handicap.abs
+      strokes = (course_handicap / 18) + ((course_handicap % 18) >= handicap ? 1 : 0)
+      if holed.course_handicap >= 0
+        self.net_score = score - strokes
+      else
+        self.net_score = score + strokes
+      end
+    end
+  end
+
+  private
+
+  def needs_par?
+    on_teebox? || score?
+  end
+
+  def on_teebox?
+    holed.is_a? Teebox
+  end
+
+  def offset_name(offset)
     if offset == 0
       'par'
     elsif offset == 1
@@ -53,15 +84,4 @@ class Hole
       ''
     end
   end
-
-  private
-
-  def needs_par?
-    on_teebox? || score?
-  end
-
-  def on_teebox?
-    holed.is_a? Teebox
-  end
-
 end

@@ -6,6 +6,10 @@
     %p
       %em Tees:
       = scorecard.tees.humanize
+    - if scorecard.course_handicap?
+      %p
+        %em Course Handicap:
+        = scorecard.course_handicap
     = content_for :content
   = content_for :sidebar
 
@@ -40,6 +44,13 @@
     - 18.times do |index|
       .hole{class: scorecard.holes[index].try(:score_name)}= scorecard_value scorecard.holes[index].try(:score)
     .hole.total= scorecard.score
+
+  - if scorecard.holes.map { |h| h.try :net_score }.any?
+    .full.wrapper
+      .hole.label Net Score
+      - 18.times do |index|
+        .hole{class: scorecard.holes[index].try(:net_score_name)}= scorecard_value scorecard.holes[index].try(:net_score)
+      .hole.total= scorecard.net_score
 
   - scorecard.stat_order.each_with_key do |label, key|
     .full.wrapper

@@ -9,13 +9,15 @@ module GarminImporter
   private
 
   def import_scorecard_from(player_info)
-    scorecard = Scorecard.new round: self, stat_order: %w(Putts FIR GIR)
+    scorecard = Scorecard.new round: self, stat_order: %w(Putts FIR GIR), course_handicap: course_handicap
     player_info.xpath('//PlayerHole').each do |h|
       hole = h.at_xpath('./HoleNumber').text
       score = h.at_xpath('./HoleScore').text.to_i
       putts = h.at_xpath('./HolePutts').text.to_i
       par = h.at_xpath("//CourseHole/HoleNumber[text()=#{hole}]/../HolePar").text.to_i
+      length = @teebox.holes.where(hole: hole).first.try :length unless @teebox.nil?
       scorecard.holes.build hole: hole,
+                            length: length,
                             score: score,
                             par: par,
                             handicap: h.at_xpath("//CourseHole/HoleNumber[text()=#{hole}]/../HoleHandicap").text,

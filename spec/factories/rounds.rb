@@ -11,6 +11,6 @@ FactoryGirl.define do
 
   factory :pre_import_round, parent: :round do
     score nil
-    tees 'White'
+    tees 'white'
   end
 end

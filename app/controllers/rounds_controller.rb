@@ -1,5 +1,7 @@
 class RoundsController < ApplicationController
 
+  before_filter :authenticate_user!
+  before_filter :set_course_handicap, only: :create
   load_and_authorize_resource :course
   load_and_authorize_resource :round, through: :course, shallow: true
   before_filter :load_teebox, only: :new
@@ -38,6 +40,11 @@ class RoundsController < ApplicationController
   end
 
   private
+
+  def set_course_handicap
+    self.extend CourseHandicap
+    params[:round][:course_handicap] = (params[:round][:scorecard] || {})[:course_handicap] = handicap(current_user, params[:round][:slope])
+  end
 
   def load_teebox
     if params[:tees].present?

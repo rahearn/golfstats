@@ -7,15 +7,25 @@ describe GarminImporter do
   after(:each) { garmin_file.close }
 
   describe '#import_round' do
-    before(:each) { subject.import_round }
     it 'saves scorecard details' do
+      subject.import_round
       s = round.scorecard
       s.score.should == 109
       s.par.should == 69
+      s.length.should == 0
       s.stat_order.should == ['Putts', 'FIR', 'GIR']
       s.totals['0'].should == 33
       s.totals['1'].should == 6
       s.totals['2'].should == 2
+    end
+
+    context 'pre-existing teebox' do
+      let!(:teebox) { create :teebox, course: round.course }
+      it 'saves hole lengths' do
+        subject.import_round
+        s = round.scorecard
+        s.length.should == 7200
+      end
     end
   end
 end

@@ -30,7 +30,7 @@ class Round < ActiveRecord::Base
   default_scope order 'date DESC'
 
 
-  attr_accessor :garmin_file, :tees
+  attr_accessor :garmin_file, :tees, :course_handicap
 
   def scorecard
     @scorecard ||= Scorecard.find scorecard_id if scorecard_id?
