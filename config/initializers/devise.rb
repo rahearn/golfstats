@@ -3,11 +3,7 @@ require 'openid/store/filesystem'
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  if Rails.env.production?
-    config.secret_key = ENV['DEVISE_SECRET']
-  else
-    config.secret_key = '22996333b50a9b5290d2e5762fe7bf65e2e5194017e219a982ee62a1808d5dca0bbd05003512731db165b4d9f1ad73201fdff187b0ecd4d70afb067b0ae5095d'
-  end
+  config.secret_key = ENV['DEVISE_SECRET'] || '22996333b50a9b5290d2e5762fe7bf65e2e5194017e219a982ee62a1808d5dca0bbd05003512731db165b4d9f1ad73201fdff187b0ecd4d70afb067b0ae5095d'
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
