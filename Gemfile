@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 ruby '2.0.0'
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.15'
 gem 'thin'
 
 group :production do
@@ -12,9 +12,9 @@ end
 # database
 gem 'pg'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'
-gem 'mongo', '1.9.0'
-gem 'bson_ext', '1.9.0'
-gem 'mongoid'
+gem 'mongo', '1.9.2'
+gem 'bson_ext', '1.9.2'
+gem 'mongoid', '~> 3.1'
 
 # authentication & authorization
 gem 'devise'
@@ -56,6 +56,6 @@ group :test do
   gem 'tork'
   gem 'rb-fsevent'
   gem 'shoulda-matchers'
-  gem 'mongoid-rspec'
+  gem 'mongoid-rspec', '~> 1.9'
   gem 'database_cleaner'
 end

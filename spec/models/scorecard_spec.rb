@@ -49,7 +49,8 @@ describe Scorecard do
   describe "after_save" do
     it "extends TeeboxCreator" do
       subject.should_receive(:extend).with TeeboxCreator
-      subject.stub :create_teebox?, :create_teebox
+      subject.stub :create_teebox?
+      subject.stub :create_teebox
       subject.run_callbacks :save
     end
 

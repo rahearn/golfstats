@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Array do
-  let(:tester) { mock 'expectations' }
+  let(:tester) { double 'expectations' }
   subject { ['Hello World'] }
 
   describe "#each_key" do
