@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 ruby '2.0.0'
 gem 'rails', '3.2.18'
-gem 'thin'
+gem 'unicorn', '~> 4.8'
 
 group :production do
   gem 'memcachier'
