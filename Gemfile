@@ -4,11 +4,6 @@ ruby '2.0.0'
 gem 'rails', '3.2.18'
 gem 'unicorn', '~> 4.8'
 
-group :production do
-  gem 'memcachier'
-  gem 'dalli'
-end
-
 # database
 gem 'pg'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'

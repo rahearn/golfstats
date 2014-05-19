@@ -5,7 +5,6 @@ class RoundsController < ApplicationController
   load_and_authorize_resource :course
   load_and_authorize_resource :round, through: :course, shallow: true
   before_filter :load_teebox, only: :new
-  cache_sweeper :round_sweeper, only: :update
 
   def index
     if @course.nil?

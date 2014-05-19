@@ -8,12 +8,10 @@
     %h2 My Handicap #{link_to 'Rounds', rounds_path}
     %ul
       - current_user.recent_rounds.each do |r|
-        - cache action_suffix: "round_#{r.id}" do
-          %li= render r
+        %li= render r
 
   .sidebar.wrapper
     %h2 #{link_to 'Courses', courses_path} Played
     %ul
       - current_user.courses.each do |c|
-        - cache action_suffix: "course_#{c.id}" do
-          %li= render c
+        %li= render c

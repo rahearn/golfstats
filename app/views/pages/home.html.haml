@@ -12,5 +12,4 @@
     %a= link_to 'Recently Played Courses', courses_path
   %ul
     - courses.each do |c|
-      - cache action_suffix: "course_#{c.id}" do
-        %li= render c
+      %li= render c
