@@ -2,7 +2,7 @@ module GarminImporter
 
   def import_round
     tree = Nokogiri::XML garmin_file.read
-    @teebox = Teebox.where(tees: tees, course_id: course_id).first
+    @teebox = Teebox.where(tees: tees.downcase, course_id: course_id).first
     self.scorecard = import_scorecard_from tree
   end
 
