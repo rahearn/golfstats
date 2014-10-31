@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-ruby '2.0.0'
-gem 'rails', '3.2.18'
+ruby '2.1.3'
+gem 'rails', '3.2.20'
 gem 'unicorn', '~> 4.8'
 
 # database
