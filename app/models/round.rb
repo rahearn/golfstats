@@ -83,9 +83,9 @@ class Round < ActiveRecord::Base
 
   def calculate_differential
     if scorecard.present?
+      esc_calculator = EquitableStrokeCalculator.new user.handicap, slope
       s = scorecard.holes.select { |h| h.score? }.map do |h|
-        h.extend EquitableStrokeCalculator
-        h.calculate
+        esc_calculator.calculate h.score, h.par
       end.reduce :+
     else
       s = score
