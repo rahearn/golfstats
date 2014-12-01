@@ -13,7 +13,7 @@ describe DifferentialCalculator do
   describe "#calculate" do
     it "returns the differential" do
       expected = ((subject.score.to_f - rating) * 113.0) / slope
-      subject.calculate.should == expected
+      expect(subject.calculate.to_f).to eq expected
     end
 
     it "returns nil if from a partial round" do

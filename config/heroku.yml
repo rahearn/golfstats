@@ -16,12 +16,3 @@ production:
     GOOGLE_ANALYTICS: "UA-15021105-1"
     ERROR_PAGE_URL: "http://status.golf-stats.net/error/"
     MAINTENANCE_PAGE_URL: "http://status.golf-stats.net/maintenance/"
-
-staging:
-  app: golfstats-staging
-  stack: cedar
-  config:
-    BUNDLE_WITHOUT: "development:test"
-    GS_HOST: "golfstats-staging.herokuapp.com"
-    ERROR_PAGE_URL: "http://status.golf-stats.net/error/"
-    MAINTENANCE_PAGE_URL: "http://status.golf-stats.net/maintenance/"

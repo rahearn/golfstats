@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-ruby '2.1.3'
-gem 'rails', '3.2.20'
+ruby '2.1.5'
+gem 'rails', '3.2.21'
 gem 'unicorn', '~> 4.8'
 
 # database
@@ -43,7 +43,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.99'
 end
 
 group :test do
