@@ -51,11 +51,10 @@ describe Round do
 
   describe "after_destroy" do
     subject { build :round }
+    let(:scorecard) { double('Scorecard').tap { |sc| expect(sc).to receive :destroy } }
 
     it "should call scorecard.destroy" do
-      subject.stub(:scorecard).and_return(mock_model(Scorecard).tap do |sc|
-        sc.should_receive :destroy
-      end)
+      subject.stub(:scorecard).and_return scorecard
       subject.run_callbacks :destroy
     end
   end
@@ -80,19 +79,19 @@ describe Round do
 
   describe "#scorecard?" do
     context "for new round" do
-      specify { subject.scorecard?.should be_true }
+      specify { subject.scorecard?.should be true }
     end
 
     context "for saved round with scorecard" do
       subject { create :round, scorecard: create(:scorecard) }
 
-      specify { subject.scorecard?.should be_true }
+      specify { subject.scorecard?.should be true }
     end
 
     context "for saved round with no scorecard" do
       subject { create :round }
 
-      specify { subject.scorecard?.should be_false }
+      specify { subject.scorecard?.should be false }
     end
   end
 

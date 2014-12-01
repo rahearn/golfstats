@@ -9,7 +9,7 @@ describe TeeboxCreator do
   end
 
   describe "#create_teebox?" do
-    it { subject.create_teebox?.should be_true }
+    it { subject.create_teebox?.should be true }
 
     context "with less than 18 holes" do
       subject do
@@ -18,7 +18,7 @@ describe TeeboxCreator do
         end
       end
 
-      it { subject.create_teebox?.should be_false }
+      it { subject.create_teebox?.should be false }
     end
   end
 

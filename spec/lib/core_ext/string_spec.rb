@@ -6,20 +6,20 @@ describe String do
 
     %w(t T true TRUE y Y yes YES).each do |try|
       it "#{try} should be true" do
-        try.true?.should be_true
+        try.true?.should be true
       end
     end
-    it { "false".true?.should_not be_true }
+    it { "false".true?.should_not be true }
   end
 
   describe "#false?" do
 
     %w(f F false FALSE n N no NO).each do |try|
       it "#{try} should be false" do
-        try.false?.should be_true
+        try.false?.should be true
       end
     end
-    it { "true".false?.should_not be_true }
+    it { "true".false?.should_not be true }
 
   end
 

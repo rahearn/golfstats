@@ -20,7 +20,7 @@ describe ImportLegacy do
       specify { subject.rounds.should_not be_empty }
       specify { subject.rounds.first.scorecard.should be_present }
       it { should be_import_successful }
-      specify { subject.import_done?.should be_true }
+      specify { subject.import_done?.should be true }
     end
 
     context "with no file" do

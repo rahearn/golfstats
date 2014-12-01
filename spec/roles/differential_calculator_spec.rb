@@ -24,15 +24,15 @@ describe DifferentialCalculator do
 
   describe "#partial_round?" do
     it "with no scorecard is false" do
-      subject.send(:partial_round?).should be_false
+      subject.send(:partial_round?).should be false
     end
     it "with a full scorecard is false" do
       subject.scorecard = scorecard
-      subject.send(:partial_round?).should be_false
+      subject.send(:partial_round?).should be false
     end
     it "with a partial scorecard is true" do
       subject.scorecard = build :front_nine_with_back
-      subject.send(:partial_round?).should be_true
+      subject.send(:partial_round?).should be true
     end
   end
 
