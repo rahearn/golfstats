@@ -23,7 +23,7 @@ module GarminImporter
                             handicap: h.at_xpath("//CourseHole/HoleNumber[text()=#{hole}]/../HoleHandicap").text,
                             custom_stats: {'0' => putts,
                                            '1' => fir_value(h.at_xpath('./HoleFairwayHit').text.to_i),
-                                           '2' => ((par - 2) == (score - putts) ? 'y' : 'n')
+                                           '2' => ((par - 2) >= (score - putts) ? 'y' : 'n')
                             }
     end
     scorecard.save

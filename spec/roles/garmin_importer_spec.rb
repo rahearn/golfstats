@@ -10,13 +10,13 @@ describe GarminImporter do
     it 'saves scorecard details' do
       subject.import_round
       s = round.scorecard
-      s.score.should == 109
+      s.score.should == 107
       s.par.should == 69
       s.length.should == 0
       s.stat_order.should == ['Putts', 'FIR', 'GIR']
-      s.totals['0'].should == 33
+      s.totals['0'].should == 34
       s.totals['1'].should == 6
-      s.totals['2'].should == 2
+      s.totals['2'].should == 3
     end
 
     context 'pre-existing teebox' do
