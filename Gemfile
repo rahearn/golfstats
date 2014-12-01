@@ -55,3 +55,7 @@ group :test do
   gem 'mongoid-rspec', '~> 1.9'
   gem 'database_cleaner'
 end
+
+group :production do
+  gem 'rails_12factor'
+end
