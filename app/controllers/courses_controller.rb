@@ -4,6 +4,7 @@ class CoursesController < ApplicationController
   before_filter :run_search, :only => :index
 
   def index
+    @courses = @courses.order :name
   end
 
   def show
