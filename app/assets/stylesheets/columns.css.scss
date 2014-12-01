@@ -127,7 +127,7 @@ header .content {
       @include ggs-margin-width(3, 3);
     }
     .full.wrapper {
-      @extend header;
+      @include ggs-margin-width(3, 3);
       @include ggs-width(12);
     }
     .fields {
