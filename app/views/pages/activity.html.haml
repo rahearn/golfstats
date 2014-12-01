@@ -7,11 +7,11 @@
 
     %h2 My Handicap #{link_to 'Rounds', rounds_path}
     %ul
-      - current_user.recent_rounds.each do |r|
+      - @rounds.each do |r|
         %li= render r
 
   .sidebar.wrapper
     %h2 #{link_to 'Courses', courses_path} Played
     %ul
-      - current_user.courses.each do |c|
+      - @courses.each do |c|
         %li= render c
