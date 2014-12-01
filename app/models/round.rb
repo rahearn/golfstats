@@ -22,7 +22,7 @@ class Round < ActiveRecord::Base
 
 
   before_validation :garmin_import, :if => :import?, :on => :create
-  before_save :calculate_differential
+  before_save :calculate_differential, unless: :partial_round?
   after_create :link_scorecard, :if => :scorecard_id?
   after_save :update_user_handicap
   after_destroy :destroy_scorecard
@@ -82,8 +82,22 @@ class Round < ActiveRecord::Base
   end
 
   def calculate_differential
-    extend DifferentialCalculator
-    self.differential = calculate
+    if scorecard.present?
+      s = scorecard.holes.select { |h| h.score? }.map do |h|
+        h.extend EquitableStrokeCalculator
+        h.calculate
+      end.reduce :+
+    else
+      s = score
+    end
+    self.differential = ((s.to_f - rating) * 113.0) / slope
+  end
+
+
+  def partial_round?
+    scorecard.present? &&
+    (scorecard.holes.length != 18 ||
+    scorecard.holes.any? { |h| h.score.blank? })
   end
 
   def link_scorecard
