@@ -41,8 +41,8 @@ class RoundsController < ApplicationController
   private
 
   def set_course_handicap
-    self.extend CourseHandicap
-    params[:round][:course_handicap] = (params[:round][:scorecard] || {})[:course_handicap] = handicap(current_user, params[:round][:slope])
+    handicap = CourseHandicap.new(current_user.handicap, params[:round][:slope]).handicap
+    params[:round][:course_handicap] = (params[:round][:scorecard] || {})[:course_handicap] = handicap
   end
 
   def load_teebox

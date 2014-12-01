@@ -25,7 +25,7 @@ describe EquitableStrokeCalculator do
 
   describe "#max_score" do
     before(:each) do
-      subject.stub(:holed).and_return double(:handicap => handicap)
+      subject.stub(:holed).and_return double(user: double(handicap: handicap), slope: 113)
     end
 
     context "handicap >= 40" do

@@ -8,7 +8,6 @@ class Course < ActiveRecord::Base
     end
   end
 
-
   attr_readonly :name, :location
 
   validates_presence_of :name

@@ -21,9 +21,9 @@ module EquitableStrokeCalculator
   private
 
   def max_score
-    holed.extend CourseHandicap
+    @course_handicap ||= CourseHandicap.new(holed.user.handicap, holed.slope).handicap
 
-    esc_limit = EquitableStrokeCalculator.esc_limit holed.handicap
+    esc_limit = EquitableStrokeCalculator.esc_limit @course_handicap
     esc_limit == :dbl_bogey ? par + 2 : esc_limit
   end
 
