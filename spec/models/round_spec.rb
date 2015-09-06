@@ -31,14 +31,8 @@ describe Round do
   describe "after_save" do
     subject { build :round }
 
-    it "should extend user with handicap calculator" do
-      subject.user.should_receive(:extend).with HandicapCalculator
-      subject.user.stub :update_handicap!
-      subject.run_callbacks :save
-    end
-
-    it "should call update_handicap!" do
-      subject.user.should_receive :update_handicap!
+    it "should call update_handicap" do
+      subject.user.should_receive :update_handicap
       subject.run_callbacks :save
     end
   end

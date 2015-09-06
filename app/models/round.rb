@@ -106,8 +106,7 @@ class Round < ActiveRecord::Base
   end
 
   def update_user_handicap
-    user.extend HandicapCalculator
-    user.update_handicap!
+    user.update_handicap
   end
 
   def destroy_scorecard

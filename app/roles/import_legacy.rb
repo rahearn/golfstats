@@ -1,5 +1,6 @@
 module ImportLegacy
 
+  
   def import_legacy(file)
     @saved_courses = {}
     @xml_courses = {}
