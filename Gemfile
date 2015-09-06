@@ -34,7 +34,6 @@ gem 'haml-rails'
 gem 'turbolinks'
 
 # misc
-gem 'ruby_flipper'
 gem 'nokogiri'
 gem 'newrelic_rpm'
 
