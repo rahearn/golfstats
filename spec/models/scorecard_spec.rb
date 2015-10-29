@@ -47,22 +47,18 @@ describe Scorecard do
   end
 
   describe "after_save" do
-    it "extends TeeboxCreator" do
-      subject.should_receive(:extend).with TeeboxCreator
-      subject.stub :create_teebox?
-      subject.stub :create_teebox
-      subject.run_callbacks :save
-    end
-
+    let(:teebox_creator) { double TeeboxCreator }
     it "creates a teebox if create_teebox? is true" do
-      subject.should_receive(:create_teebox?).and_return true
-      subject.should_receive :create_teebox
+      allow(TeeboxCreator).to receive(:new).with(subject).and_return teebox_creator
+      allow(teebox_creator).to receive(:valid?).and_return true
+      expect(teebox_creator).to receive :call
       subject.run_callbacks :save
     end
 
     it "skips the create if create_teebox? is false" do
-      subject.should_receive(:create_teebox?).and_return false
-      subject.should_not_receive :create_teebox
+      allow(TeeboxCreator).to receive(:new).with(subject).and_return teebox_creator
+      allow(teebox_creator).to receive(:valid?).and_return false
+      expect(teebox_creator).to_not receive :call
       subject.run_callbacks :save
     end
   end

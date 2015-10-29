@@ -74,7 +74,7 @@ class Scorecard
   end
 
   def save_teebox
-    extend TeeboxCreator
-    create_teebox if create_teebox?
+    tc = TeeboxCreator.new self
+    tc.call if tc.valid?
   end
 end
