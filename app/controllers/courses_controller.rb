@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course.extend TeeboxPresentation
+    @handicap_caluculator = CourseHandicap.new current_user.handicap, nil if user_signed_in?
     @course_note = @course.notes.for_user(current_user) if user_signed_in?
   end
 

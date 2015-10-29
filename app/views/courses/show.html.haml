@@ -15,9 +15,9 @@
           - @course.teeboxes.each do |t|
             %tr
               %td= t.tees.titleize
-              - t.extend CourseHandicap
-              %td= t.handicap current_user
-              %td= esc_limit_text t.handicap(current_user)
+              - @handicap_calculator.slope = t.slope
+              %td= @handicap_calculator.handicap
+              %td= esc_limit_text @handicap_calculator.handicap
     #notes
       .header
         %h2 Notes

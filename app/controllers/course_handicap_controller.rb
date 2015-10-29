@@ -5,8 +5,7 @@ class CourseHandicapController < ApplicationController
 
   def show
     if params[:slope].present?
-      self.extend CourseHandicap
-      handicap current_user, params[:slope]
+      @handicap = CourseHandicap.new(current_user.handicap, params[:slope]).handicap
     end
   end
 

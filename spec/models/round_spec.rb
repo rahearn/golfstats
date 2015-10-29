@@ -20,31 +20,19 @@ describe Round do
 
   describe "before_save" do
     subject { build :round }
-
-    it "should extend DifferentialCalculator" do
-      subject.should_receive(:extend).with DifferentialCalculator
-      subject.stub :calculate
-      subject.run_callbacks :save
-    end
+    let(:expected) { (subject.score - subject.rating) * 113.0 / subject.slope }
 
     it "assigns the calculated value to differential" do
-      subject.should_receive(:calculate).and_return 35.0
       subject.run_callbacks :save
-      subject.differential.should == 35.0
+      expect(subject.differential).to eq expected
     end
   end
 
   describe "after_save" do
     subject { build :round }
 
-    it "should extend user with handicap calculator" do
-      subject.user.should_receive(:extend).with HandicapCalculator
-      subject.user.stub :update_handicap!
-      subject.run_callbacks :save
-    end
-
-    it "should call update_handicap!" do
-      subject.user.should_receive :update_handicap!
+    it "should call update_handicap" do
+      subject.user.should_receive :update_handicap
       subject.run_callbacks :save
     end
   end

@@ -11,5 +11,5 @@
   %h2
     %a= link_to 'Recently Played Courses', courses_path
   %ul
-    - courses.each do |c|
+    - @courses.each do |c|
       %li= render c

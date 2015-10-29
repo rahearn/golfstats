@@ -1,15 +1,20 @@
-module GarminImporter
+class GarminImporter
+
+  attr_reader :round
+  def initialize(round)
+    @round = round
+  end
 
   def import_round
-    tree = Nokogiri::XML garmin_file.read
-    @teebox = Teebox.where(tees: tees.downcase, course_id: course_id).first
-    self.scorecard = import_scorecard_from tree
+    tree = Nokogiri::XML round.garmin_file.read
+    @teebox = Teebox.where(tees: round.tees.downcase, course_id: round.course_id).first
+    round.scorecard = import_scorecard_from tree
   end
 
   private
 
   def import_scorecard_from(player_info)
-    scorecard = Scorecard.new round: self, stat_order: %w(Putts FIR GIR), course_handicap: course_handicap
+    scorecard = Scorecard.new round: round, stat_order: %w(Putts FIR GIR), course_handicap: round.course_handicap
     player_info.xpath('//PlayerHole').each do |h|
       hole = h.at_xpath('./HoleNumber').text
       score = h.at_xpath('./HoleScore').text.to_i

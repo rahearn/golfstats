@@ -1,13 +1,18 @@
-module TeeboxCreator
+class TeeboxCreator
 
-  def create_teebox?
+  attr_reader :scorecard
+  def initialize(scorecard)
+    @scorecard = scorecard
+  end
+
+  def valid?
     round.try(:course_id).present? && holes.count == 18 && holes.all? { |h| h.valid_for_teebox? }
   end
 
-  def create_teebox
-    teebox = Teebox.find_or_initialize_by(:tees => tees.downcase, :course_id => round.course_id).tap do |t|
-      t.slope  = slope
-      t.rating = rating
+  def call
+    teebox = Teebox.find_or_initialize_by(:tees => scorecard.tees.downcase, :course_id => round.course_id).tap do |t|
+      t.slope  = scorecard.slope
+      t.rating = scorecard.rating
     end
 
     if teebox.holes.empty?
@@ -29,6 +34,16 @@ module TeeboxCreator
       end
     end
     teebox.save!
+  end
+
+  private
+
+  def round
+    scorecard.round
+  end
+
+  def holes
+    scorecard.holes
   end
 
 end

@@ -8,13 +8,13 @@ class PagesController < ApplicationController
     if user_signed_in?
       redirect_to current_user.rounds.any? ? activity_path : add_round_path
     else
-      extend HomeScreenPresentation
+      @courses = Course.joins(:rounds).order('rounds.date').limit(20).to_a.uniq
     end
   end
 
   def activity
-    current_user.extend RoundFilter
-    current_user.extend HomeScreenPresentation
+    @rounds = current_user.rounds.where('differential IS NOT NULL').limit 20
+    @courses = @rounds.map(&:course).uniq
   end
 
   def add_round

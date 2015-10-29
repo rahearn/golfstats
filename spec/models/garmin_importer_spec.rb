@@ -3,7 +3,7 @@ require 'spec_helper'
 describe GarminImporter do
   let(:garmin_file) { File.open Rails.root.join 'spec', 'support', 'garmin_file.xml' }
   let(:round) { build_stubbed :pre_import_round, garmin_file: garmin_file }
-  subject { round.tap { |r| r.extend GarminImporter } }
+  subject { described_class.new round }
   after(:each) { garmin_file.close }
 
   describe '#import_round' do

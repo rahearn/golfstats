@@ -10,11 +10,6 @@ describe PagesController do
         get :home
         response.should be_success
       end
-
-      it "extends HomeScreenPresentation" do
-        controller.should_receive(:extend).with HomeScreenPresentation
-        get :home
-      end
     end
 
     context "when signed in" do

@@ -227,7 +227,6 @@ GEM
       rspec-expectations (~> 2.99.0)
       rspec-mocks (~> 2.99.0)
     ruby-openid (2.6.0)
-    ruby_flipper (0.0.5)
     sass (3.4.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -295,7 +294,6 @@ DEPENDENCIES
   rb-fsevent
   rspec-its (~> 1.0)
   rspec-rails (~> 2.99)
-  ruby_flipper
   sass-rails
   shoulda-matchers
   textacular (~> 3.0)
@@ -303,3 +301,6 @@ DEPENDENCIES
   turbolinks
   uglifier
   unicorn (~> 4.8)
+
+BUNDLED WITH
+   1.10.6

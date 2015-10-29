@@ -20,9 +20,17 @@ class User < ActiveRecord::Base
     allow_nil: true,
     less_than_or_equal_to: :maximum_handicap
 
-
   def handicap
     self[:handicap] || maximum_handicap
+  end
+
+  def recent_rounds
+    rounds.where('differential IS NOT NULL').limit 20
+  end
+
+  def update_handicap
+    self.handicap = HandicapCalculator.new(self).call
+    save
   end
 
   private
