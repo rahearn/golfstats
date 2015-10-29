@@ -78,7 +78,8 @@ class Round < ActiveRecord::Base
 
   def garmin_import
     extend GarminImporter
-    import_round
+    importer = GarminImporter.new self
+    importer.import_round
   end
 
   def calculate_differential
