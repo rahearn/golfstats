@@ -27,7 +27,7 @@ class Round < ActiveRecord::Base
   after_save :update_user_handicap
   after_destroy :destroy_scorecard
 
-  default_scope order 'date DESC'
+  default_scope { order 'date DESC' }
 
 
   attr_accessor :garmin_file, :tees, :course_handicap
@@ -77,7 +77,6 @@ class Round < ActiveRecord::Base
   end
 
   def garmin_import
-    extend GarminImporter
     importer = GarminImporter.new self
     importer.import_round
   end

@@ -14,8 +14,6 @@ describe Round do
     it { should validate_presence_of :score }
     it { should validate_presence_of :slope }
     it { should validate_presence_of :rating }
-    it { should validate_numericality_of :slope }
-    it { should validate_numericality_of :rating }
   end
 
   describe "before_save" do

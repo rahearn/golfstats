@@ -28,7 +28,8 @@
 .sidebar.wrapper
   .actions
     %ul
-      %li= link_to 'Your rounds played here', course_rounds_path(@course) if can?(:read, Round)
+      - if policy_scope(@course.rounds).any?
+        %li= link_to 'Your rounds played here', course_rounds_path(@course)
       %li= link_to 'Add a new round', new_course_round_path(@course)
       - unless @course.teeboxes.empty? || cannot?(:create, Round)
         - @course.teeboxes.each do |t|

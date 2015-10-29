@@ -2,10 +2,9 @@ class CourseNotesController < ApplicationController
 
   prepend_before_filter :authenticate_user!
 
-  load_and_authorize_resource :course
-  before_filter :new_note,  :only => [:new, :create]
-  before_filter :load_note, :only => [:edit, :update, :destroy]
-  authorize_resource
+  before_action :load_course
+  before_action :new_note,  :only => [:new, :create]
+  before_action :load_note, :only => [:edit, :update, :destroy]
 
   def new
     render layout: !request.xhr?
@@ -29,7 +28,7 @@ class CourseNotesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @course_note.update_attributes params[:course_note]
+      if @course_note.update_attributes params.require(:course_note).permit(:note)
         format.html { redirect_to @course }
         format.js
       else
@@ -47,12 +46,19 @@ class CourseNotesController < ApplicationController
 
   private
 
+  def load_course
+    @course = Course.find params[:course_id]
+  end
+
   def new_note
-    notes_params = (params[:course_note] || {}).merge :user => current_user
-    @course_note = @course.notes.build notes_params
+    course_note_params = params.fetch(:course_note, {}).permit(:note).merge :user => current_user
+    @course_note = @course.notes.build course_note_params
+    authorize @course_note
   end
 
   def load_note
     @course_note = @course.notes.for_user current_user
+    authorize @course_note
   end
+  
 end

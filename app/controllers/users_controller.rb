@@ -1,15 +1,19 @@
 class UsersController < ApplicationController
 
-  load_and_authorize_resource
-
   def show
+    @user = User.find params[:id]
+    authorize @user
   end
 
   def edit
+    @user = User.find params[:id]
+    authorize @user
   end
 
   def update
-    if @user.update_attributes params[:user]
+    @user = User.find params[:id]
+    authorize @user
+    if @user.update_attributes params.require(:user).permit(:email, :name, :gender)
       redirect_to @user, notice: 'You have updated your profile successfully.'
     else
       render :edit

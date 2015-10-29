@@ -13,7 +13,7 @@
   .sidebar.wrapper
     .actions
       %ul
-        %li= link_to 'Edit Round', edit_round_path(@round) if can?(:edit, @round)
+        %li= link_to 'Edit Round', edit_round_path(@round) if policy(@round).edit?
         %li= link_to 'Your other rounds at this course', course_rounds_path(@round.course)
         %li= link_to 'Course details', course_path(@round.course)
 

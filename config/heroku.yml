@@ -9,7 +9,7 @@
 #
 production:
   app: golfstats
-  stack: cedar
+  stack: cedar-14
   config:
     BUNDLE_WITHOUT: "development:test"
     GS_HOST: "golf-stats.net"

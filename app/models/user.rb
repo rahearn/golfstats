@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  attr_protected :openid_uid
-
   devise :omniauthable, :rememberable, :trackable
 
   has_many :rounds, dependent: :destroy

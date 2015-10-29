@@ -15,18 +15,13 @@ describe User do
     it { should allow_value('male').for :gender }
     it { should allow_value('female').for :gender }
     it { should_not allow_value('other').for :gender }
-    it { should validate_numericality_of :handicap }
     it { should allow_value(36.4).for :handicap }
     it { should_not allow_value(36.5).for :handicap }
     context "require db users" do
       before(:each) { create :full_user }
-      it { should validate_uniqueness_of :email }
+      it { should validate_uniqueness_of(:email).case_insensitive }
       it { should validate_uniqueness_of(:openid_uid).scoped_to :openid_provider }
     end
-  end
-
-  describe "security" do
-    it { should_not allow_mass_assignment_of :openid_uid }
   end
 
   describe "#maximum_handicap" do
@@ -44,6 +39,7 @@ describe User do
   end
 
   describe "#recent_rounds" do
+    subject { create :user }
     it "returns the most recent 20 rounds" do
       subject.recent_rounds.to_sql.should include('LIMIT 20')
     end

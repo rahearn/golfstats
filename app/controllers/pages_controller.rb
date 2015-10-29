@@ -2,7 +2,7 @@ class PagesController < ApplicationController
 
   before_filter :authenticate_user!, except: :home
 
-  skip_authorization_check
+  skip_after_action :verify_authorized
 
   def home
     if user_signed_in?

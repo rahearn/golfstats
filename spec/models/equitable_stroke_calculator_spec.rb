@@ -1,11 +1,6 @@
 require 'spec_helper'
 
 describe EquitableStrokeCalculator do
-  # subject do
-  #   build_stubbed(:parred_hole).tap do |h|
-  #     h.extend EquitableStrokeCalculator
-  #   end
-  # end
   subject { described_class.new handicap, 113 }
   let(:handicap) { 21.4 }
   let(:score) { 5 }

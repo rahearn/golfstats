@@ -28,7 +28,7 @@ describe Users::SessionsController do
       end
 
       it { should respond_with :redirect }
-      it { should set_the_flash.to 'Signed out successfully.' }
+      it { should set_flash.to 'Signed out successfully.' }
     end
   end
 

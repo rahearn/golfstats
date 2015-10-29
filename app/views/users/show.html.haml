@@ -20,4 +20,4 @@
       %em Handicap:
       = @user.handicap
 
-  %p= link_to 'Edit Profile', edit_user_path(@user) if can?(:edit, @user)
+  %p= link_to 'Edit Profile', edit_user_path(@user) if policy(@user).edit?

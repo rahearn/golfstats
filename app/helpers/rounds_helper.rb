@@ -32,8 +32,8 @@ module RoundsHelper
 
   def differential_if_active(round)
     if user_signed_in?
-      current_user.extend RoundFilter unless current_user.respond_to?(:sorted_rounds)
-      "(#{round.display_differential})" if current_user.sorted_rounds.include?(round)
+      hc = HandicapCalculator.new current_user
+      "(#{round.display_differential})" if hc.sorted_rounds.include?(round)
     end
   end
 end

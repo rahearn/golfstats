@@ -1,13 +1,14 @@
 module Users
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-    prepend_before_filter :require_no_authentication, except: :developer
-    before_filter         :ensure_development,        only:   :developer
-    before_filter         :load_auth_and_user
-    before_filter         :set_attributes
-    skip_authorization_check
+    skip_before_action    :verify_authenticity_token
+    prepend_before_action :require_no_authentication, except: :developer
+    before_action         :ensure_development,        only:   :developer
+    before_action         :load_auth_and_user
+    before_action         :set_attributes
 
     def open_id
+      skip_authorization
       if @user.save || @user.persisted?
         sign_in_and_redirect @user
       else
@@ -25,7 +26,7 @@ module Users
     def load_auth_and_user
       @auth = request.env["omniauth.auth"]
       Rails.logger.debug "omniauth.auth: #{@auth.inspect}"
-      @user = User.find_or_initialize_by_openid_uid_and_openid_provider @auth.uid, @auth.provider
+      @user = User.find_or_initialize_by openid_uid: @auth.uid, openid_provider: @auth.provider
     end
 
     def set_attributes

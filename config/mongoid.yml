@@ -3,19 +3,20 @@ local_host: &local_host
     - localhost:27017
 
 development:
-  sessions:
+  clients:
     default:
       <<: *local_host
       database: golfstats_development
 
 test:
-  sessions:
+  clients:
     default:
       <<: *local_host
       database: golfstats_test
+      
 
 # set these environment variables on your prod server
 production:
-  sessions:
+  clients:
     default:
       uri: <%= ENV['MONGOHQ_URL'] %>

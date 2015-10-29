@@ -52,7 +52,7 @@ describe UsersController do
         let(:new_email) { generate :email }
 
         it { should redirect_to user }
-        it { should set_the_flash.to 'You have updated your profile successfully.' }
+        it { should set_flash.to 'You have updated your profile successfully.' }
         specify { assigns(:user).email.should == new_email }
       end
 

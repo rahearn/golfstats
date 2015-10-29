@@ -1,33 +1,29 @@
 source 'http://rubygems.org'
 
-ruby '2.1.5'
-gem 'rails', '3.2.21'
+ruby '2.2.3'
+gem 'rails', '4.2.4'
 gem 'unicorn', '~> 4.8'
 
 # database
 gem 'pg'
 gem 'textacular', '~> 3.0', require: 'textacular/rails'
-gem 'mongo', '1.9.2'
-gem 'bson_ext', '1.9.2'
-gem 'mongoid', '~> 3.1'
+gem 'mongo', '2.1.2'
+gem 'mongoid', '~> 5.0'
 
 # authentication & authorization
 gem 'devise'
 gem 'omniauth-openid'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
-gem 'cancan', '~> 1.6', '!= 1.6.10'
+gem 'pundit', '~> 1.0'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-  gem 'compass-rails'
-  gem 'jquery-rails'
-  gem 'ggs-rails', '~> 1.1'
-end
+# assets
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
+gem 'compass-rails'
+gem 'jquery-rails'
+gem 'ggs-rails', '~> 1.1'
 
 # presentation
 gem 'haml-rails'
@@ -42,7 +38,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.99'
+  gem 'rspec-rails', '~> 3.3'
 end
 
 group :test do
@@ -51,7 +47,7 @@ group :test do
   gem 'tork'
   gem 'rb-fsevent'
   gem 'shoulda-matchers'
-  gem 'mongoid-rspec', '~> 1.9'
+  gem 'mongoid-rspec', '~> 3.0'
   gem 'database_cleaner'
 end
 
