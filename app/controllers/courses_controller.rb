@@ -10,7 +10,7 @@ class CoursesController < ApplicationController
     @course = Course.find params[:id]
     authorize @course
     if user_signed_in?
-      @handicap_caluculator = CourseHandicap.new current_user.handicap, nil
+      @handicap_calculator = CourseHandicap.new current_user.handicap, nil
       @course_note = @course.notes.for_user current_user
     end
   end

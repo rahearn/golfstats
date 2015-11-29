@@ -9,6 +9,8 @@ class RoundsController < ApplicationController
     @rounds = policy_scope Round
     if @course.nil?
       render :all_rounds
+    else
+      @rounds.where! course: @course
     end
   end
 

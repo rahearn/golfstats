@@ -14,7 +14,11 @@ class RoundPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      scope.where user_id: user.id
+      if user
+        scope.where user_id: user.id
+      else
+        scope.none
+      end
     end
   end
 end
