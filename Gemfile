@@ -14,7 +14,6 @@ gem 'mongoid', '~> 5.0'
 gem 'devise'
 gem 'omniauth-openid'
 gem 'omniauth-twitter'
-gem 'omniauth-facebook'
 gem 'pundit', '~> 1.0'
 
 # assets

@@ -196,7 +196,6 @@ Devise.setup do |config|
   config.omniauth :open_id, :name => :google, :identifier => 'https://www.google.com/accounts/o8/id'
   config.omniauth :open_id, :store => OpenID::Store::Filesystem.new('/tmp')
   config.omniauth :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
-  config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

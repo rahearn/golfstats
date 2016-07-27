@@ -18,7 +18,6 @@ module Users
     end
     alias :google    :open_id
     alias :twitter   :open_id
-    alias :facebook  :open_id
     alias :developer :open_id
 
     private
