@@ -1,11 +1,11 @@
 .sidebar.wrapper
   %h2 Sign In With
   %ul(data-no-turbolink)
-    %li= link_to 'Google', user_omniauth_authorize_path(:google), class: :pop
-    %li= link_to 'Twitter', user_omniauth_authorize_path(:twitter), class: :pop
+    %li= link_to 'Google', user_google_omniauth_authorize_path, class: :pop
+    %li= link_to 'Twitter', user_twitter_omniauth_authorize_path, class: :pop
 
 .content.wrapper
-  = form_tag user_omniauth_authorize_path(:open_id), :method => :get do
+  = form_tag user_open_id_omniauth_authorize_path, :method => :get do
     %h2 Or Enter your OpenID Provider
     .form_row.txt
       .element.bg= text_field_tag :openid_url

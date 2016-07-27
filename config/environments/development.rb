@@ -26,6 +26,7 @@ Golfstats::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+  config.assets.precompile += %w( GGS.js )
 
   # Expands the lines which load the assets
   config.assets.debug = true
