@@ -57,7 +57,7 @@ describe UsersController do
       end
 
       context "with invalid params" do
-        let(:new_email) { 'bad@format' }
+        let(:new_email) { 'bad_format' }
 
         it { should render_template :edit }
       end

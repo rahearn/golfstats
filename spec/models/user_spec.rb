@@ -11,7 +11,7 @@ describe User do
     it { should validate_presence_of :openid_uid }
     it { should validate_presence_of :openid_provider }
     it { should allow_value('example@mail.com').for :email }
-    it { should_not allow_value('missing_tld@email').for :email }
+    it { should_not allow_value('missing_hostname').for :email }
     it { should allow_value('male').for :gender }
     it { should allow_value('female').for :gender }
     it { should_not allow_value('other').for :gender }

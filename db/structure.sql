@@ -2,12 +2,16 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.5.3
+-- Dumped by pg_dump version 9.5.3
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -30,7 +34,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: course_notes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: course_notes; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE course_notes (
@@ -38,8 +42,8 @@ CREATE TABLE course_notes (
     note text,
     user_id integer,
     course_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -63,15 +67,15 @@ ALTER SEQUENCE course_notes_id_seq OWNED BY course_notes.id;
 
 
 --
--- Name: courses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: courses; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE courses (
     id integer NOT NULL,
-    name character varying(255) NOT NULL,
-    location character varying(255) NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    name character varying NOT NULL,
+    location character varying NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -95,7 +99,7 @@ ALTER SEQUENCE courses_id_seq OWNED BY courses.id;
 
 
 --
--- Name: rounds; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: rounds; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE rounds (
@@ -106,9 +110,9 @@ CREATE TABLE rounds (
     user_id integer NOT NULL,
     course_id integer NOT NULL,
     notes text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    scorecard_id character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    scorecard_id character varying,
     slope integer,
     rating numeric(4,1)
 );
@@ -134,16 +138,16 @@ ALTER SEQUENCE rounds_id_seq OWNED BY rounds.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE schema_migrations (
-    version character varying(255) NOT NULL
+    version character varying NOT NULL
 );
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE users (
@@ -152,18 +156,18 @@ CREATE TABLE users (
     sign_in_count integer DEFAULT 0,
     current_sign_in_at timestamp without time zone,
     last_sign_in_at timestamp without time zone,
-    current_sign_in_ip character varying(255),
-    last_sign_in_ip character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    email character varying(255),
-    name character varying(255),
-    openid_uid character varying(255) NOT NULL,
+    current_sign_in_ip character varying,
+    last_sign_in_ip character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    email character varying,
+    name character varying,
+    openid_uid character varying NOT NULL,
     gender character varying(6) DEFAULT 'male'::character varying,
     handicap numeric(3,1),
     import_done boolean DEFAULT false,
-    remember_token character varying(255),
-    openid_provider character varying(255) NOT NULL
+    remember_token character varying,
+    openid_provider character varying NOT NULL
 );
 
 
@@ -215,7 +219,7 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
--- Name: course_notes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: course_notes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY course_notes
@@ -223,7 +227,7 @@ ALTER TABLE ONLY course_notes
 
 
 --
--- Name: courses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: courses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY courses
@@ -231,7 +235,7 @@ ALTER TABLE ONLY courses
 
 
 --
--- Name: rounds_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: rounds_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY rounds
@@ -239,7 +243,7 @@ ALTER TABLE ONLY rounds
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users
@@ -247,84 +251,84 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: courses_ft_location_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: courses_ft_location_idx; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX courses_ft_location_idx ON courses USING gin (to_tsvector('english'::regconfig, (location)::text));
 
 
 --
--- Name: courses_ft_name_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: courses_ft_name_idx; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX courses_ft_name_idx ON courses USING gin (to_tsvector('english'::regconfig, (name)::text));
 
 
 --
--- Name: index_course_notes_on_course_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_course_notes_on_course_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_course_notes_on_course_id ON course_notes USING btree (course_id);
 
 
 --
--- Name: index_course_notes_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_course_notes_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_course_notes_on_user_id ON course_notes USING btree (user_id);
 
 
 --
--- Name: index_courses_on_location; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_courses_on_location; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_courses_on_location ON courses USING btree (location);
 
 
 --
--- Name: index_courses_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_courses_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_courses_on_name ON courses USING btree (name);
 
 
 --
--- Name: index_courses_on_name_and_location; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_courses_on_name_and_location; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_courses_on_name_and_location ON courses USING btree (name, location);
 
 
 --
--- Name: index_rounds_on_course_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_rounds_on_course_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_rounds_on_course_id ON rounds USING btree (course_id);
 
 
 --
--- Name: index_rounds_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_rounds_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_rounds_on_user_id ON rounds USING btree (user_id);
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
--- Name: index_users_on_openid_uid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_openid_uid; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_openid_uid ON users USING btree (openid_uid);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
@@ -334,7 +338,7 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user",public;
+SET search_path TO "$user", public;
 
 INSERT INTO schema_migrations (version) VALUES ('20111221220109');
 
@@ -357,3 +361,4 @@ INSERT INTO schema_migrations (version) VALUES ('20120419200615');
 INSERT INTO schema_migrations (version) VALUES ('20120706123208');
 
 INSERT INTO schema_migrations (version) VALUES ('20120928212303');
+
